@@ -63,6 +63,8 @@ class BasicsTester(unittest.TestCase):
         )
         assert spans == self.data[0]["norm_spans"]
 
-    def test_algin(self):
-        alignment = algin(self.data[0]["orig_tok"], self.data[0]["norm_tok"])
+    def test_interal_align(self):
+        alignment = self.modifier._align(
+            self.data[0]["orig_tok"], self.data[0]["norm_tok"]
+        )
         assert alignment == self.data[0]["alignment"]

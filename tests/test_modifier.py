@@ -50,6 +50,10 @@ class BasicsTester(unittest.TestCase):
         self.modifier = TypeReplacementModifier(self.dataset)
 
     def test_modification(self):
-        dataset = self.modifier.modify_dataset()
-        assert dataset["train"][0]["norm"] == "Ein tolles Haus."
-        assert dataset["train"][0]["norm_tok"] == ["Ein", "tolles", "Haus", "."]
+        # Remove alignment to show that it is successfully recreated
+        self.dataset["train"] = self.dataset["train"].remove_columns("alignment")
+        print(self.dataset["train"][0])
+        self.dataset = self.modifier.modify_dataset()
+        assert self.dataset["train"][0]["norm"] == "Ein tolles Haus."
+        assert self.dataset["train"][0]["norm_tok"] == ["Ein", "tolles", "Haus", "."]
+        assert self.dataset["train"][0]["alignment"] == [[0, 0], [1, 1], [2, 2], [3, 3]]

@@ -3,6 +3,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import datasets
 import spacy
 
+from textalign import Aligner
 
 MODEL = "de_dep_news_trf"  # TODO: not in base class
 
@@ -61,5 +62,18 @@ class BaseDatasetModifier:
     def update_spans(self):
         pass
 
-    def update_alignment(self):
-        pass
+    def update_alignment(
+        self, sample: Dict, key_tokens_src: str, key_tokens_trg: str, key_alignment: str
+    ) -> Dict:
+        """Align the tokens from source and target and update the sample's alignment property"""
+        alignment = self._align(sample[key_tokens_src], sample[key_tokens_trg])
+        sample[key_alignment] = alignment
+        return sample
+
+    def _align(self, tokens_src: List[str], tokens_trg: List[str]) -> List[List[int]]:
+        """Align the tokens from source and target"""
+        aligner = Aligner(tokens_src, tokens_trg)
+        aligner.get_bidirectional_alignments()
+        # Convert format of alignments from AlignedPairs to python list
+        alignment = [list(pair) for pair in aligner.aligned_tokidxs]
+        return alignment

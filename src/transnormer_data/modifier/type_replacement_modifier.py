@@ -56,7 +56,15 @@ class TypeReplacementModifier(BaseDatasetModifier):
         sample[self.tok] = tokens_new
         if any_changes:
             self.tok2raw(sample, key_raw=self.raw, key_tok=self.tok, key_ws=self.ws)
-            # self.update_spans(sample, key_raw=layer) # TODO
-            # self.update_alignment(sample) # TODO
+
+            # Not necessary here, iff we only do 1:1 token replacements
+            # If token replacement can be n:1 token replacements (and vice versa),
+            #  e.g. 'zu mindest -> zumindest' we have to compute new alignments
+            self.update_alignment(
+                sample,
+                key_tokens_src="orig_tok",
+                key_tokens_trg="norm_tok",
+                key_alignment="alignment",
+            )
 
         return sample
