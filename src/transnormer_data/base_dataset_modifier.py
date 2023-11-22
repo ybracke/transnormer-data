@@ -25,12 +25,13 @@ class BaseDatasetModifier:
     #             self.modify_sample(func), fn_kwargs=args, batched=False
     #         )
 
-    def raw2tok(self, sample: Dict, key_raw: str, key_tok: str, key_ws: str) -> Dict:
+    def update_tok_from_raw(self, sample: Dict, key_raw: str, key_tok: str, key_ws: str) -> Dict:
+        """Update a sample's tokenized and whitespace entries based on its raw string entry"""
         sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
         return sample
 
     def _raw2tok(self, raw: str) -> Tuple[List[str], List[bool]]:
-        """Internal tokenization Callable"""
+        """Internal tokenization function"""
         doc = self.nlp(raw.strip())
         tokens = []
         whitespaces = [
@@ -44,11 +45,12 @@ class BaseDatasetModifier:
         # pop final whitespace
         return tokens, whitespaces[:-1]
 
-    def tok2raw(self, sample: Dict, key_raw: str, key_tok: str, key_ws: str) -> Dict:
+    def update_raw_from_tok(self, sample: Dict, key_raw: str, key_tok: str, key_ws: str) -> Dict:
+        """Update a sample's raw string entry based on its tokenized + whitespace entry"""
         sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
         return sample
 
-    def _tok2raw(self, tokens: List[str], whitespaces: List[bool]) -> str:
+    def _tok2raw(self, tokens: List[str], whitespaces: Optional[List[bool]]) -> str:
         """Internal detokenization function"""
         if whitespaces is not None:
             raw = ""
@@ -58,9 +60,6 @@ class BaseDatasetModifier:
         # else:
         #     raw = self.detokenizer.detokenize(sample.tok)
         return raw
-
-    def update_spans(self):
-        pass
 
     def update_alignment(
         self, sample: Dict, key_tokens_src: str, key_tokens_trg: str, key_alignment: str
@@ -77,3 +76,6 @@ class BaseDatasetModifier:
         # Convert format of alignments from AlignedPairs to python list
         alignment = [list(pair) for pair in aligner.aligned_tokidxs]
         return alignment
+
+    def update_spans(self):
+        pass
