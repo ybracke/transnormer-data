@@ -1,0 +1,32 @@
+{
+    "basename" : "foo", // document's basename
+    "par_idx" : 0,  // index of sentence within document 
+                    // the pair (basename, par_idx) uniquely identifies an example
+    // "date" : 1989,
+    // "genre" : str, 
+    // "author" : str,
+    // "title" : str,
+    "orig" : "Eyn ſchoenes Haus.", // raw string version of original text 
+    "orig_tok" : ["Eyn", "ſchoenes", "Haus", "."], // tokenized version of orig
+    "orig_ws" : [false, true, true, false], // whitespace information: is there ws in front of token i
+    "orig_spans" : [(0,3),(4,12),(13,17),(17,18)], // uft-8 character spans of tokens in orig
+    // "orig_lemma" : List[str], // lemmas of orig tokens
+    // "orig_pos" : List[str],   // part-of-speech of orig tokens
+    // "orig_ner" : List[str], // named entity labels of orig tokens 
+    "norm" : "Ein schönes Haus.",  
+    "norm_tok" : ["Ein", "schönes", "Haus", "."],
+    "norm_ws" : [false, true, true, false],
+    "norm_spans" : [(0,3),(4,11),(12,16),(16,17)],
+    // "norm_lemma" : List[str], 
+    // "norm_pos" : List[str], 
+    // "norm_ner" : List[str], 
+    "alignment" : [(0,0),(1,1),(2,2),(3,3)], // mapping of tokens in orig_tok to tokens in norm_tok
+    // erweiterbar mit Attributen, die z.B. die Qualität des 
+    // Beispiel beziffern oder flags wie "foreign" enthalten, etc. 
+    
+}
+
+
+"orig_spans" : [(0,3),(4,12),(13,17),(17,18)], 
+
+"norm_spans" : [(0,3),(4,11),(12,16),(16,17)], "alignment" : [(0,0),(1,1),(2,2),(3,3)]
