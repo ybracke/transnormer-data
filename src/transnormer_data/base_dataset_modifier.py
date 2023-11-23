@@ -69,6 +69,8 @@ class BaseDatasetModifier:
         sample[key_alignment] = alignment
         return sample
 
+    # TODO: alignment function must be replaced 
+    #       It can only compute 1:1 and 1:2 alignments, not 1:n
     def _align(self, tokens_src: List[str], tokens_trg: List[str]) -> List[List[int]]:
         """Align the tokens from source and target"""
         aligner = Aligner(tokens_src, tokens_trg)
@@ -77,5 +79,19 @@ class BaseDatasetModifier:
         alignment = [list(pair) for pair in aligner.aligned_tokidxs]
         return alignment
 
-    def update_spans(self):
-        pass
+    def update_token_spans(self, sample: Dict, key_tokens: str, key_ws: str, key_spans: str):
+        """Update the token spans from tokens and whitespace"""
+        spans = self._get_token_spans()
+        sample[key_spans] = spans
+        return sample
+    
+    def _get_token_spans(self, tokens: List[str], whitepaces: List[bool]) -> List[List[int]]:
+        """Internal function that calculates the token spans from ws and tokens"""
+        spans = []
+        start_idx = 0
+        end_idx = 0
+        for tok,ws in zip(tokens, whitepaces):
+            start_idx = end_idx + bool(ws)  # add 1 if preceded by ws
+            end_idx = start_idx + len(tok)
+            spans.append([start_idx, end_idx])
+        return spans

@@ -39,16 +39,32 @@ class BasicsTester(unittest.TestCase):
         norm_raw_from_tok = self.modifier._tok2raw(self.data[0]["norm_tok"], self.data[0]["norm_ws"])
         assert norm_raw_from_tok == self.data[0]["norm"]
 
-    # def test_extract_spans(self):
-    #     spans = get_spans(
-    #         self.data[0]["orig"], self.data[0]["orig_tok"], self.data[0]["orig_ws"]
-    #     )
-    #     assert spans == self.data[0]["orig_spans"]
+    def test_compute_spans(self):
+        spans = self.modifier._get_token_spans(
+            self.data[0]["orig_tok"], self.data[0]["orig_ws"]
+        )
+        # assert that the same spans where compute
+        assert spans == self.data[0]["orig_spans"]
 
-    #     spans = get_spans(
-    #         self.data[0]["norm"], self.data[0]["norm_tok"], self.data[0]["norm_ws"]
-    #     )
-    #     assert spans == self.data[0]["norm_spans"]
+        # assert that you get the tokens when you extract the spans from raw
+        tokens = self.data[0]["orig_tok"]
+        raw = self.data[0]["orig"]
+        for span,token in zip(spans,tokens):
+            start, end = span[0], span[1]
+            assert raw[start:end] == token
+
+
+        # same for norm
+        spans = self.modifier._get_token_spans(
+            self.data[0]["norm_tok"], self.data[0]["norm_ws"]
+        )
+        assert spans == self.data[0]["norm_spans"]
+
+        tokens = self.data[0]["norm_tok"]
+        raw = self.data[0]["norm"]
+        for span,token in zip(spans,tokens):
+            start, end = span[0], span[1]
+            assert raw[start:end] == token
 
     def test_interal_align(self):
         alignment = self.modifier._align(
