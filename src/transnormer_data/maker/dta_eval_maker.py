@@ -1,7 +1,7 @@
 import json
 import os
 import glob
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Union
 
 import datasets
 from lxml import etree
@@ -94,8 +94,6 @@ class DtaEvalMaker:
                 id = record["basename"]
                 if id not in metadata_mapper:
                     metadata_mapper[id] = record
-                # else:
-                #     logging.info(f"Tried to add {id} to metadata dict multiple times.")
 
         return metadata_mapper
 
@@ -151,8 +149,10 @@ class DtaEvalMaker:
 
     def _join_data_and_metadata(self, join_on: str) -> datasets.Dataset:
         """Join the metadata (stored in dictionary) with the data (stored in dataset) on a key ('join_on') that is contained in both"""
-        # the following assumes all entries have the same structure
-        new_columns = {
+        assert self._metadata is not None and self._dataset is not None
+        # new_columns 
+        # the following assumes all metadat entries have the same structure
+        new_columns: Dict[str,List] = {
             key: [] for key in list(self._metadata.values())[0] if key != join_on
         }
         # Get the column to join metadata and data on, e.g. "basename"
@@ -161,7 +161,11 @@ class DtaEvalMaker:
         for entry in join_column:
             # metadata dictionary for a specific property value
             # e.g. for basename=='fontane_stechlin_1899'
-            metadata = self._metadata.get(entry)
+            try:
+                metadata = self._metadata[entry]
+            except KeyError as e:
+                print(e, f"{entry} not in metadata dictionary - check metadata file")
+                raise e
             for key, value in metadata.items():
                 if key != join_on:
                     new_columns[key].append(value)
