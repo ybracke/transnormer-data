@@ -375,5 +375,19 @@
       <w class="LEX" new="hinein" old="hinein" pok="1"/>
       <w class="LEX" new="." old="." pok="1"/>
     </s>
+    <s sbad="1">
+      <w class="LEX" new="„" old="„" pok="1" unaligned="1"/>
+      <w class="LEX" new="Aber" old="Aber" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="Vaterleben" old="Vaterleben" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="was" old="was" pok="1"/>
+      <w class="LEX" new="sollen" old="ſollen" pok="1"/>
+      <w class="LEX" new="wir" old="wir" pok="1"/>
+      <w bad="1" class="BUG" new="mit dem" old="mit'm" pok="1" seen="1"/>
+      <w class="LEX" new="Kirchturm" old="Kirchturm" pok="1"/>
+      <w class="LEX" new="?" old="?" pok="1"/>
+      <w class="LEX" new="“" old="“" pok="1" unaligned="1"/>
+    </s>
   </body>
 </doc>
