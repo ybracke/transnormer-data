@@ -24,14 +24,19 @@ class DtaEvalMaker:
         self._metadata: Optional[Dict[str, Dict]] = None
 
     def make(self, save: bool = False) -> datasets.Dataset:
+        """Create a datasets.Dataset object from the paths passed to the constructor.
+        
+        Pass `save=True` to save the dataset in JSONL format to the output directory that was passed to the constructor. If the directory does not exists, it will be created.
+        """
         self._metadata = self.load_metadata()
         self._dataset = self.load_data()
         self._dataset = self.join_data_and_metadata(join_on="basename")
-        if not os.path.isdir(self.path_output):
-            os.makedirs(self.path_output)
-            utils.save_dataset_to_json_grouped_by_property(
-                self._dataset, property="basename", path_outdir=self.path_output
-            )
+        if save:
+            if not os.path.isdir(self.path_output):
+                os.makedirs(self.path_output)
+                utils.save_dataset_to_json_grouped_by_property(
+                    self._dataset, property="basename", path_outdir=self.path_output
+                )
         return self._dataset
 
     def load_metadata(self) -> Dict[str, Dict]:

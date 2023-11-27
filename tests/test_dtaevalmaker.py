@@ -37,7 +37,7 @@ class DtaEvalMakerTester(unittest.TestCase):
         self.maker = DtaEvalMaker(
             self.input_dir_data, self.input_dir_meta, self.output_dir
         )
-        self.dataset: datasets.Dataset = self.maker.make()
+        self.dataset: datasets.Dataset = self.maker.make(save=True)
 
     def tearDown(self) -> None:
         # Remove files that were created during training
