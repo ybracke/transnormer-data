@@ -6,13 +6,7 @@ from typing import Dict, List, Tuple, Union
 import datasets
 from lxml import etree
 
-
-def get_basename_no_ext(file_path: Union[str, os.PathLike]) -> str:
-    try:
-        basename = os.path.splitext(os.path.basename(file_path))[0]
-        return basename
-    except IndexError:
-        return ""
+from transnormer_data import utils
 
 
 def join_metadata(
@@ -49,10 +43,15 @@ class DtaEvalMaker:
         self._metadata = None
         self._dataset = None
 
-    def make(self) -> datasets.Dataset:
+    def make(self, save: bool = False) -> datasets.Dataset:
         self._metadata = self.load_metadata()
         self._data = self.load_data()
         self._dataset = join_metadata(self._data, self._metadata, join_on="basename")
+        if not os.path.isdir(self.path_output):
+            os.makedirs(self.path_output)
+            utils.save_dataset_to_json_grouped_by_property(
+                self._dataset, property="basename", path_outdir=self.path_output
+            )
         return self._dataset
 
     def load_metadata(self) -> Dict[str, Dict]:
@@ -123,7 +122,7 @@ class DtaEvalMaker:
         sents_is_bad = []
         par_idxs = []
         for fname_in in glob.iglob(os.path.join(self.path_data, "*"), recursive=True):
-            basename = get_basename_no_ext(fname_in)
+            basename = utils.get_basename_no_ext(fname_in)
             tree = etree.parse(fname_in)
             # sentences
             for i, s in enumerate(tree.iterfind("//s")):
@@ -161,28 +160,3 @@ class DtaEvalMaker:
                 "is_bad": sents_is_bad,
             }
         )
-
-    def save(self, docwise: bool = True) -> None:
-        """Save dataset, either in a single file, or document-wise as OUTDIR/{basename}.jsonl"""
-        if not os.path.isdir(self.path_output):
-            os.makedirs(self.path_output)
-        if not docwise:
-            self._dataset.to_json(
-                os.path.join(self.path_output, "dataset.jsonl")
-            )  # TODO
-        # Save dataset document-wise
-        else:
-            basename = None  # current basename
-            f = None
-            for row in self._dataset:
-                # open a new file when the basenam changed, start writing to it
-                if row["basename"] != basename:
-                    if f is not None:
-                        f.close()
-                    basename = row["basename"]
-                    filename = os.path.join(self.path_output, f"{basename}.jsonl")
-                    f = open(filename, "w", encoding="utf-8")
-                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
-                # otherwise just write line
-                else:
-                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
