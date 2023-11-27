@@ -1,31 +1,12 @@
 import json
 import os
 import glob
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import datasets
 from lxml import etree
 
 from transnormer_data import utils
-
-
-def join_metadata(
-    dataset: datasets.Dataset, metadata: Dict[str, Dict], join_on: str
-) -> datasets.Dataset:
-    """ """
-    # the following assumes all entries have the same structure
-    new_columns = {key: [] for key in list(metadata.values())[0] if key != join_on}
-    join_column = dataset[join_on]
-    for key in join_column:  # DTA Eval: key = basename
-        metadata_for_this_key: Dict = metadata.get(key)
-        for key, value in metadata_for_this_key.items():
-            if key != join_on:
-                new_columns[key].append(value)
-
-    for name, column in new_columns.items():
-        dataset = dataset.add_column(name, column)
-
-    return dataset
 
 
 class DtaEvalMaker:
@@ -39,14 +20,13 @@ class DtaEvalMaker:
         self.path_metadata = path_metadata
         self.path_output = path_output
 
-        self._data = None
-        self._metadata = None
-        self._dataset = None
+        self._dataset: Optional[datasets.Dataset] = None
+        self._metadata: Optional[Dict[str, Dict]] = None
 
     def make(self, save: bool = False) -> datasets.Dataset:
         self._metadata = self.load_metadata()
-        self._data = self.load_data()
-        self._dataset = join_metadata(self._data, self._metadata, join_on="basename")
+        self._dataset = self.load_data()
+        self._dataset = self.join_data_and_metadata(join_on="basename")
         if not os.path.isdir(self.path_output):
             os.makedirs(self.path_output)
             utils.save_dataset_to_json_grouped_by_property(
@@ -160,3 +140,26 @@ class DtaEvalMaker:
                 "is_bad": sents_is_bad,
             }
         )
+
+    def join_data_and_metadata(self, join_on: str) -> datasets.Dataset:
+        """Join the metadata (stored in dictionary) with the data (stored in dataset) on a key ('join_on') that is contained in both"""
+        # the following assumes all entries have the same structure
+        new_columns = {
+            key: [] for key in list(self._metadata.values())[0] if key != join_on
+        }
+        # Get the column to join metadata and data on, e.g. "basename"
+        join_column = self._dataset[join_on]
+
+        for entry in join_column:
+            # metadata dictionary for a specific property value
+            # e.g. for basename=='fontane_stechlin_1899'
+            metadata = self._metadata.get(entry)
+            for key, value in metadata.items():
+                if key != join_on:
+                    new_columns[key].append(value)
+
+        # Append new columns to dataset
+        for name, column in new_columns.items():
+            self._dataset = self._dataset.add_column(name, column)
+
+        return self._dataset

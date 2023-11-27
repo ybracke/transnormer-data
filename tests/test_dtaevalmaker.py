@@ -7,7 +7,7 @@ import unittest
 import datasets
 
 from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
-from transnormer_data import utils
+
 
 class DtaEvalMakerTester(unittest.TestCase):
     def setUp(self) -> None:
@@ -38,7 +38,6 @@ class DtaEvalMakerTester(unittest.TestCase):
             self.input_dir_data, self.input_dir_meta, self.output_dir
         )
         self.dataset: datasets.Dataset = self.maker.make()
-
 
     def tearDown(self) -> None:
         # Remove files that were created during training
