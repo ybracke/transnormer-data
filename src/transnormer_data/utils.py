@@ -22,10 +22,10 @@ def save_dataset_to_json_grouped_by_property(
 
     `path_outdir` must be an existing directory path
     """
-    value_property = None  # current basename
-    f = None
+    value_property = None
+    f = None 
     for row in dataset:
-        # open a new file when the basenam changed, start writing to it
+        # open a new file when the value changed, write first row to file
         if row[property] != value_property:
             if f is not None:
                 f.close()
@@ -33,6 +33,7 @@ def save_dataset_to_json_grouped_by_property(
             filename = os.path.join(path_outdir, f"{value_property}.jsonl")
             f = open(filename, "w", encoding="utf-8")
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
-        # otherwise just write line
+        # otherwise just write row to open file
         else:
-            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+            if f is not None:
+                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
