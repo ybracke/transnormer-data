@@ -31,9 +31,9 @@ class DtaEvalMaker:
         
         Pass `save=True` to save the dataset in JSONL format to the output directory that was passed to the constructor. If the directory does not exists, it will be created.
         """
-        self._metadata = self.load_metadata()
-        self._dataset = self.load_data()
-        self._dataset = self.join_data_and_metadata(join_on="basename")
+        self._metadata = self._load_metadata()
+        self._dataset = self._load_data()
+        self._dataset = self._join_data_and_metadata(join_on="basename")
         if save:
             if not os.path.isdir(self.path_output):
                 os.makedirs(self.path_output)
@@ -42,7 +42,7 @@ class DtaEvalMaker:
                 )
         return self._dataset
 
-    def load_metadata(self) -> Dict[str, Dict]:
+    def _load_metadata(self) -> Dict[str, Dict]:
         """
         Create a metadata_mapper (example below) from JSONL file.
 
@@ -99,7 +99,7 @@ class DtaEvalMaker:
 
         return metadata_mapper
 
-    def load_data(self) -> datasets.Dataset:
+    def _load_data(self) -> datasets.Dataset:
         """
         Reads from a DTA EvalCorpus XML file into a dataset
 
@@ -149,7 +149,7 @@ class DtaEvalMaker:
             }
         )
 
-    def join_data_and_metadata(self, join_on: str) -> datasets.Dataset:
+    def _join_data_and_metadata(self, join_on: str) -> datasets.Dataset:
         """Join the metadata (stored in dictionary) with the data (stored in dataset) on a key ('join_on') that is contained in both"""
         # the following assumes all entries have the same structure
         new_columns = {
