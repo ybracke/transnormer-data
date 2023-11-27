@@ -10,12 +10,15 @@ from transnormer_data import utils
 
 
 class DtaEvalMaker:
+    """An object that creates a dataset in the transnormer format from the DTA Eval Corpus in its original XML format, plus metadata in JSONL format """
+
     def __init__(
         self,
         path_data: Union[str, os.PathLike],
         path_metadata: Union[str, os.PathLike],
         path_output: Union[str, os.PathLike],
     ) -> None:
+        """Initialize the maker with paths to the data files, metadata file and output directory"""
         self.path_data = path_data
         self.path_metadata = path_metadata
         self.path_output = path_output
