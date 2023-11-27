@@ -33,10 +33,14 @@ class BasicsTester(unittest.TestCase):
         assert norm_ws_from_raw == self.data[0]["norm_ws"]
 
     def test_tok2raw(self):
-        orig_raw_from_tok = self.modifier._tok2raw(self.data[0]["orig_tok"], self.data[0]["orig_ws"])
+        orig_raw_from_tok = self.modifier._tok2raw(
+            self.data[0]["orig_tok"], self.data[0]["orig_ws"]
+        )
         assert orig_raw_from_tok == self.data[0]["orig"]
 
-        norm_raw_from_tok = self.modifier._tok2raw(self.data[0]["norm_tok"], self.data[0]["norm_ws"])
+        norm_raw_from_tok = self.modifier._tok2raw(
+            self.data[0]["norm_tok"], self.data[0]["norm_ws"]
+        )
         assert norm_raw_from_tok == self.data[0]["norm"]
 
     def test_compute_spans(self):
@@ -49,10 +53,9 @@ class BasicsTester(unittest.TestCase):
         # assert that you get the tokens when you extract the spans from raw
         tokens = self.data[0]["orig_tok"]
         raw = self.data[0]["orig"]
-        for span,token in zip(spans,tokens):
+        for span, token in zip(spans, tokens):
             start, end = span[0], span[1]
             assert raw[start:end] == token
-
 
         # same for norm
         spans = self.modifier._get_token_spans(
@@ -62,7 +65,7 @@ class BasicsTester(unittest.TestCase):
 
         tokens = self.data[0]["norm_tok"]
         raw = self.data[0]["norm"]
-        for span,token in zip(spans,tokens):
+        for span, token in zip(spans, tokens):
             start, end = span[0], span[1]
             assert raw[start:end] == token
 
