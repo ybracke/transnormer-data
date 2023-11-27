@@ -25,7 +25,9 @@ class BaseDatasetModifier:
     #             self.modify_sample(func), fn_kwargs=args, batched=False
     #         )
 
-    def update_tok_from_raw(self, sample: Dict, key_raw: str, key_tok: str, key_ws: str) -> Dict:
+    def update_tok_from_raw(
+        self, sample: Dict, key_raw: str, key_tok: str, key_ws: str
+    ) -> Dict:
         """Update a sample's tokenized and whitespace entries based on its raw string entry"""
         sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
         return sample
@@ -45,7 +47,9 @@ class BaseDatasetModifier:
         # pop final whitespace
         return tokens, whitespaces[:-1]
 
-    def update_raw_from_tok(self, sample: Dict, key_raw: str, key_tok: str, key_ws: str) -> Dict:
+    def update_raw_from_tok(
+        self, sample: Dict, key_raw: str, key_tok: str, key_ws: str
+    ) -> Dict:
         """Update a sample's raw string entry based on its tokenized + whitespace entry"""
         sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
         return sample
@@ -69,7 +73,7 @@ class BaseDatasetModifier:
         sample[key_alignment] = alignment
         return sample
 
-    # TODO: alignment function must be replaced 
+    # TODO: alignment function must be replaced
     #       It can only compute 1:1 and 1:2 alignments, not 1:n
     def _align(self, tokens_src: List[str], tokens_trg: List[str]) -> List[List[int]]:
         """Align the tokens from source and target"""
@@ -79,18 +83,22 @@ class BaseDatasetModifier:
         alignment = [list(pair) for pair in aligner.aligned_tokidxs]
         return alignment
 
-    def update_token_spans(self, sample: Dict, key_tokens: str, key_ws: str, key_spans: str):
+    def update_token_spans(
+        self, sample: Dict, key_tokens: str, key_ws: str, key_spans: str
+    ):
         """Update the token spans from tokens and whitespace"""
         spans = self._get_token_spans()
         sample[key_spans] = spans
         return sample
-    
-    def _get_token_spans(self, tokens: List[str], whitepaces: List[bool]) -> List[List[int]]:
+
+    def _get_token_spans(
+        self, tokens: List[str], whitepaces: List[bool]
+    ) -> List[List[int]]:
         """Internal function that calculates the token spans from ws and tokens"""
         spans = []
         start_idx = 0
         end_idx = 0
-        for tok,ws in zip(tokens, whitepaces):
+        for tok, ws in zip(tokens, whitepaces):
             start_idx = end_idx + bool(ws)  # add 1 if preceded by ws
             end_idx = start_idx + len(tok)
             spans.append([start_idx, end_idx])
