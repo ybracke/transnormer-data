@@ -87,7 +87,7 @@ class BaseDatasetModifier:
         self, sample: Dict, key_tokens: str, key_ws: str, key_spans: str
     ):
         """Update the token spans from tokens and whitespace"""
-        spans = self._get_token_spans()
+        spans = self._get_token_spans(sample[key_tokens], sample[key_ws])
         sample[key_spans] = spans
         return sample
 
