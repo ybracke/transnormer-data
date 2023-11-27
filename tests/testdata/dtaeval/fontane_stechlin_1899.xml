@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ !  File: fontane_stechlin_1899.tj
+ !  Corpus: DTA EvalCorpus v0.02, 2016-08-22
+ !  Description: token-aligned training+evaluation data for canonicalization and error-correction
+ !  Contact: Bryan Jurish <jurish@bbaw.de>
+ !  Contributors: Bryan Jurish, Henriette Ast, Marko Drotschmann, and Christian Thomas
+ !  
+ !  Licensing:
+ !    This corpus was created by semi-automatic alignment of a Deutsches Textarchiv (DTA)
+ !    text with a contemporary edition drawn from Project Gutenberg and/or the TextGrid
+ !    Digital Library.
+ !  
+ !    The Deutsches Textarchiv text sources are distributed under the terms of the
+ !    Creative Commons Attribution-NonCommercial 3.0 Unported License, see
+ !    http://creativecommons.org/licenses/by-nc/3.0/ and
+ !    http://www.deutschestextarchiv.de/book/show/fontane_stechlin_1899/
+ !  
+ !    Contemporary text sources from Project Gutenberg are distributed under the terms
+ !    of the The Project Gutenberg License, see
+ !    http://www.gutenberg.org/wiki/Gutenberg:The_Project_Gutenberg_License
+ !  
+ !    Contemporary text sources from the TextGrid Digital Library were provided
+ !    by TextGrid from the data stock of TextGrid's Digital Library, www.editura.de,
+ !    and are published under the Creative Commons "by" license version 3.0, see
+ !    http://creativecommons.org/licenses/by/3.0/ and http://textgrid.de/en/digitale-bibliothek
+ !  
+ !    The aligned corpus and this file are distributed under the terms of the
+ !    Creative Commons Attribution-NonCommercial 3.0 Unported License, see
+ !    http://creativecommons.org/licenses/by-nc/3.0/
+ !  
+ !  Attribution:
+ !    If you make use of this corpus in your research, we ask that you cite one
+ !    or both of the following articles in any associated publications:
+ !  
+ !    Jurish, B., M. Drotschmann, & H. Ast. "Constructing a canonicalized corpus of
+ !      historical German by text alignment." In P. Bennett, M. Durrell, S.
+ !      Scheible, and R. J. Whitt (editors), New Methods in Historical Corpora,
+ !      volume 3 of Corpus Linguistics and Interdisciplinary Perspectives on
+ !      Language (CLIP), pages 221-234. Narr, Tübingen, 2013.
+ !  
+ !    Jurish, B. & H. Ast. "Using an alignment-based lexicon for canonicalization
+ !      of historical text." In J. Gippert & R. Gehrke (editors), Historical
+ !      Corpora: Challenges and Perspectives, volume 5 of Corpus Linguistics and
+ !      Interdisciplinary Perspectives on Language (CLIP), pages 197-208. Narr,
+ !      Tübingen, 2015.
+ !-->
+<doc base="fontane_stechlin_1899" dok="1">
+  <body>
+    <s>
+      <w class="LEX" new="Im" old="Im" pok="1"/>
+      <w class="LEX" new="Norden" old="Norden" pok="1"/>
+      <w class="LEX" new="der" old="der" pok="1"/>
+      <w class="LEX" new="Grafschaft" old="Grafſchaft" pok="1"/>
+      <w class="LEX" new="Ruppin" old="Ruppin" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="hart" old="hart" pok="1"/>
+      <w class="LEX" new="an" old="an" pok="1"/>
+      <w class="LEX" new="der" old="der" pok="1"/>
+      <w class="LEX" new="mecklenburgischen" old="mecklenburgiſchen" pok="1"/>
+      <w class="LEX" new="Grenze" old="Grenze" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="zieht" old="zieht" pok="1"/>
+      <w class="LEX" new="sich" old="ſich" pok="1"/>
+      <w class="LEX" new="von" old="von" pok="1"/>
+      <w class="LEX" new="dem" old="dem" pok="1"/>
+      <w class="LEX" new="Städtchen" old="Städtchen" pok="1"/>
+      <w class="LEX" new="Gransee" old="Granſee" pok="1"/>
+      <w class="LEX" new="bis" old="bis" pok="1"/>
+      <w class="LEX" new="nach" old="nach" pok="1"/>
+      <w class="LEX" new="Rheinsberg" old="Rheinsberg" pok="1"/>
+      <w class="LEX" new="hin" old="hin" pok="1"/>
+      <w class="LEX" new="(" old="(" pok="1"/>
+      <w class="LEX" new="und" old="und" pok="1"/>
+      <w class="LEX" new="noch" old="noch" pok="1"/>
+      <w class="LEX" new="darüber" old="darüber" pok="1"/>
+      <w class="LEX" new="hinaus" old="hinaus" pok="1"/>
+      <w class="LEX" new=")" old=")" pok="1"/>
+      <w class="LEX" new="eine" old="eine" pok="1"/>
+      <w class="LEX" new="mehrere" old="mehrere" pok="1"/>
+      <w class="LEX" new="Meilen" old="Meilen" pok="1"/>
+      <w class="LEX" new="lange" old="lange" pok="1"/>
+      <w class="GRAPH" new="Seenkette" old="Seeenkette" pok="1" seen="1"/>
+      <w class="LEX" new="durch" old="durch" pok="1"/>
+      <w class="LEX" new="eine" old="eine" pok="1"/>
+      <w class="LEX" new="menschenarme" old="menſchenarme" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="nur" old="nur" pok="1"/>
+      <w class="LEX" new="hie" old="hie" pok="1"/>
+      <w class="LEX" new="und" old="und" pok="1"/>
+      <w class="LEX" new="da" old="da" pok="1"/>
+      <w class="LEX" new="mit" old="mit" pok="1"/>
+      <w class="LEX" new="ein" old="ein" pok="1"/>
+      <w class="LEX" new="paar" old="paar" pok="1"/>
+      <w class="LEX" new="alten" old="alten" pok="1"/>
+      <w class="LEX" new="Dörfern" old="Dörfern" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="sonst" old="ſonſt" pok="1"/>
+      <w class="LEX" new="aber" old="aber" pok="1"/>
+      <w class="LEX" new="ausschließlich" old="ausſchließlich" pok="1"/>
+      <w class="LEX" new="mit" old="mit" pok="1"/>
+      <w class="LEX" new="Förstereien" old="Förſtereien" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w bad="1" class="BUG" new="Glas" old="Glasund" pok="1" seen="1"/>
+      <w class="LEX" new="Teeröfen" old="Teeröfen" pok="1"/>
+      <w class="LEX" new="besetzte" old="beſetzte" pok="1"/>
+      <w class="LEX" new="Waldung" old="Waldung" pok="1"/>
+      <w class="LEX" new="." old="." pok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Einer" old="Einer" pok="1" wok="1"/>
+      <w class="LEX" new="der" old="der" pok="1" wok="1"/>
+      <w class="LEX" new="Seen" old="Seeen" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="die" old="die" pok="1" wok="1"/>
+      <w class="LEX" new="diese" old="dieſe" pok="1" wok="1"/>
+      <w class="GRAPH" new="Seenkette" old="Seeenkette" pok="1" seen="1" wok="1"/>
+      <w class="LEX" new="bilden" old="bilden" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="heißt" old="heißt" pok="1" wok="1"/>
+      <w class="LEX" new="„" old="„" pok="1" unaligned="1" wok="1"/>
+      <w class="LEX" new="der" old="der" pok="1" wok="1"/>
+      <w class="LEX" new="Stechlin" old="Stechlin" pok="1" wok="1"/>
+      <w class="LEX" new="“" old="“" pok="1" unaligned="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Zwischen" old="Zwiſchen" pok="1" wok="1"/>
+      <w class="LEX" new="flachen" old="flachen" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="nur" old="nur" pok="1" wok="1"/>
+      <w class="LEX" new="an" old="an" pok="1" wok="1"/>
+      <w class="LEX" new="einer" old="einer" pok="1" wok="1"/>
+      <w class="LEX" new="einzigen" old="einzigen" pok="1" wok="1"/>
+      <w class="LEX" new="Stelle" old="Stelle" pok="1" wok="1"/>
+      <w class="LEX" new="steil" old="ſteil" pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="quaiartig" old="quaiartig" pok="1" wok="1"/>
+      <w class="LEX" new="ansteigenden" old="anſteigenden" pok="1" wok="1"/>
+      <w class="LEX" new="Ufern" old="Ufern" pok="1" wok="1"/>
+      <w class="LEX" new="liegt" old="liegt" pok="1" wok="1"/>
+      <w class="LEX" new="er" old="er" pok="1" wok="1"/>
+      <w class="LEX" new="da" old="da" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="rundum" old="rundum" pok="1" wok="1"/>
+      <w class="LEX" new="von" old="von" pok="1" wok="1"/>
+      <w class="LEX" new="alten" old="alten" pok="1" wok="1"/>
+      <w class="LEX" new="Buchen" old="Buchen" pok="1" wok="1"/>
+      <w class="LEX" new="eingefaßt" old="eingefaßt" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="deren" old="deren" pok="1" wok="1"/>
+      <w class="LEX" new="Zweige" old="Zweige" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="von" old="von" pok="1" wok="1"/>
+      <w class="LEX" new="ihrer" old="ihrer" pok="1" wok="1"/>
+      <w class="LEX" new="eigenen" old="eignen" pok="1" wok="1"/>
+      <w class="LEX" new="Schwere" old="Schwere" pok="1" wok="1"/>
+      <w class="LEX" new="nach" old="nach" pok="1" wok="1"/>
+      <w class="LEX" new="unten" old="unten" pok="1" wok="1"/>
+      <w class="LEX" new="gezogen" old="gezogen" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="den" old="den" pok="1" wok="1"/>
+      <w class="LEX" new="See" old="See" pok="1" wok="1"/>
+      <w class="LEX" new="mit" old="mit" pok="1" wok="1"/>
+      <w class="LEX" new="ihrer" old="ihrer" pok="1" wok="1"/>
+      <w class="LEX" new="Spitze" old="Spitze" pok="1" wok="1"/>
+      <w class="LEX" new="berühren" old="berühren" pok="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Hie" old="Hie" pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="da" old="da" pok="1" wok="1"/>
+      <w class="LEX" new="wächst" old="wächſt" pok="1" wok="1"/>
+      <w class="LEX" new="ein" old="ein" pok="1" wok="1"/>
+      <w class="LEX" new="weniges" old="weniges" pok="1" wok="1"/>
+      <w class="LEX" new="von" old="von" pok="1" wok="1"/>
+      <w class="LEX" new="Schilf" old="Schilf" pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="Binsen" old="Binſen" pok="1" wok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="aber" old="aber" pok="1" wok="1"/>
+      <w class="LEX" new="kein" old="kein" pok="1" wok="1"/>
+      <w class="LEX" new="Kahn" old="Kahn" pok="1" wok="1"/>
+      <w class="LEX" new="zieht" old="zieht" pok="1" wok="1"/>
+      <w class="LEX" new="seine" old="ſeine" pok="1" wok="1"/>
+      <w class="LEX" new="Furchen" old="Furchen" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="kein" old="kein" pok="1" wok="1"/>
+      <w class="LEX" new="Vogel" old="Vogel" pok="1" wok="1"/>
+      <w class="LEX" new="singt" old="ſingt" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="nur" old="nur" pok="1" wok="1"/>
+      <w class="LEX" new="selten" old="ſelten" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="daß" old="daß" pok="1" wok="1"/>
+      <w class="LEX" new="ein" old="ein" pok="1" wok="1"/>
+      <w class="LEX" new="Habicht" old="Habicht" pok="1" wok="1"/>
+      <w class="LEX" new="drüber" old="drüber" pok="1" wok="1"/>
+      <w class="LEX" new="hinfliegt" old="hinfliegt" pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="seinen" old="ſeinen" pok="1" wok="1"/>
+      <w class="LEX" new="Schatten" old="Schatten" pok="1" wok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1" wok="1"/>
+      <w class="LEX" new="die" old="die" pok="1" wok="1"/>
+      <w class="LEX" new="Spiegelfläche" old="Spiegelfläche" pok="1" wok="1"/>
+      <w class="LEX" new="wirft" old="wirft" pok="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Alles" old="Alles" pok="1" wok="1"/>
+      <w class="LEX" new="still" old="ſtill" pok="1" wok="1"/>
+      <w class="LEX" new="hier" old="hier" pok="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Und" old="Und" pok="1" wok="1"/>
+      <w class="LEX" new="doch" old="doch" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="von" old="von" pok="1" wok="1"/>
+      <w class="LEX" new="Zeit" old="Zeit" pok="1" wok="1"/>
+      <w class="LEX" new="zu" old="zu" pok="1" wok="1"/>
+      <w class="LEX" new="Zeit" old="Zeit" pok="1" wok="1"/>
+      <w class="LEX" new="wird" old="wird" pok="1" wok="1"/>
+      <w class="LEX" new="es" old="es" pok="1" wok="1"/>
+      <w class="LEX" new="an" old="an" pok="1" wok="1"/>
+      <w class="LEX" new="eben" old="eben" pok="1" wok="1"/>
+      <w class="LEX" new="dieser" old="dieſer" pok="1" wok="1"/>
+      <w class="LEX" new="Stelle" old="Stelle" pok="1" wok="1"/>
+      <w class="LEX" new="lebendig" old="lebendig" pok="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Das" old="Das" pok="1" wok="1"/>
+      <w class="LEX" new="ist" old="iſt" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="wenn" old="wenn" pok="1" wok="1"/>
+      <w class="LEX" new="es" old="es" pok="1" wok="1"/>
+      <w class="LEX" new="weit" old="weit" pok="1" wok="1"/>
+      <w class="LEX" new="draußen" old="draußen" pok="1" wok="1"/>
+      <w class="LEX" new="in" old="in" pok="1" wok="1"/>
+      <w class="LEX" new="der" old="der" pok="1" wok="1"/>
+      <w class="LEX" new="Welt" old="Welt" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="sei es" old="ſei's" pok="1" wok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1" wok="1"/>
+      <w class="LEX" new="Island" old="Island" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="sei es" old="ſei's" pok="1" wok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1" wok="1"/>
+      <w class="LEX" new="Java" old="Java" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="zu" old="zu" pok="1" wok="1"/>
+      <w class="LEX" new="rollen" old="rollen" pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="zu" old="zu" pok="1" wok="1"/>
+      <w class="LEX" new="grollen" old="grollen" pok="1" wok="1"/>
+      <w class="LEX" new="beginnt" old="beginnt" pok="1" wok="1"/>
+      <w class="LEX" new="oder" old="oder" pok="1" wok="1"/>
+      <w class="LEX" new="gar" old="gar" pok="1" wok="1"/>
+      <w class="LEX" new="der" old="der" pok="1" wok="1"/>
+      <w class="LEX" new="Aschenregen" old="Aſchenregen" pok="1" wok="1"/>
+      <w class="LEX" new="der" old="der" pok="1" wok="1"/>
+      <w class="LEX" new="hawaiischen" old="hawaiiſchen" pok="1" wok="1"/>
+      <w class="LEX" new="Vulkane" old="Vulkane" pok="1" wok="1"/>
+      <w class="LEX" new="bis" old="bis" pok="1" wok="1"/>
+      <w class="LEX" new="weit" old="weit" pok="1" wok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1" wok="1"/>
+      <w class="LEX" new="die" old="die" pok="1" wok="1"/>
+      <w class="LEX" new="Südsee" old="Südſee" pok="1" wok="1"/>
+      <w class="LEX" new="hinausgetrieben" old="hinausgetrieben" pok="1" wok="1"/>
+      <w class="LEX" new="wird" old="wird" pok="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s sok="1">
+      <w class="LEX" new="Dann" old="Dann" pok="1" wok="1"/>
+      <w class="LEX" new="regt" old="regt" pok="1" wok="1"/>
+      <w class="LEX" new="sich es" old="ſich's" pok="1" wok="1"/>
+      <w class="LEX" new="auch" old="auch" pok="1" wok="1"/>
+      <w class="LEX" new="hier" old="hier" pok="1" wok="1"/>
+      <w class="LEX" new="," old="," pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="ein" old="ein" pok="1" wok="1"/>
+      <w class="LEX" new="Wasserstrahl" old="Waſſerſtrahl" pok="1" wok="1"/>
+      <w class="LEX" new="springt" old="ſpringt" pok="1" wok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1" wok="1"/>
+      <w class="LEX" new="und" old="und" pok="1" wok="1"/>
+      <w class="LEX" new="sinkt" old="ſinkt" pok="1" wok="1"/>
+      <w class="LEX" new="wieder" old="wieder" pok="1" wok="1"/>
+      <w class="LEX" new="in" old="in" pok="1" wok="1"/>
+      <w class="LEX" new="die" old="die" pok="1" wok="1"/>
+      <w class="LEX" new="Tiefe" old="Tiefe" pok="1" wok="1"/>
+      <w class="LEX" new="." old="." pok="1" wok="1"/>
+    </s>
+    <s>
+      <w class="LEX" new="Das" old="Das" pok="1"/>
+      <w class="LEX" new="wissen" old="wiſſen" pok="1"/>
+      <w class="LEX" new="alle" old="alle" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="die" old="die" pok="1"/>
+      <w class="LEX" new="den" old="den" pok="1"/>
+      <w class="LEX" new="Stechlin" old="Stechlin" pok="1"/>
+      <w class="LEX" new="umwohnen" old="umwohnen" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="und" old="und" pok="1"/>
+      <w class="LEX" new="wenn" old="wenn" pok="1"/>
+      <w class="LEX" new="sie" old="ſie" pok="1"/>
+      <w class="LEX" new="davon" old="davon" pok="1"/>
+      <w class="LEX" new="sprechen" old="ſprechen" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="so" old="ſo" pok="1"/>
+      <w class="LEX" new="setzen" old="ſetzen" pok="1"/>
+      <w class="LEX" new="sie" old="ſie" pok="1"/>
+      <w class="LEX" new="wohl" old="wohl" pok="1"/>
+      <w class="LEX" new="auch" old="auch" pok="1"/>
+      <w class="LEX" new="hinzu" old="hinzu" pok="1"/>
+      <w class="LEX" new=":" old=":" pok="1"/>
+      <w class="LEX" new="„" old="„" pok="1" unaligned="1"/>
+      <w class="LEX" new="Das" old="Das" pok="1"/>
+      <w class="LEX" new="mit" old="mit" pok="1"/>
+      <w class="LEX" new="dem" old="dem" pok="1"/>
+      <w class="LEX" new="Wasserstrahl" old="Waſſerſtrahl" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="das" old="das" pok="1"/>
+      <w class="LEX" new="ist" old="iſt" pok="1"/>
+      <w class="LEX" new="nur" old="nur" pok="1"/>
+      <w class="LEX" new="das" old="das" pok="1"/>
+      <w class="LEX" new="Kleine" old="Kleine" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="das" old="das" pok="1"/>
+      <w class="LEX" new="beinahe" old="beinah" pok="1"/>
+      <w class="LEX" new="Alltägliche" old="Alltägliche" pok="1"/>
+      <w class="LEX" new=";" old=";" pok="1"/>
+      <w class="LEX" new="wenn es" old="wenn's" pok="1"/>
+      <w class="LEX" new="aber" old="aber" pok="1"/>
+      <w class="LEX" new="draußen" old="draußen" pok="1"/>
+      <w class="LEX" new="was" old="was" pok="1"/>
+      <w class="LEX" new="Großes" old="Großes" pok="1"/>
+      <w class="LEX" new="gibt" old="giebt" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="wie" old="wie" pok="1"/>
+      <w class="LEX" new="vor" old="vor" pok="1"/>
+      <w class="LEX" new="hundert" old="hundert" pok="1"/>
+      <w class="LEX" new="Jahren" old="Jahren" pok="1"/>
+      <w class="LEX" new="in" old="in" pok="1"/>
+      <w class="LEX" new="Lissabon" old="Liſſabon" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="dann" old="dann" pok="1"/>
+      <w bad="1" class="SPLIT" new="brodelt es" old="brodelt's" pok="1"/>
+      <w class="LEX" new="hier" old="hier" pok="1"/>
+      <w class="LEX" new="nicht" old="nicht" pok="1"/>
+      <w class="LEX" new="bloß" old="bloß" pok="1"/>
+      <w class="LEX" new="und" old="und" pok="1"/>
+      <w class="LEX" new="sprudelt" old="ſprudelt" pok="1"/>
+      <w class="LEX" new="und" old="und" pok="1"/>
+      <w class="LEX" new="strudelt" old="ſtrudelt" pok="1"/>
+      <w class="LEX" new="," old="," pok="1"/>
+      <w class="LEX" new="dann" old="dann" pok="1"/>
+      <w class="LEX" new="steigt" old="ſteigt" pok="1"/>
+      <w class="LEX" new="statt" old="ſtatt" pok="1"/>
+      <w class="LEX" new="des" old="des" pok="1"/>
+      <w class="LEX" new="Wasserstrahls" old="Waſſerſtrahls" pok="1"/>
+      <w class="LEX" new="ein" old="ein" pok="1"/>
+      <w class="LEX" new="roter" old="roter" pok="1"/>
+      <w class="LEX" new="Hahn" old="Hahn" pok="1"/>
+      <w class="LEX" new="auf" old="auf" pok="1"/>
+      <w class="LEX" new="und" old="und" pok="1"/>
+      <w class="LEX" new="kräht" old="kräht" pok="1"/>
+      <w class="LEX" new="laut" old="laut" pok="1"/>
+      <w class="LEX" new="in" old="in" pok="1"/>
+      <w class="LEX" new="die" old="die" pok="1"/>
+      <w class="LEX" new="Lande" old="Lande" pok="1"/>
+      <w class="LEX" new="hinein" old="hinein" pok="1"/>
+      <w class="LEX" new="." old="." pok="1"/>
+    </s>
+  </body>
+</doc>
