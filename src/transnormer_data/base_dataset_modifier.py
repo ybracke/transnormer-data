@@ -30,7 +30,9 @@ class BaseDatasetModifier:
         self, sample: Dict, key_raw: str, key_tok: str, key_ws: str
     ) -> Dict:
         """Update a sample's tokenized and whitespace entries based on its raw string entry"""
-        sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
+        tok, ws = self._raw2tok(sample[key_raw])
+        sample[key_tok] = tok
+        sample[key_ws] = ws
         return sample
 
     def _raw2tok(self, raw: str) -> Tuple[List[str], List[bool]]:
@@ -106,3 +108,25 @@ class BaseDatasetModifier:
             end_idx = start_idx + len(tok)
             spans.append([start_idx, end_idx])
         return spans
+
+    def _get_spans_and_ws_from_tok_and_raw(
+            self, tokens: List[str], raw:str
+    ) -> Tuple[List[List[int]], List[bool]]:
+        """Calculate token spans and whitespaces from tokens and raw string"""
+        start_idx = 0
+        end_idx = 0
+        whitespaces = [] 
+        spans = []
+        len_raw = len(raw)
+        for tok in tokens:
+            if end_idx >= len_raw: 
+                break
+            # is the next token a space character?
+            has_preceding_ws = (raw[end_idx] == " ")
+
+            start_idx = end_idx + bool(has_preceding_ws)  # add 1 if preceded by ws
+            end_idx = start_idx + len(tok)
+            whitespaces.append(has_preceding_ws)
+            spans.append([start_idx, end_idx])
+        assert self._tok2raw(tokens, whitespaces) == raw
+        return spans, whitespaces

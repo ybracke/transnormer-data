@@ -10,19 +10,6 @@ from transnormer_data.modifier.type_replacement_modifier import TypeReplacementM
 PATH_DATASET = "tests/testdata/testfile_001.jsonl"
 
 
-def read_jsonl(path: str) -> List[Dict[str, Any]]:
-    data = []
-    with open(path, "r", encoding="utf-8") as f:
-        for line in f:
-            record = json.loads(line.strip())
-            data.append(record)
-    return data
-
-
-def dummy_modification(text: str) -> str:
-    return text.upper()
-
-
 class IdentityReplacementModifier(BaseDatasetModifier):
     def __init__(self, dataset: datasets.Dataset, modification: Callable) -> None:
         # Replacement dictionary
@@ -43,9 +30,8 @@ class IdentityReplacementModifier(BaseDatasetModifier):
         )
 
 
-class BasicsTester(unittest.TestCase):
+class ModifierTester(unittest.TestCase):
     def setUp(self):
-        # self.data = read_jsonl(PATH_DATASET)
         self.dataset = datasets.load_dataset("json", data_files=PATH_DATASET)
         self.modifier = TypeReplacementModifier(self.dataset)
 
