@@ -15,7 +15,7 @@ This repository provides code for formatting, modifying and storing corpus data 
 The purpose of this repository is to facilitate and standardize the data preparation across different datasets that are used for training and evaluating the transnormer.
 
 Training examples for transnormer must have a simple JSON structure and this repository supports to transform corpus data from a variety of input formats into JSONL. 
-```json
+```jsonc
 {
     "orig" : "Eyn Theylſtueck", // original spelling
     "norm" : "Ein Teilstück"    // normalized spelling
@@ -32,7 +32,7 @@ As seen above, the transnormer takes raw strings as input, but automatic replace
 
 This is the format that each dataset is converted to. Uncommented spans are optional attributes.
 
-```json
+```jsonc
 {
     "docname" : str, // document name
     "par_idx" : str,  // index of sentence within document 
