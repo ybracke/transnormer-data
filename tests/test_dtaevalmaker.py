@@ -32,7 +32,7 @@ class DtaEvalMakerTester(unittest.TestCase):
             "norm_tok": List[str],
             "norm_ws": List[bool],
             # "norm_spans": List[Tuple[int, int]],
-            # "alignment": List[Tuple[int, int]],
+            "alignment": List[List[int]],
         }
 
         self.maker = DtaEvalMaker(
@@ -61,4 +61,4 @@ class DtaEvalMakerTester(unittest.TestCase):
 
     def test_shape(self) -> None:
         """Test whether dataset's shape is correct"""
-        assert self.dataset.shape == (28, 13)
+        assert self.dataset.shape == (28, 14)

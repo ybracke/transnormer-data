@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 import datasets
 
@@ -47,5 +47,17 @@ class VanillaDtaEvalModifier(BaseDatasetModifier):
         """
         self.update_raw_from_tok(sample, key_raw=self.key_src_raw, key_tok=self.key_src_tok, key_ws=self.key_src_ws)
         self.update_raw_from_tok(sample, key_raw=self.key_trg_raw, key_tok=self.key_trg_tok, key_ws=self.key_trg_ws)
+        self.update_alignment(sample, key_tokens_src=self.key_src_tok, key_tokens_trg=self.key_trg_tok, key_alignment=self.key_alignment)
 
         return sample
+
+    def _align(self, tokens_src: List[str], tokens_trg: List[str]) -> List[List[int]]:
+        """Align the tokens from source and target
+        
+        For this modifier we only create the initial 1:1 alignments. 
+        """
+        # Convert format of alignments from AlignedPairs to python list
+        len_tokens_src = len(tokens_src)
+        assert len_tokens_src == len(tokens_trg)
+        alignment = [[i,i] for i in range(len_tokens_src)]
+        return alignment
