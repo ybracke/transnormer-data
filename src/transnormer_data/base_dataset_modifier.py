@@ -30,7 +30,9 @@ class BaseDatasetModifier:
         self, sample: Dict, key_raw: str, key_tok: str, key_ws: str
     ) -> Dict:
         """Update a sample's tokenized and whitespace entries based on its raw string entry"""
-        sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
+        tok, ws = self._raw2tok(sample[key_raw])
+        sample[key_tok] = tok
+        sample[key_ws] = ws
         return sample
 
     def _raw2tok(self, raw: str) -> Tuple[List[str], List[bool]]:
