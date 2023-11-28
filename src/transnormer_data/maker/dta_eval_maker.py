@@ -7,6 +7,7 @@ import datasets
 from lxml import etree
 
 from transnormer_data import utils
+from transnormer_data.modifier.vanilla_dtaeval_modifier import VanillaDtaEvalModifier
 
 
 class DtaEvalMaker:
@@ -26,6 +27,8 @@ class DtaEvalMaker:
         self._dataset: Optional[datasets.Dataset] = None
         self._metadata: Optional[Dict[str, Dict]] = None
 
+        self._modifier: Optional[VanillaDtaEvalModifier] = None
+
     def make(self, save: bool = False) -> datasets.Dataset:
         """Create a datasets.Dataset object from the paths passed to the constructor.
         
@@ -34,6 +37,8 @@ class DtaEvalMaker:
         self._metadata = self._load_metadata()
         self._dataset = self._load_data()
         self._dataset = self._join_data_and_metadata(join_on="basename")
+        self._modifier = VanillaDtaEvalModifier(self._dataset)
+        self._dataset = self._modifier.modify_dataset()
         if save:
             if not os.path.isdir(self.path_output):
                 os.makedirs(self.path_output)
@@ -137,12 +142,16 @@ class DtaEvalMaker:
                 is_bad = True if "sbad" in s.attrib else False
                 sents_is_bad.append(is_bad)
 
+        length = len(basenames)
+        assert length == len(par_idxs) == len(sents_orig_tok) == len(sents_norm_tok) == len(sents_is_bad)
         return datasets.Dataset.from_dict(
             {
                 "basename": basenames,
                 "par_idx": par_idxs,
                 "orig_tok": sents_orig_tok,
+                "orig_ws" : [None for i in range(length)],
                 "norm_tok": sents_norm_tok,
+                "norm_ws" : [None for i in range(length)],
                 "is_bad": sents_is_bad,
             }
         )

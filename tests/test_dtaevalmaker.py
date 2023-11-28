@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-from typing import Any, Dict, List, Tuple
+from typing import List
 import unittest
 
 import datasets
@@ -23,13 +23,14 @@ class DtaEvalMakerTester(unittest.TestCase):
             "author": str,
             "title": str,
             "is_bad": bool,
-            # "orig": str,
+            "orig": str,
             "orig_tok": List[str],
-            # "orig_ws": List[bool],
+            # "orig_class" : List[str], 
+            "orig_ws": List[bool],
             # "orig_spans": List[Tuple[int, int]],
-            # "norm": str,
+            "norm": str,
             "norm_tok": List[str],
-            # "norm_ws": List[bool],
+            "norm_ws": List[bool],
             # "norm_spans": List[Tuple[int, int]],
             # "alignment": List[Tuple[int, int]],
         }
@@ -60,4 +61,4 @@ class DtaEvalMakerTester(unittest.TestCase):
 
     def test_shape(self) -> None:
         """Test whether dataset's shape is correct"""
-        assert self.dataset.shape == (28, 9)
+        assert self.dataset.shape == (28, 13)
