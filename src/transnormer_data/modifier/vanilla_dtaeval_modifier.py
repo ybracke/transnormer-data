@@ -23,10 +23,12 @@ class VanillaDtaEvalModifier(BaseDatasetModifier):
         self.key_src_raw = "orig"
         self.key_src_tok = "orig_tok"
         self.key_src_ws = "orig_ws"
+        self.key_src_spans = "orig_spans"
 
         self.key_trg_raw = "norm"
         self.key_trg_tok = "norm_tok"
         self.key_trg_ws = "norm_ws"
+        self.key_trg_spans = "norm_spans"
 
         self.key_alignment = "alignment"
 
@@ -48,6 +50,8 @@ class VanillaDtaEvalModifier(BaseDatasetModifier):
         self.update_raw_from_tok(sample, key_raw=self.key_src_raw, key_tok=self.key_src_tok, key_ws=self.key_src_ws)
         self.update_raw_from_tok(sample, key_raw=self.key_trg_raw, key_tok=self.key_trg_tok, key_ws=self.key_trg_ws)
         self.update_alignment(sample, key_tokens_src=self.key_src_tok, key_tokens_trg=self.key_trg_tok, key_alignment=self.key_alignment)
+        self.update_spans_and_ws_from_tok_and_raw(sample, key_tokens=self.key_src_tok, key_raw=self.key_src_raw, key_spans=self.key_src_spans, key_ws=self.key_src_ws)
+        self.update_spans_and_ws_from_tok_and_raw(sample, key_tokens=self.key_trg_tok, key_raw=self.key_trg_raw, key_spans=self.key_trg_spans, key_ws=self.key_trg_ws)
 
         return sample
 
