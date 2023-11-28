@@ -69,6 +69,13 @@ class BasicsTester(unittest.TestCase):
             start, end = span[0], span[1]
             assert raw[start:end] == token
 
+    def test_get_spans_and_ws_from_tok_and_raw(self) -> None:
+        spans, ws = self.modifier._get_spans_and_ws_from_tok_and_raw(
+            self.data[0]["orig_tok"], self.data[0]["orig"]
+        )
+        assert spans == self.data[0]["orig_spans"]
+        assert ws == self.data[0]["orig_ws"]
+
     def test_interal_align(self):
         alignment = self.modifier._align(
             self.data[0]["orig_tok"], self.data[0]["norm_tok"]
