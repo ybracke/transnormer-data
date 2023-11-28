@@ -17,6 +17,7 @@ class BaseDatasetModifier:
         self.dataset = dataset
         self.modify_functions: Dict[Callable, dict]
         self.nlp = spacy.load(nlp_model)  # TODO: not in base class
+        self.detokenizer = None
 
     # def modify_dataset(self) -> None:
     #     """Apply the specified modification(s) to the entire dataset"""
@@ -61,8 +62,10 @@ class BaseDatasetModifier:
             for ws, tok in zip(whitespaces, tokens):
                 sep = " " if ws else ""
                 raw += f"{sep}{tok}"
-        # else:
-        #     raw = self.detokenizer.detokenize(sample.tok)
+        else:
+            if self.detokenizer is None:
+                raise("Error while detokenizing: No whitespace information and no detokenizer.")
+            raw = self.detokenizer.detokenize(tokens)
         return raw
 
     def update_alignment(
