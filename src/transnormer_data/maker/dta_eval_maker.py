@@ -111,6 +111,7 @@ class DtaEvalMaker:
         sents_orig_tok = []
         sents_norm_tok = []
         sents_is_bad = []
+        sents_orig_tokclass = []
         par_idxs = []
         for fname_in in glob.iglob(os.path.join(self.path_data, "*"), recursive=True):
             basename = utils.get_basename_no_ext(fname_in)
@@ -119,6 +120,7 @@ class DtaEvalMaker:
             for i, s in enumerate(tree.iterfind("//s")):
                 sent_orig_tok = []
                 sent_norm_tok = []
+                sent_orig_tokclass = []
                 # Iterate over first <w> under <s>
                 for w in s.xpath("./w"):
                     # Filter tokens that have no @old version (= rare errors)
@@ -126,18 +128,23 @@ class DtaEvalMaker:
                         orig = w.attrib["old"]
                     except KeyError:
                         continue
-                    # Store @old as normalization, if there is none (e.g. "Mur¬" -> "Mur¬")
+                    # Store @old as normalization, if there is no @new 
                     try:
                         norm = w.attrib["new"]
                     except KeyError:
                         norm = w.attrib["old"]
 
+                    tokclass = w.attrib["class"] # e.g. LEX, JOIN, BUG
+
+                    sent_orig_tokclass.append(tokclass)
                     sent_orig_tok.append(orig)
                     sent_norm_tok.append(norm)
+                    
 
                 basenames.append(basename)
                 sents_orig_tok.append(sent_orig_tok)
                 sents_norm_tok.append(sent_norm_tok)
+                sents_orig_tokclass.append(sent_orig_tokclass)
                 par_idxs.append(i)
                 is_bad = True if "sbad" in s.attrib else False
                 sents_is_bad.append(is_bad)
@@ -150,6 +157,7 @@ class DtaEvalMaker:
                 "par_idx": par_idxs,
                 "orig_tok": sents_orig_tok,
                 "orig_ws" : [None for i in range(length)],
+                "orig_class" : sents_orig_tokclass,
                 "norm_tok": sents_norm_tok,
                 "norm_ws" : [None for i in range(length)],
                 "is_bad": sents_is_bad,
