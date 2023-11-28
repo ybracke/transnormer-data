@@ -90,7 +90,7 @@ class BaseDatasetModifier:
 
     def update_token_spans(
         self, sample: Dict, key_tokens: str, key_ws: str, key_spans: str
-    ):
+    ) -> Dict:
         """Update the token spans from tokens and whitespace"""
         spans = self._get_token_spans(sample[key_tokens], sample[key_ws])
         sample[key_spans] = spans
@@ -108,6 +108,15 @@ class BaseDatasetModifier:
             end_idx = start_idx + len(tok)
             spans.append([start_idx, end_idx])
         return spans
+
+    def update_spans_and_ws_from_tok_and_raw(
+        self, sample: Dict, key_tokens: str, key_raw: str, key_spans: str, key_ws: str
+    ) -> Dict:
+        """Update token spans and whitespaces from tokens and raw string"""
+        spans, ws = self._get_spans_and_ws_from_tok_and_raw(sample[key_tokens], sample[key_raw])
+        sample[key_spans] = spans
+        sample[key_ws] = ws
+        return sample
 
     def _get_spans_and_ws_from_tok_and_raw(
             self, tokens: List[str], raw:str
