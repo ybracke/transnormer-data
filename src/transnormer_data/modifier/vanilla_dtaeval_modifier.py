@@ -16,6 +16,8 @@ class VanillaDtaEvalModifier(BaseDatasetModifier):
         This modifier simply calls the functions that compute raw versions, whitespace and alignments from the tokenized version.
 
         """
+        super().__init__(dataset=dataset)
+
         # Dataset
         self.dataset = dataset
 
