@@ -47,7 +47,9 @@ class DtaEvalMakerTester(unittest.TestCase):
                 os.remove(os.path.join(root, file))
             else:
                 os.rmdir(root)
-
+    
+    # def tearDown(self) -> None: pass
+ 
     def test_file_creation(self) -> None:
         """Test whether correctly named files have been created by the Maker"""
         path_01 = "tests/testdata/out/dtaeval/jsonl/brentano_kasperl_1838.jsonl"
