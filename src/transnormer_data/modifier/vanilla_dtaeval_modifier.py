@@ -3,8 +3,8 @@ from typing import Any, Dict, List
 import datasets
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
+from ..detokenizer import DtaEvalDetokenizer
 
-from nltk.tokenize.treebank import TreebankWordDetokenizer
 
 
 
@@ -33,7 +33,7 @@ class VanillaDtaEvalModifier(BaseDatasetModifier):
         self.key_alignment = "alignment"
 
         # Detokenizer
-        self.detokenizer = TreebankWordDetokenizer()
+        self.detokenizer = DtaEvalDetokenizer()
 
     def modify_dataset(self) -> datasets.Dataset:
         self.dataset = self.dataset.map(self.modify_sample)
