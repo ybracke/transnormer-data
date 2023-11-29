@@ -1,6 +1,4 @@
-import json
 import os
-import sys
 from typing import List
 import unittest
 
@@ -8,12 +6,13 @@ import datasets
 
 from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
 
+TMPDIR = "tests/testdata/tmp"
 
 class DtaEvalMakerTester(unittest.TestCase):
     def setUp(self) -> None:
-        self.input_dir_data = "tests/testdata/dtaeval"
+        self.input_dir_data = "tests/testdata/dtaeval/xml"
         self.input_dir_meta = "tests/testdata/metadata/metadata_dtak.jsonl"
-        self.output_dir = "tests/testdata/out/dtaeval/jsonl"
+        self.output_dir = TMPDIR
         self.maker_configs = {}
         self.target_properties = {
             "basename": str,
@@ -42,18 +41,16 @@ class DtaEvalMakerTester(unittest.TestCase):
 
     def tearDown(self) -> None:
         # Remove files that were created during training
-        for root, dirs, files in os.walk("tests/testdata/out", topdown=False):
+        for root, dirs, files in os.walk(TMPDIR, topdown=False):
             for file in files:
                 os.remove(os.path.join(root, file))
             else:
                 os.rmdir(root)
     
-    # def tearDown(self) -> None: pass
- 
     def test_file_creation(self) -> None:
         """Test whether correctly named files have been created by the Maker"""
-        path_01 = "tests/testdata/out/dtaeval/jsonl/brentano_kasperl_1838.jsonl"
-        path_02 = "tests/testdata/out/dtaeval/jsonl/fontane_stechlin_1899.jsonl"
+        path_01 = f"{TMPDIR}/brentano_kasperl_1838.jsonl"
+        path_02 = f"{TMPDIR}/fontane_stechlin_1899.jsonl"
         assert os.path.isfile(path_01)
         assert os.path.isfile(path_02)
 
