@@ -42,9 +42,9 @@ class DtaEvalMaker:
         if save:
             if not os.path.isdir(self.path_output):
                 os.makedirs(self.path_output)
-                utils.save_dataset_to_json_grouped_by_property(
-                    self._dataset, property="basename", path_outdir=self.path_output
-                )
+            utils.save_dataset_to_json_grouped_by_property(
+                self._dataset, property="basename", path_outdir=self.path_output
+            )
         return self._dataset
 
     def _load_metadata(self) -> Dict[str, Dict]:
