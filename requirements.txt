@@ -1,5 +1,11 @@
 datasets>=2.15.0
 nltk>=3.8.1
 torch==1.12.0
+<<<<<<< Updated upstream
 spacy>=3.7.2
+=======
+lxml>=4.9.3
+spacy>=3.7.2,<4.0.0
+de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.7.0/de_core_news_sm-3.7.0-py3-none-any.whl
+>>>>>>> Stashed changes
 git+ssh://git@github.com/ybracke/textalign
