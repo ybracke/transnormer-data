@@ -4,7 +4,7 @@ from nltk.tokenize.treebank import TreebankWordDetokenizer
 
 UNICODE_QUOTATION_MARKS_BOTH = [
     "\u0022",  # " -- Typewriter quote, ambidextrous. Also known as \"double quote\".
-    "\u0027",  # ' -- Typewriter straight single quote, ambidextrous
+    # "\u0027",  # ' -- Typewriter straight single quote, ambidextrous
 
 ]
 
@@ -19,7 +19,7 @@ UNICODE_QUOTATION_MARKS_END = [
 
 UNICODE_QUOTATION_MARKS_START = [
     "\u00BB",  # » -- Double angle quote, right                                     
-    "\u2019",  # ’ -- Single curved quote, right[i]
+    # "\u2019",  # ’ -- Single curved quote, right[i]
     "\u201D",  # ” -- Double curved quote, right
     "\u203A",  # › -- Single angle quote, right
     "\u201E",  # „ -- Low double curved quote, left
