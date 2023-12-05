@@ -78,12 +78,11 @@ class BaseDatasetModifier:
         sample[key_alignment] = alignment
         return sample
 
-    # TODO: alignment function must be replaced
-    #       It can only compute 1:1 and 1:2 alignments, not 1:n
     def _align(self, tokens_src: List[str], tokens_trg: List[str]) -> List[List[int]]:
         """Align the tokens from source and target"""
         aligner = Aligner(tokens_src, tokens_trg)
-        aligner.get_bidirectional_alignments()
+        # Set to compute maximum 1:4/4:1-alignments
+        aligner.get_bidirectional_alignments(max_aligned_tokens=4)
         # Convert format of alignments from AlignedPairs to python list
         alignment = [list(pair) for pair in aligner.aligned_tokidxs]
         return alignment
