@@ -2,6 +2,7 @@ import os
 from typing import List
 import unittest
 
+from lxml import etree
 import datasets
 
 from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
@@ -89,3 +90,14 @@ class DtaEvalMakerTester(unittest.TestCase):
         for example, target_alignment in zip(self.dataset.filter(lambda example: example["basename"].startswith("brentano_kasperl_1838")), target_alignments):
             # print(example)
             assert example["alignment"] == target_alignment
+
+    def test_create_example_from_s(self) -> None:
+        tree = etree.parse(os.path.join(self.input_dir_data,"brentano_kasperl_1838.xml"))
+        s = tree.findall(".//s")[-1] # last sentence in brentano
+        target = (
+            ["ich", "bin", "acht", "und", "achtzig", "Jahr", "alt", ",", "und", "der", "Herzog", "wird", "mich", "gewiß", "nicht", "von", "ſeiner", "Schwelle", "treiben", "."],
+            ["Ich", "bin", "achtundachtzig", "Jahr", "alt", ",", "und", "der", "Herzog", "wird", "mich", "gewiß", "nicht", "von", "seiner", "Schwelle", "treiben", "."],
+            ["LEX", "LEX", "JOIN", "JOIN", "JOIN", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX"],
+        )
+        result = self.maker._create_example_from_s(s)
+        assert result == target
