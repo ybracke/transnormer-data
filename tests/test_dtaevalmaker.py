@@ -61,3 +61,31 @@ class DtaEvalMakerTester(unittest.TestCase):
     def test_shape(self) -> None:
         """Test whether dataset's shape is correct"""
         assert self.dataset.shape == (28, len(self.target_properties))
+
+    def test_alignments(self) -> None:
+        """Check whether the correct alignments were computed"""
+        # Target alignments for brentano
+        target_alignments = [
+            [[i,i] for i in range(75)], 
+            [[i,i] for i in range(9)] + [[9,9], [10,9]] + [[i,i-1] for i in range(11,17)],
+            [[i,i] for i in range(33)], 
+            [[i,i] for i in range(49)], 
+            [[i,i] for i in range(35)], 
+            [[i,i] for i in range(6)], 
+            [[i,i] for i in range(13)], 
+            [[i,i] for i in range(32)] + [[32,32], [33,32], [34,33]],
+            [[i,i] for i in range(23)], 
+            [[i,i] for i in range(13)], 
+            [[i,i] for i in range(13)], 
+            [[i,i] for i in range(36)], 
+            [[i,i] for i in range(8)], 
+            [[i,i] for i in range(20)], 
+            [[i,i] for i in range(32)], 
+            [[i,i] for i in range(18)], 
+            [[i,i] for i in range(14)], 
+            [[0,0], [1,1],[2,2],[3,2],[4,2]] + [[i,i-2] for i in range(5,20)], 
+        ]
+        brentano = self.dataset.filter(lambda example: example["basename"] == "brentano_kasperl_1838")
+        for example, target_alignment in zip(self.dataset.filter(lambda example: example["basename"].startswith("brentano_kasperl_1838")), target_alignments):
+            # print(example)
+            assert example["alignment"] == target_alignment
