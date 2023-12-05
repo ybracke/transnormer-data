@@ -1,7 +1,8 @@
 import json
 import os
 import glob
-from typing import Dict, List, Optional, Union
+import re
+from typing import Dict, List, Optional, Tuple, Union
 
 import datasets
 from lxml import etree
@@ -136,10 +137,37 @@ class DtaEvalMaker:
 
                     tokclass = w.attrib["class"] # e.g. LEX, JOIN, BUG
 
-                    sent_orig_tokclass.append(tokclass)
-                    sent_orig_tok.append(orig)
-                    sent_norm_tok.append(norm)
+                    # @class='JOIN': inner w-nodes for orig and outer w-node for norm 
+                    if w.attrib["class"] == "JOIN":
+                        sent_orig_tok.extend([inner_w.attrib["old"] for inner_w in list(w.iterfind("w"))])
+                        sent_orig_tokclass.extend([inner_w.attrib["class"] for inner_w in list(w.iterfind("w"))])
+                        sent_norm_tok.append(norm)
+                        continue
+
+                    # add missing hyphens
+                    if orig[-1] == "-" and norm[-1] != "-":
+                        norm += "-"
+                    orig = orig.replace("¬","-")
+                    norm = norm.replace("¬","-")
+
+                    # splits
+                    # orig split
+                    orig_split, orig_was_split = self.custom_split(orig)
+                    if orig_was_split:
+                        sent_orig_tokclass.extend([w.attrib["class"] for i in range(len(orig_split))])
+                    else:
+                        sent_orig_tokclass.append(tokclass)
+                    sent_orig_tok.extend(orig_split)
+                    # norm split 
+                    norm_split, norm_was_split = self.custom_split(norm)
+                    sent_norm_tok.extend(norm_split)
                     
+                # TODO:
+                # Das folgende als Listen-Operation durchführen
+                # if remove_unwanted_spaces:
+                #     sent_orig = re.sub(r"([A-ZÄÜÖ].+\-) ([A-ZÄÜÖ])", r"\1\2", sent_orig)
+                #     sent_norm = re.sub(r"([A-ZÄÜÖ].+\-) ([A-ZÄÜÖ])", r"\1\2", sent_norm)
+
 
                 basenames.append(basename)
                 sents_orig_tok.append(sent_orig_tok)
@@ -192,3 +220,14 @@ class DtaEvalMaker:
             self._dataset = self._dataset.add_column(name, column)
 
         return self._dataset
+
+
+
+    @staticmethod
+    def custom_split(input_string: str) -> Tuple[List[str], bool]:
+        """Returns the list of token(s) and True if there actually was a split"""
+        if '_' in input_string or ' ' in input_string:
+            return re.split(r'[_\s]+', input_string), True
+        else:
+            return [input_string], False
+
