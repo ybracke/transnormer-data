@@ -34,9 +34,8 @@ class DtaEvalDetokenizer(TreebankWordDetokenizer):
 
     # ending quotes
     ENDING_QUOTES = [
-        (re.compile(r"(\S)\s(\'\'|" + endq + r")"), r"\1\2"),
-        (re.compile(r"(\'\'|" + endq + r")\s([.,:)\]>};%])"),r"\1\2"), # Quotes followed by no-left-padded punctuations.
-        (re.compile(r"''"), '"'),
+        (re.compile(r"(\S)\s(" + endq + r")"), r"\1\2"),
+        (re.compile(r"(" + endq + r")\s([.,:)\]>};%])"),r"\1\2"), # Quotes followed by no-left-padded punctuations.
     ]
 
     # starting quotes
