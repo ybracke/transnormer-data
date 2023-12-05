@@ -4,4 +4,4 @@ torch==1.12.0
 lxml>=4.9.3
 spacy>=3.7.2,<4.0.0
 de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.7.0/de_core_news_sm-3.7.0-py3-none-any.whl
-git+ssh://git@github.com/ybracke/textalign
+git+ssh://git@github.com/ybracke/textalign@dev-clean-alignments-1-to-n
