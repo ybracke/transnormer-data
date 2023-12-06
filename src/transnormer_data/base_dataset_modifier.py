@@ -5,19 +5,20 @@ import spacy
 
 from textalign import Aligner
 
-MODEL = "de_dep_news_trf"  # TODO: not in base class
-MODEL = "de_core_news_sm"
+MODEL = "de_core_news_sm"  # alternative, bigger model: "de_dep_news_trf"
+
 
 class BaseDatasetModifier:
     """Base class for implementation of modifiers"""
 
     def __init__(
-        self, dataset: Optional[datasets.Dataset] = None, nlp_model=MODEL
+        self, dataset: Optional[datasets.Dataset] = None, spacy_model: str = MODEL
     ) -> None:
         self.dataset = dataset
-        self.modify_functions: Dict[Callable, dict]
-        self.nlp = spacy.load(nlp_model)  # TODO: not in base class
+        self.nlp = spacy.load(spacy_model)
         self.detokenizer = None
+
+        # self.modify_functions: Dict[Callable, dict]
 
     # def modify_dataset(self) -> None:
     #     """Apply the specified modification(s) to the entire dataset"""
@@ -66,7 +67,9 @@ class BaseDatasetModifier:
                 raw += f"{sep}{tok}"
         else:
             if self.detokenizer is None:
-                raise("Error while detokenizing: No whitespace information and no detokenizer.")
+                raise (
+                    "Error while detokenizing: No whitespace information and no detokenizer."
+                )
             raw = self.detokenizer.detokenize(tokens)
         return raw
 
@@ -112,25 +115,27 @@ class BaseDatasetModifier:
         self, sample: Dict, key_tokens: str, key_raw: str, key_spans: str, key_ws: str
     ) -> Dict:
         """Update token spans and whitespaces from tokens and raw string"""
-        spans, ws = self._get_spans_and_ws_from_tok_and_raw(sample[key_tokens], sample[key_raw])
+        spans, ws = self._get_spans_and_ws_from_tok_and_raw(
+            sample[key_tokens], sample[key_raw]
+        )
         sample[key_spans] = spans
         sample[key_ws] = ws
         return sample
 
     def _get_spans_and_ws_from_tok_and_raw(
-            self, tokens: List[str], raw:str
+        self, tokens: List[str], raw: str
     ) -> Tuple[List[List[int]], List[bool]]:
         """Calculate token spans and whitespaces from tokens and raw string"""
         start_idx = 0
         end_idx = 0
-        whitespaces = [] 
+        whitespaces = []
         spans = []
         len_raw = len(raw)
         for tok in tokens:
-            if end_idx >= len_raw: 
+            if end_idx >= len_raw:
                 break
             # is the next token a space character?
-            has_preceding_ws = (raw[end_idx] == " ")
+            has_preceding_ws = raw[end_idx] == " "
 
             start_idx = end_idx + bool(has_preceding_ws)  # add 1 if preceded by ws
             end_idx = start_idx + len(tok)
