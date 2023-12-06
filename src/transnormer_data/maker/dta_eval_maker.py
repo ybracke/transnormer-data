@@ -199,12 +199,12 @@ class DtaEvalMaker:
         sent_orig_tokclass = []
         # Iterate over first <w> under <s>
         for w in s.xpath("./w"):
-            # Filter tokens that have no @old version (= rare errors)
+            # 1. Filter tokens that have no @old version (= rare errors)
             try:
                 orig = w.attrib["old"]
             except KeyError:
                 continue
-            # Store @old as normalization, if there is no @new
+            # 2. Store @old as normalization, if there is no @new
             try:
                 norm = w.attrib["new"]
             except KeyError:
@@ -212,7 +212,7 @@ class DtaEvalMaker:
 
             tokclass = w.attrib["class"]  # e.g. LEX, JOIN, BUG
 
-            # "JOIN": Multiple orig tokens (and their annotations) which have a single norm form
+            # 3. Handle "JOIN": Multiple orig tokens (and their annotations) which have a single norm form
             # Get inner w-nodes for orig and outer w-node for norm
             if w.attrib["class"] == "JOIN":
                 # get the orig tokens and annos
@@ -231,7 +231,7 @@ class DtaEvalMaker:
                 sent_norm_tok.append(norm)
                 continue
 
-            # Hyphens
+            # 4. Handle hyphens
             # Unify hyphen-character
             orig = orig.replace("¬", "-")
             norm = norm.replace("¬", "-")
@@ -239,7 +239,7 @@ class DtaEvalMaker:
             if orig[-1] == "-" and norm[-1] != "-":
                 norm += "-"
 
-            # Split tokens (on " " or "_")
+            # 5. Split tokens on " " or "_"
             # orig split
             orig_split, orig_was_split = self.custom_split(orig)
             if orig_was_split:
