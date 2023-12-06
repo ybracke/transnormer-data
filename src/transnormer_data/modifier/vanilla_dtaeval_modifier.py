@@ -46,24 +46,21 @@ class VanillaDtaEvalModifier(BaseDatasetModifier):
         Apply a modification function to a property of the sample
         and propagate the modifications to other properties of the sample.
 
-        Here, we have no modifications and simply call the raw-stringification function
-
         """
+
+        # Detokenize tok to produce raw text version for source and target
         self.update_raw_from_tok(sample, key_raw=self.key_src_raw, key_tok=self.key_src_tok, key_ws=self.key_src_ws)
-        self.update_raw_from_tok(sample, key_raw=self.key_trg_raw, key_tok=self.key_trg_tok, key_ws=self.key_trg_ws)
-        self.update_alignment(sample, key_tokens_src=self.key_src_tok, key_tokens_trg=self.key_trg_tok, key_alignment=self.key_alignment)
+        self.update_raw_from_tok(sample, key_raw=self.key_trg_raw, key_tok=self.
+        key_trg_tok, key_ws=self.key_trg_ws)
+        
+        # Tokenize target again. Reason: TODO 
+        self.update_tok_from_raw(sample, key_raw=self.key_trg_raw, key_tok=self.key_trg_tok, key_ws=self.key_trg_ws)
+        
+        # Compute alignments
+        self.update_alignment(sample, key_tokens_src=self.key_src_tok, key_tokens_trg=self.key_trg_tok, key_alignment=self.key_alignment) 
+
+        # Compute spans
         self.update_spans_and_ws_from_tok_and_raw(sample, key_tokens=self.key_src_tok, key_raw=self.key_src_raw, key_spans=self.key_src_spans, key_ws=self.key_src_ws)
         self.update_spans_and_ws_from_tok_and_raw(sample, key_tokens=self.key_trg_tok, key_raw=self.key_trg_raw, key_spans=self.key_trg_spans, key_ws=self.key_trg_ws)
 
         return sample
-
-    def _align(self, tokens_src: List[str], tokens_trg: List[str]) -> List[List[int]]:
-        """Align the tokens from source and target
-        
-        For this modifier we only create the initial 1:1 alignments. 
-        """
-        # Convert format of alignments from AlignedPairs to python list
-        len_tokens_src = len(tokens_src)
-        assert len_tokens_src == len(tokens_trg)
-        alignment = [[i,i] for i in range(len_tokens_src)]
-        return alignment
