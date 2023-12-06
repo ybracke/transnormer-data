@@ -7,21 +7,23 @@ authors = [
 ]
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
-    "Programming Language :: Python :: 3.9+",
+    "Programming Language :: Python :: 3.10+",
     "Operating System :: OS Independent",
 ]
 dependencies = [
     "datasets>=2.15.0", 
     "nltk>=3.8.1",
-    "spacy>=3.7.2",
     "torch==1.12.0",
-    "lxml>=4.9.3"
+    "lxml>=4.9.3",
+    "spacy>=3.7.2,<4.0.0",
+    "de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.7.0/de_core_news_sm-3.7.0-py3-none-any.whl",
+    "git+ssh://git@github.com/ybracke/textalign@dev-clean-alignments-1-to-n"
 ]
 
 [project.urls]
-# "Homepage" = "https://github.com/ybracke/transnormer"
+"Homepage" = "https://github.com/ybracke/transnormer-data"
 
 [build-system]
 requires = ["setuptools>=61.0"]
