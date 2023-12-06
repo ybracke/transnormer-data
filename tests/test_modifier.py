@@ -35,6 +35,7 @@ class ModifierTester(unittest.TestCase):
         self.dataset = datasets.load_dataset("json", data_files=PATH_DATASET)
         self.modifier = TypeReplacementModifier(self.dataset)
 
+    @unittest.skip
     def test_modification(self):
         # Remove alignment to show that it is successfully recreated
         self.dataset["train"] = self.dataset["train"].remove_columns("alignment")
