@@ -47,7 +47,16 @@ class DtaEvalMakerTester(unittest.TestCase):
                 os.remove(os.path.join(root, file))
             else:
                 os.rmdir(root)
-    
+
+    def test_custom_split(self) -> None:
+        """Test the custom split function used by DtaEvalMaker"""
+        result = self.maker.custom_split("Haus")
+        assert result == (["Haus"], False)
+        result = self.maker.custom_split("bin_es") 
+        assert result == (["bin", "es"], True)
+        result = self.maker.custom_split("bin_es nicht") 
+        assert result == (["bin", "es", "nicht"], True)
+
     def test_file_creation(self) -> None:
         """Test whether correctly named files have been created by the Maker"""
         path_01 = f"{TMPDIR}/brentano_kasperl_1838.jsonl"
