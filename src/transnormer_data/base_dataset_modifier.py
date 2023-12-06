@@ -6,7 +6,7 @@ import spacy
 from textalign import Aligner
 
 MODEL = "de_dep_news_trf"  # TODO: not in base class
-
+MODEL = "de_core_news_sm"
 
 class BaseDatasetModifier:
     """Base class for implementation of modifiers"""
@@ -51,10 +51,10 @@ class BaseDatasetModifier:
         return tokens, whitespaces[:-1]
 
     def update_raw_from_tok(
-        self, sample: Dict, key_raw: str, key_tok: str, key_ws: str
+        self, sample: Dict, key_raw: str, key_tok: str, key_ws: Optional[str]
     ) -> Dict:
-        """Update a sample's raw string entry based on its tokenized + whitespace entry"""
-        sample[key_raw] = self._tok2raw(sample[key_tok], sample[key_ws])
+        """Update a sample's raw string entry based on its tokenized (+ optionally whitespace) entry"""
+        sample[key_raw] = self._tok2raw(sample[key_tok], sample.get(key_ws))
         return sample
 
     def _tok2raw(self, tokens: List[str], whitespaces: Optional[List[bool]]) -> str:
