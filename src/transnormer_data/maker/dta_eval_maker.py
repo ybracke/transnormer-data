@@ -12,7 +12,7 @@ from transnormer_data.modifier.vanilla_dtaeval_modifier import VanillaDtaEvalMod
 
 
 class DtaEvalMaker:
-    """An object that creates a dataset in the transnormer format from the DTA Eval Corpus in its original XML format, plus metadata in JSONL format """
+    """An object that creates a dataset in the transnormer format from the DTA Eval Corpus in its original XML format, plus metadata in JSONL format"""
 
     def __init__(
         self,
@@ -32,7 +32,7 @@ class DtaEvalMaker:
 
     def make(self, save: bool = False) -> datasets.Dataset:
         """Create a datasets.Dataset object from the paths passed to the constructor.
-        
+
         Pass `save=True` to save the dataset in JSONL format to the output directory that was passed to the constructor. If the directory does not exists, it will be created.
         """
         self._metadata = self._load_metadata()
@@ -119,7 +119,11 @@ class DtaEvalMaker:
             tree = etree.parse(fname_in)
             # sentences
             for i, s in enumerate(tree.iterfind("//s")):
-                sent_orig_tok, sent_norm_tok, sent_orig_tokclass = self._create_example_from_s(s)
+                (
+                    sent_orig_tok,
+                    sent_norm_tok,
+                    sent_orig_tokclass,
+                ) = self._create_example_from_s(s)
                 basenames.append(basename)
                 sents_orig_tok.append(sent_orig_tok)
                 sents_norm_tok.append(sent_norm_tok)
@@ -129,16 +133,22 @@ class DtaEvalMaker:
                 sents_is_bad.append(is_bad)
 
         length = len(basenames)
-        assert length == len(par_idxs) == len(sents_orig_tok) == len(sents_norm_tok) == len(sents_is_bad)
+        assert (
+            length
+            == len(par_idxs)
+            == len(sents_orig_tok)
+            == len(sents_norm_tok)
+            == len(sents_is_bad)
+        )
         return datasets.Dataset.from_dict(
             {
                 "basename": basenames,
                 "par_idx": par_idxs,
                 "orig_tok": sents_orig_tok,
-                "orig_ws" : [None for i in range(length)],
-                "orig_class" : sents_orig_tokclass,
+                "orig_ws": [None for i in range(length)],
+                "orig_class": sents_orig_tokclass,
                 "norm_tok": sents_norm_tok,
-                "norm_ws" : [None for i in range(length)],
+                "norm_ws": [None for i in range(length)],
                 "is_bad": sents_is_bad,
             }
         )
@@ -146,9 +156,9 @@ class DtaEvalMaker:
     def _join_data_and_metadata(self, join_on: str) -> datasets.Dataset:
         """Join the metadata (stored in dictionary) with the data (stored in dataset) on a key ('join_on') that is contained in both"""
         assert self._metadata is not None and self._dataset is not None
-        # new_columns 
+        # new_columns
         # the following assumes all metadat entries have the same structure
-        new_columns: Dict[str,List] = {
+        new_columns: Dict[str, List] = {
             key: [] for key in list(self._metadata.values())[0] if key != join_on
         }
         # Get the column to join metadata and data on, e.g. "basename"
@@ -172,10 +182,11 @@ class DtaEvalMaker:
 
         return self._dataset
 
-
-    def _create_example_from_s(self, s: etree.Element) -> Tuple[List[str],List[str],List[str]]:
+    def _create_example_from_s(
+        self, s: etree.Element
+    ) -> Tuple[List[str], List[str], List[str]]:
         """Create an example from a sentence element in an DTAEvalCorpus XML file
-        
+
         An example is a 3-Tuple:
         sent_orig_tok: List[str]
         sent_norm_tok: List[str]
@@ -193,25 +204,37 @@ class DtaEvalMaker:
                 orig = w.attrib["old"]
             except KeyError:
                 continue
-            # Store @old as normalization, if there is no @new 
+            # Store @old as normalization, if there is no @new
             try:
                 norm = w.attrib["new"]
             except KeyError:
                 norm = w.attrib["old"]
 
-            tokclass = w.attrib["class"] # e.g. LEX, JOIN, BUG
+            tokclass = w.attrib["class"]  # e.g. LEX, JOIN, BUG
 
-            # If @class='JOIN': inner w-nodes for orig and outer w-node for norm 
+            # "JOIN": Multiple orig tokens (and their annotations) which have a single norm form
+            # Get inner w-nodes for orig and outer w-node for norm
             if w.attrib["class"] == "JOIN":
-                sent_orig_tok.extend([inner_w.attrib["old"] for inner_w in list(w.iterfind("w"))])
-                sent_orig_tokclass.extend([inner_w.attrib["class"] for inner_w in list(w.iterfind("w"))])
+                # get the orig tokens and annos
+                tokens = [inner_w.attrib["old"] for inner_w in list(w.iterfind("w"))]
+                tokclass_annos = [
+                    inner_w.attrib["class"] for inner_w in list(w.iterfind("w"))
+                ]
+                tokens_mod = self.join_wrongly_splitted_tokens(tokens)
+
+                # If tokens changed, adapt the annotations: use default for remaining token(s)
+                if tokens != tokens_mod:
+                    tokclass_annos = ["LEX" for t in tokens_mod]
+
+                sent_orig_tok.extend(tokens_mod)
+                sent_orig_tokclass.extend(tokclass_annos)
                 sent_norm_tok.append(norm)
                 continue
 
             # Hyphens
             # Unify hyphen-character
-            orig = orig.replace("¬","-")
-            norm = norm.replace("¬","-")
+            orig = orig.replace("¬", "-")
+            norm = norm.replace("¬", "-")
             # Add missing hyphen on norm
             if orig[-1] == "-" and norm[-1] != "-":
                 norm += "-"
@@ -220,25 +243,60 @@ class DtaEvalMaker:
             # orig split
             orig_split, orig_was_split = self.custom_split(orig)
             if orig_was_split:
-                sent_orig_tokclass.extend([w.attrib["class"] for i in range(len(orig_split))])
+                sent_orig_tokclass.extend(
+                    [w.attrib["class"] for i in range(len(orig_split))]
+                )
             else:
                 sent_orig_tokclass.append(tokclass)
             sent_orig_tok.extend(orig_split)
-            # norm split 
+            # norm split
             norm_split, norm_was_split = self.custom_split(norm)
             sent_norm_tok.extend(norm_split)
-                    
-            # Possible TODO: Include the following modifications, but as list operation
-            # sent_orig = re.sub(r"([A-ZÄÜÖ].+\-) ([A-ZÄÜÖ])", r"\1\2", sent_orig)
-            # sent_norm = re.sub(r"([A-ZÄÜÖ].+\-) ([A-ZÄÜÖ])", r"\1\2", sent_norm)
-        
+
         return sent_orig_tok, sent_norm_tok, sent_orig_tokclass
 
     @staticmethod
     def custom_split(input_string: str) -> Tuple[List[str], bool]:
         """Returns the list of token(s) and True if there actually was a split"""
-        if '_' in input_string or ' ' in input_string:
-            return re.split(r'[_\s]+', input_string), True
+        if "_" in input_string or " " in input_string:
+            return re.split(r"[_\s]+", input_string), True
         else:
             return [input_string], False
 
+    @staticmethod
+    def join_wrongly_splitted_tokens(tokens: List[str]) -> List[str]:
+        """Joins strings in a list that should actually be a single string
+
+        Two tokens are considered to be wrongly splitted into two tokens, iff
+        (1) the first token starts with a capital letter and ends with a hyphen character
+        (2) the second token starts with a capital letter
+        """
+
+        # Check if any of the orig tokens should actually be joined into one
+        # Example: ['Stände-', 'Verſammlungen'] -> ['Stände-Versammlungen]
+
+        tokens_edited = []
+        i = 0
+
+        while i < len(tokens):
+            current_token = tokens[i]
+            # unify hyphen
+            current_token = current_token.replace("¬", "-")
+
+            # Check if the current token ends with a hyphen, starts with capital letter and if the next token starts with a capital letter
+            while (
+                current_token
+                and current_token[-1] == "-"
+                and current_token[0].isupper()
+                and i + 1 < len(tokens)
+                and tokens[i + 1]
+                and tokens[i + 1][0].isupper()
+            ):
+                # Join the current token and the next token
+                current_token = current_token + tokens[i + 1]
+                i += 1
+
+            tokens_edited.append(current_token)
+            i += 1
+
+        return tokens_edited

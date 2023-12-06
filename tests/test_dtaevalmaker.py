@@ -100,7 +100,8 @@ class DtaEvalMakerTester(unittest.TestCase):
             # print(example)
             assert example["alignment"] == target_alignment
 
-    def test_create_example_from_s(self) -> None:
+    def test_create_example_from_s_with_join(self) -> None:
+        """Test example creation from a single sentence"""
         tree = etree.parse(os.path.join(self.input_dir_data,"brentano_kasperl_1838.xml"))
         s = tree.findall(".//s")[-1] # last sentence in brentano
         target = (
@@ -109,4 +110,40 @@ class DtaEvalMakerTester(unittest.TestCase):
             ["LEX", "LEX", "JOIN", "JOIN", "JOIN", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX"],
         )
         result = self.maker._create_example_from_s(s)
+        assert result == target
+
+    def test_create_example_from_s_with_hypen_join(self) -> None:
+        """Test example creation from a single sentence"""
+
+        xml_string = """
+<s>
+<w class="LEX" new="In" old="In" pok="1"/>
+<w class="LEX" new="der" old="der" pok="1"/>
+<w class="LEX" new="Allgemeinen" old="allgemeinen" pok="1"/>
+<w class="LEX" new="Zeitung" old="Zeitung" pok="1"/>
+<w class="LEX" new="stehen" old="ſtehen" pok="1"/>
+<w class="LEX" new="Berichte" old="Berichte" pok="1"/>
+<w class="LEX" new="über" old="über" pok="1"/>
+<w class="LEX" new="die" old="die" pok="1"/>
+<w bad="1" class="JOIN" new="Ständeversammlungen" old="Stände- Verſammlungen" pok="1" seen="1">
+    <w bad="1" class="JOIN" new="Stände" old="Stände-" pok="1" seen="1"/>
+    <w class="JOIN" new="Versammlungen" old="Verſammlungen" pok="1" seen="1"/>
+</w>
+<w class="LEX" new="." old="." pok="1"/>
+</s>"""
+        target = (
+            ['In', 'der', 'allgemeinen', 'Zeitung', 'ſtehen', 'Berichte', 'über', 'die', 'Stände-Verſammlungen', '.'],
+            ['In', 'der', 'Allgemeinen', 'Zeitung', 'stehen', 'Berichte', 'über', 'die', 'Ständeversammlungen', '.'], 
+            ['LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX']
+        )
+        s = etree.fromstring(xml_string)
+        result = self.maker._create_example_from_s(s)
+        assert result == target
+
+
+    def test_join_wrongly_splitted_tokens(self) -> None:
+        """Test token joining function"""
+        tokens = ["Versammlungs-", "Freiheits-", "Gesetz"]
+        target = ["Versammlungs-Freiheits-Gesetz"]
+        result = self.maker.join_wrongly_splitted_tokens(tokens)
         assert result == target
