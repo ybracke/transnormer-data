@@ -50,13 +50,17 @@ def main(arguments: Optional[List[str]] = None) -> None:
     input_dir_data = args.data
     input_dir_metadata = args.metadata
     output_dir = args.output_dir
+    plugin = args.maker
 
     # (3) Select plugin, run maker and save 
-
-    plugin = args.maker
     if plugin.lower() == "dtaevalmaker":
         from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
         maker = DtaEvalMaker(
+            input_dir_data, input_dir_metadata, output_dir
+        )
+    elif plugin.lower() == "dtakmaker":
+        from transnormer_data.maker.dtak_maker import DtakMaker
+        maker = DtakMaker(
             input_dir_data, input_dir_metadata, output_dir
         )
     dataset = maker.make(save=True)
