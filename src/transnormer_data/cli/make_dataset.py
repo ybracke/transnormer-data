@@ -8,8 +8,7 @@ make_dataset.py --maker dtaevalmaker --data /home/bracke/data/DTAEvalCorpus/orig
 import argparse
 from datetime import datetime
 import time
-from typing import List, Optional
-
+from typing import Any, List, Optional
 
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -55,7 +54,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (3) Select plugin, run maker and save 
     if plugin.lower() == "dtaevalmaker":
         from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
-        maker = DtaEvalMaker(
+        maker: Any = DtaEvalMaker(
             input_dir_data, input_dir_metadata, output_dir
         )
     elif plugin.lower() == "dtakmaker":

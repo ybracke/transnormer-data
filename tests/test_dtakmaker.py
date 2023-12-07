@@ -13,7 +13,6 @@ class DtakMakerTester(unittest.TestCase):
         self.input_dir_data = "tests/testdata/dtak/ddctabs/"
         self.input_dir_meta = "tests/testdata/metadata/metadata_dtak.jsonl"
         self.output_dir = TMPDIR
-        self.maker_configs = {}
         self.target_properties = {
             "basename": str,
             "par_idx": str,

@@ -28,7 +28,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     ds = datasets.load_dataset("json", data_files=args.dir_in)
 
     # (3) Modify dataset
-    ds.map(modify_record, fn_kwargs={"functions": args.plugins}, batched=False)
+    # ds.map(modify_record, fn_kwargs={"functions": args.plugins}, batched=False)
 
     # (4) Write the modified version of the dataset
 

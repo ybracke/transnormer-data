@@ -43,7 +43,7 @@ class DtakMaker(DtaMaker):
             files_list: List[List[str]]  = [glob.glob(os.path.join(self.path_data, "*"), recursive=True)] # len = 1
         # Will overwrite self._dataset with every iteration
         else:
-            files_list: List[List[str]] = [[fname] for fname in glob.iglob(os.path.join(self.path_data, "*"), recursive=True)] # len = number of files
+            files_list = [[fname] for fname in glob.iglob(os.path.join(self.path_data, "*"), recursive=True)] # len = number of files
 
         for files in files_list:
             self._dataset = self._load_data(files=files)
@@ -96,12 +96,18 @@ class DtakMaker(DtaMaker):
                     # (A) Metadata line
                     if line.startswith("%%$DDC:index["):
                         match = re.split(" |=", line.strip())
-                        try:
-                            i = int(re.search(r"\d+", match[0])[0])
-                        except:
-                            raise Exception(
-                                "Couldn't parse ddc-tabs input file correctly."
-                            )
+                        
+                        # Check if re.search returned a match
+                        search_result = re.search(r"\d+", match[0])
+                        if search_result:
+                            try:
+                                i = int(search_result[0])
+                            except (TypeError, IndexError):
+                                # Handle the case where match[0] is None or not indexable
+                                raise Exception("Couldn't parse ddc-tabs input file correctly.")
+                        else:
+                            # Handle the case where re.search returned None
+                            raise Exception("Couldn't find a digit in the specified pattern.")
                         long = match[1]
                         short = match[2]
                         if long == "Token" or short == "w":
@@ -144,8 +150,8 @@ class DtakMaker(DtaMaker):
                         sent_orig_ws.append(orig_ws)
 
                         # 4. Split norm token at "_"
-                        norm, _ = self.custom_split(norm)
-                        sent_norm_tok.extend(norm)
+                        norm_split, _ = self.custom_split(norm)
+                        sent_norm_tok.extend(norm_split)
 
                         # Set in-sentence flag
                         in_s = True

@@ -19,7 +19,7 @@ class VanillaDtaModifier(BaseDatasetModifier):
         super().__init__(dataset=dataset)
 
         # Dataset
-        self.dataset = dataset
+        self.dataset: datasets.Dataset = dataset
 
         # Keys for the relevant properties
         self.key_src_raw = "orig"

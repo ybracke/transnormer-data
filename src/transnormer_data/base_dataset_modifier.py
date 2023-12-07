@@ -2,6 +2,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import datasets
 import spacy
+from nltk.tokenize.treebank import TreebankWordDetokenizer
 
 from textalign import Aligner
 
@@ -16,7 +17,7 @@ class BaseDatasetModifier:
     ) -> None:
         self.dataset = dataset
         self.nlp = spacy.load(spacy_model)
-        self.detokenizer = None
+        self.detokenizer: Optional[TreebankWordDetokenizer] = None
 
         # self.modify_functions: Dict[Callable, dict]
 
@@ -67,7 +68,7 @@ class BaseDatasetModifier:
                 raw += f"{sep}{tok}"
         else:
             if self.detokenizer is None:
-                raise (
+                raise Exception(
                     "Error while detokenizing: No whitespace information and no detokenizer."
                 )
             raw = self.detokenizer.detokenize(tokens)
