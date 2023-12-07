@@ -90,7 +90,6 @@ class DtakMaker(DtaMaker):
 
                     # (B) Token line: inside sentence
                     elif not line.startswith("%%") and line:
-                        in_s = True
 
                         # 1. Get tokens/annotations 
                         attrs = line.split("\t")
@@ -99,7 +98,7 @@ class DtakMaker(DtaMaker):
                         orig_lemma = attrs[columns["lemma"]]
                         orig_pos = attrs[columns["pos"]]
                         orig_ws = (
-                            bool(attrs[columns["ws"]]) if in_s else False
+                            bool(int(attrs[columns["ws"]])) if in_s else False
                         )  # always false for first token in sentence
                         norm = attrs[columns["normalized"]]
 
@@ -119,6 +118,8 @@ class DtakMaker(DtaMaker):
                         norm, _ = self.custom_split(norm)
                         sent_norm_tok.extend(norm)
 
+                        # Set in-sentence flag
+                        in_s = True
 
                     # (C) Empty line: end of sentence
                     elif line.strip() == "":
