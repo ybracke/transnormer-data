@@ -38,6 +38,7 @@ class DtakMaker(DtaMaker):
         Pass `save=True` to save the dataset in JSONL format to the output directory that was passed to the constructor. If the directory does not exists, it will be created.
         """
         self._metadata = self._load_metadata()
+        self._modifier = VanillaDtaModifier()
 
         if self.merge_into_single_dataset:
             files_list: List[List[str]] = [
@@ -55,7 +56,7 @@ class DtakMaker(DtaMaker):
         for files in files_list:
             self._dataset = self._load_data(files=files)
             self._dataset = self._join_data_and_metadata(join_on="basename")
-            self._modifier = VanillaDtaModifier(self._dataset)
+            self._modifier.dataset = self._dataset
             self._dataset = self._modifier.modify_dataset()
             if save:
                 if not os.path.isdir(self.path_output):
