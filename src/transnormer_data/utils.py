@@ -7,7 +7,7 @@ import datasets
 
 def get_basename_no_ext(file_path: Union[str, os.PathLike]) -> str:
     try:
-        basename = os.path.splitext(os.path.basename(file_path))[0]
+        basename = os.path.basename(file_path).split(".")[0]
         return basename
     except IndexError:
         return ""
