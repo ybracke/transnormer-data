@@ -8,7 +8,7 @@ from ..detokenizer import DtaEvalDetokenizer
 
 
 
-class VanillaDtaEvalModifier(BaseDatasetModifier):
+class VanillaDtaModifier(BaseDatasetModifier):
     def __init__(self, dataset: datasets.Dataset) -> None:
         """
         Modifier for the DtaEvalMaker
