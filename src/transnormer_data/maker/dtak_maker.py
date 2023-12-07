@@ -9,7 +9,7 @@ import datasets
 from transnormer_data import utils
 from transnormer_data.maker.dta_maker import DtaMaker
 
-# from transnormer_data.modifier.vanilla_dtak_modifier import VanillaDtakModifier # TODO
+from transnormer_data.modifier.vanilla_dta_modifier import VanillaDtaModifier
 
 
 class DtakMaker(DtaMaker):
@@ -24,10 +24,23 @@ class DtakMaker(DtaMaker):
         """Initialize the maker with paths to the data files, metadata file and output directory"""
         super().__init__(path_data, path_metadata, path_output)
 
-        # self._modifier: Optional[VanillaDtakModifier] = None # TODO
+    def make(self, save: bool = False) -> datasets.Dataset:
+        """Create a datasets.Dataset object from the paths passed to the constructor.
 
-    def make(self):
-        return 
+        Pass `save=True` to save the dataset in JSONL format to the output directory that was passed to the constructor. If the directory does not exists, it will be created.
+        """
+        self._metadata = self._load_metadata()
+        self._dataset = self._load_data()
+        self._dataset = self._join_data_and_metadata(join_on="basename")
+        self._modifier = VanillaDtaModifier(self._dataset)
+        self._dataset = self._modifier.modify_dataset()
+        if save:
+            if not os.path.isdir(self.path_output):
+                os.makedirs(self.path_output)
+            utils.save_dataset_to_json_grouped_by_property(
+                self._dataset, property="basename", path_outdir=self.path_output
+            )
+        return self._dataset
 
     def _load_data(self) -> datasets.Dataset:
         """
