@@ -10,6 +10,7 @@ from datetime import datetime
 import time
 from typing import Any, List, Optional
 
+
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Command-line script for creating a sentence-aligned corpus from its original format. Assumes that there is a maker class for this corpus in which the rules for creation are defined."
@@ -51,21 +52,19 @@ def main(arguments: Optional[List[str]] = None) -> None:
     output_dir = args.output_dir
     plugin = args.maker
 
-    # (3) Select plugin, run maker and save 
+    # (3) Select plugin, run maker and save
     if plugin.lower() == "dtaevalmaker":
         from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
-        maker: Any = DtaEvalMaker(
-            input_dir_data, input_dir_metadata, output_dir
-        )
+
+        maker: Any = DtaEvalMaker(input_dir_data, input_dir_metadata, output_dir)
     elif plugin.lower() == "dtakmaker":
         from transnormer_data.maker.dtak_maker import DtakMaker
-        maker = DtakMaker(
-            input_dir_data, input_dir_metadata, output_dir
-        )
+
+        maker = DtakMaker(input_dir_data, input_dir_metadata, output_dir)
     dataset = maker.make(save=True)
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     print(f"Current time: {datetime.now().time()}")
     t = time.process_time()
     main()

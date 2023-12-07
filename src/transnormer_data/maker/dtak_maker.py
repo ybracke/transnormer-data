@@ -19,10 +19,10 @@ class DtakMaker(DtaMaker):
         path_data: Union[str, os.PathLike],
         path_metadata: Union[str, os.PathLike],
         path_output: Union[str, os.PathLike],
-        merge_into_single_dataset: bool=False
+        merge_into_single_dataset: bool = False,
     ) -> None:
         """Initialize the maker with paths to the data files, metadata file and output directory
-        
+
         Set `merge_into_single_dataset` to True (default: False) when you have a small dataset. Per default we expect the DTAK dataset to be too large to put all incoming documents into a single dataset that is then processed as one. Instead we produce create and save individual dataset objects and run the processing separately on each one of them. Whether `merge_into_single_dataset` is True or False does not make a difference to the saved output files. This is also why, in the future, we might remove the option to merge all incoming files into a single dataset.
         """
         super().__init__(path_data, path_metadata, path_output)
@@ -40,10 +40,17 @@ class DtakMaker(DtaMaker):
         self._metadata = self._load_metadata()
 
         if self.merge_into_single_dataset:
-            files_list: List[List[str]]  = [glob.glob(os.path.join(self.path_data, "*"), recursive=True)] # len = 1
+            files_list: List[List[str]] = [
+                glob.glob(os.path.join(self.path_data, "*"), recursive=True)
+            ]  # len = 1
         # Will overwrite self._dataset with every iteration
         else:
-            files_list = [[fname] for fname in glob.iglob(os.path.join(self.path_data, "*"), recursive=True)] # len = number of files
+            files_list = [
+                [fname]
+                for fname in glob.iglob(
+                    os.path.join(self.path_data, "*"), recursive=True
+                )
+            ]  # len = number of files
 
         for files in files_list:
             self._dataset = self._load_data(files=files)
@@ -56,7 +63,6 @@ class DtakMaker(DtaMaker):
                 utils.save_dataset_to_json_grouped_by_property(
                     self._dataset, property="basename", path_outdir=self.path_output
                 )
-
 
     def _load_data(self, files: List[str]) -> datasets.Dataset:
         """
@@ -73,9 +79,8 @@ class DtakMaker(DtaMaker):
         sents_norm_tok: List[List[str]] = []
         par_idxs = []
         for fname_in in files:
-
             basename = utils.get_basename_no_ext(fname_in)
-            par_idx = 0 # reset paragraph index for every document
+            par_idx = 0  # reset paragraph index for every document
 
             columns = {}  # column tab index
             attrs = []  # tabs per line
@@ -96,7 +101,7 @@ class DtakMaker(DtaMaker):
                     # (A) Metadata line
                     if line.startswith("%%$DDC:index["):
                         match = re.split(" |=", line.strip())
-                        
+
                         # Check if re.search returned a match
                         search_result = re.search(r"\d+", match[0])
                         if search_result:
@@ -104,10 +109,14 @@ class DtakMaker(DtaMaker):
                                 i = int(search_result[0])
                             except (TypeError, IndexError):
                                 # Handle the case where match[0] is None or not indexable
-                                raise Exception("Couldn't parse ddc-tabs input file correctly.")
+                                raise Exception(
+                                    "Couldn't parse ddc-tabs input file correctly."
+                                )
                         else:
                             # Handle the case where re.search returned None
-                            raise Exception("Couldn't find a digit in the specified pattern.")
+                            raise Exception(
+                                "Couldn't find a digit in the specified pattern."
+                            )
                         long = match[1]
                         short = match[2]
                         if long == "Token" or short == "w":
@@ -125,8 +134,7 @@ class DtakMaker(DtaMaker):
 
                     # (B) Token line: inside sentence
                     elif not line.startswith("%%") and line:
-
-                        # 1. Get tokens/annotations 
+                        # 1. Get tokens/annotations
                         attrs = line.split("\t")
                         orig = attrs[columns["original"]]
                         orig_xlit = attrs[columns["xlit"]]
@@ -139,7 +147,7 @@ class DtakMaker(DtaMaker):
 
                         # 2. Default modification: Replace the pre-normalized punctuation  # on norm layer with the original unnormalized punctuation
                         # Look at POS-annotations for that
-                        if orig_pos.startswith("$"): # STTS-Tags "$,", "$.", "$("
+                        if orig_pos.startswith("$"):  # STTS-Tags "$,", "$.", "$("
                             norm = orig
 
                         # 3. Add to sentence list
@@ -179,16 +187,22 @@ class DtakMaker(DtaMaker):
                         sent_norm_tok = []
 
         length = len(basenames)
-        assert length == len(par_idxs) == len(sents_orig_tok) == len(sents_orig_ws) == len(sents_norm_tok)
+        assert (
+            length
+            == len(par_idxs)
+            == len(sents_orig_tok)
+            == len(sents_orig_ws)
+            == len(sents_norm_tok)
+        )
 
         return datasets.Dataset.from_dict(
             {
                 "basename": basenames,
                 "par_idx": par_idxs,
                 "orig_tok": sents_orig_tok,
-                "orig_xlit" : sents_orig_xlit, 
-                "orig_lemma" : sents_orig_lemma, 
-                "orig_pos" : sents_orig_pos, 
+                "orig_xlit": sents_orig_xlit,
+                "orig_lemma": sents_orig_lemma,
+                "orig_pos": sents_orig_pos,
                 "orig_ws": sents_orig_ws,
                 "norm_tok": sents_norm_tok,
                 "norm_ws": [None for i in range(length)],
@@ -202,4 +216,3 @@ class DtakMaker(DtaMaker):
             return re.split(r"_", input_string), True
         else:
             return [input_string], False
-

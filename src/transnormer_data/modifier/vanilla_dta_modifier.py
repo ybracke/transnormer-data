@@ -6,8 +6,6 @@ from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from ..detokenizer import DtaEvalDetokenizer
 
 
-
-
 class VanillaDtaModifier(BaseDatasetModifier):
     def __init__(self, dataset: datasets.Dataset) -> None:
         """
@@ -49,18 +47,49 @@ class VanillaDtaModifier(BaseDatasetModifier):
         """
 
         # Detokenize tok to produce raw text version for source and target
-        self.update_raw_from_tok(sample, key_raw=self.key_src_raw, key_tok=self.key_src_tok, key_ws=self.key_src_ws)
-        self.update_raw_from_tok(sample, key_raw=self.key_trg_raw, key_tok=self.
-        key_trg_tok, key_ws=self.key_trg_ws)
-        
-        # Tokenize target again. Reason: TODO 
-        self.update_tok_from_raw(sample, key_raw=self.key_trg_raw, key_tok=self.key_trg_tok, key_ws=self.key_trg_ws)
-        
+        self.update_raw_from_tok(
+            sample,
+            key_raw=self.key_src_raw,
+            key_tok=self.key_src_tok,
+            key_ws=self.key_src_ws,
+        )
+        self.update_raw_from_tok(
+            sample,
+            key_raw=self.key_trg_raw,
+            key_tok=self.key_trg_tok,
+            key_ws=self.key_trg_ws,
+        )
+
+        # Tokenize target again. Reason: TODO
+        self.update_tok_from_raw(
+            sample,
+            key_raw=self.key_trg_raw,
+            key_tok=self.key_trg_tok,
+            key_ws=self.key_trg_ws,
+        )
+
         # Compute alignments
-        self.update_alignment(sample, key_tokens_src=self.key_src_tok, key_tokens_trg=self.key_trg_tok, key_alignment=self.key_alignment) 
+        self.update_alignment(
+            sample,
+            key_tokens_src=self.key_src_tok,
+            key_tokens_trg=self.key_trg_tok,
+            key_alignment=self.key_alignment,
+        )
 
         # Compute spans
-        self.update_spans_and_ws_from_tok_and_raw(sample, key_tokens=self.key_src_tok, key_raw=self.key_src_raw, key_spans=self.key_src_spans, key_ws=self.key_src_ws)
-        self.update_spans_and_ws_from_tok_and_raw(sample, key_tokens=self.key_trg_tok, key_raw=self.key_trg_raw, key_spans=self.key_trg_spans, key_ws=self.key_trg_ws)
+        self.update_spans_and_ws_from_tok_and_raw(
+            sample,
+            key_tokens=self.key_src_tok,
+            key_raw=self.key_src_raw,
+            key_spans=self.key_src_spans,
+            key_ws=self.key_src_ws,
+        )
+        self.update_spans_and_ws_from_tok_and_raw(
+            sample,
+            key_tokens=self.key_trg_tok,
+            key_raw=self.key_trg_raw,
+            key_spans=self.key_trg_spans,
+            key_ws=self.key_trg_ws,
+        )
 
         return sample
