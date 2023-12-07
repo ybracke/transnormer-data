@@ -8,7 +8,7 @@ from transnormer_data.maker.dtak_maker import DtakMaker
 
 TMPDIR = "tests/testdata/tmp"
 
-class DtaEvalMakerTester(unittest.TestCase):
+class DtaEvalkTester(unittest.TestCase):
     def setUp(self) -> None:
         self.input_dir_data = "tests/testdata/dtak/ddctabs/"
         self.input_dir_meta = "tests/testdata/metadata/metadata_dtak.jsonl"
