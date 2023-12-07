@@ -22,7 +22,7 @@ class DtaEvalMaker(DtaMaker):
         path_output: Union[str, os.PathLike],
     ) -> None:
         """Initialize the maker with paths to the data files, metadata file and output directory"""
-        super().__init__(path_data,path_metadata,path_output)
+        super().__init__(path_data, path_metadata, path_output)
 
         self._modifier: Optional[VanillaDtaEvalModifier] = None
 
@@ -93,35 +93,6 @@ class DtaEvalMaker(DtaMaker):
                 "is_bad": sents_is_bad,
             }
         )
-
-    def _join_data_and_metadata(self, join_on: str) -> datasets.Dataset:
-        """Join the metadata (stored in dictionary) with the data (stored in dataset) on a key ('join_on') that is contained in both"""
-        assert self._metadata is not None and self._dataset is not None
-        # new_columns
-        # the following assumes all metadat entries have the same structure
-        new_columns: Dict[str, List] = {
-            key: [] for key in list(self._metadata.values())[0] if key != join_on
-        }
-        # Get the column to join metadata and data on, e.g. "basename"
-        join_column = self._dataset[join_on]
-
-        for entry in join_column:
-            # metadata dictionary for a specific property value
-            # e.g. for basename=='fontane_stechlin_1899'
-            try:
-                metadata = self._metadata[entry]
-            except KeyError as e:
-                print(e, f"{entry} not in metadata dictionary - check metadata file")
-                raise e
-            for key, value in metadata.items():
-                if key != join_on:
-                    new_columns[key].append(value)
-
-        # Append new columns to dataset
-        for name, column in new_columns.items():
-            self._dataset = self._dataset.add_column(name, column)
-
-        return self._dataset
 
     def _create_example_from_s(
         self, s: etree.Element
@@ -203,4 +174,3 @@ class DtaEvalMaker(DtaMaker):
             return re.split(r"[_\s]+", input_string), True
         else:
             return [input_string], False
-
