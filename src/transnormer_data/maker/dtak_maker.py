@@ -8,7 +8,6 @@ import datasets
 
 from transnormer_data import utils
 from transnormer_data.maker.dta_maker import DtaMaker
-
 from transnormer_data.modifier.vanilla_dta_modifier import VanillaDtaModifier
 
 
@@ -20,29 +19,46 @@ class DtakMaker(DtaMaker):
         path_data: Union[str, os.PathLike],
         path_metadata: Union[str, os.PathLike],
         path_output: Union[str, os.PathLike],
+        merge_into_single_dataset: bool=False
     ) -> None:
-        """Initialize the maker with paths to the data files, metadata file and output directory"""
+        """Initialize the maker with paths to the data files, metadata file and output directory
+        
+        Set `merge_into_single_dataset` to True (default: False) when you have a small dataset. Per default we expect the DTAK dataset to be too large to put all incoming documents into a single dataset that is then processed as one. Instead we produce create and save individual dataset objects and run the processing separately on each one of them. Whether `merge_into_single_dataset` is True or False does not make a difference to the saved output files. This is also why, in the future, we might remove the option to merge all incoming files into a single dataset.
+        """
         super().__init__(path_data, path_metadata, path_output)
 
-    def make(self, save: bool = False) -> datasets.Dataset:
+        # Do we put the incoming data into a single - potentially large - dataset
+        # or do we create a new dataset for every incoming document and reset it
+        # after it was saved
+        self.merge_into_single_dataset = merge_into_single_dataset
+
+    def make(self, save: bool = True) -> None:
         """Create a datasets.Dataset object from the paths passed to the constructor.
 
         Pass `save=True` to save the dataset in JSONL format to the output directory that was passed to the constructor. If the directory does not exists, it will be created.
         """
         self._metadata = self._load_metadata()
-        self._dataset = self._load_data()
-        self._dataset = self._join_data_and_metadata(join_on="basename")
-        self._modifier = VanillaDtaModifier(self._dataset)
-        self._dataset = self._modifier.modify_dataset()
-        if save:
-            if not os.path.isdir(self.path_output):
-                os.makedirs(self.path_output)
-            utils.save_dataset_to_json_grouped_by_property(
-                self._dataset, property="basename", path_outdir=self.path_output
-            )
-        return self._dataset
 
-    def _load_data(self) -> datasets.Dataset:
+        if self.merge_into_single_dataset:
+            files_list: List[List[str]]  = [glob.glob(os.path.join(self.path_data, "*"), recursive=True)] # len = 1
+        # Will overwrite self._dataset with every iteration
+        else:
+            files_list: List[List[str]] = [[fname] for fname in glob.iglob(os.path.join(self.path_data, "*"), recursive=True)] # len = number of files
+
+        for files in files_list:
+            self._dataset = self._load_data(files=files)
+            self._dataset = self._join_data_and_metadata(join_on="basename")
+            self._modifier = VanillaDtaModifier(self._dataset)
+            self._dataset = self._modifier.modify_dataset()
+            if save:
+                if not os.path.isdir(self.path_output):
+                    os.makedirs(self.path_output)
+                utils.save_dataset_to_json_grouped_by_property(
+                    self._dataset, property="basename", path_outdir=self.path_output
+                )
+
+
+    def _load_data(self, files: List[str]) -> datasets.Dataset:
         """
         Reads data from a DTA ddctabs file into a dataset
 
@@ -56,7 +72,7 @@ class DtakMaker(DtaMaker):
         sents_orig_ws: List[List[bool]] = []
         sents_norm_tok: List[List[str]] = []
         par_idxs = []
-        for fname_in in glob.iglob(os.path.join(self.path_data, "*"), recursive=True):
+        for fname_in in files:
 
             basename = utils.get_basename_no_ext(fname_in)
             par_idx = 0 # reset paragraph index for every document

@@ -1,6 +1,6 @@
 import os
-from typing import List
 import unittest
+from typing import List
 
 import datasets
 
@@ -36,9 +36,13 @@ class DtakMakerTester(unittest.TestCase):
         }
 
         self.maker = DtakMaker(
-            self.input_dir_data, self.input_dir_meta, self.output_dir
+            self.input_dir_data, 
+            self.input_dir_meta, 
+            self.output_dir,
+            merge_into_single_dataset=True
         )
-        self.dataset: datasets.Dataset = self.maker.make(save=True)
+        self.maker.make()
+        self.dataset: datasets.Dataset = self.maker._dataset
 
     def tearDown(self) -> None:
         # Remove files that were created during training
