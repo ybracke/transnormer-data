@@ -1,23 +1,22 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, Union
 
 import datasets
+import spacy
 
-from transnormer_data.base_dataset_modifier import BaseDatasetModifier
-from ..detokenizer import DtaEvalDetokenizer
+from transnormer_data.base_dataset_modifier import BaseDatasetModifier, MODEL
+from transnormer_data.detokenizer import DtaEvalDetokenizer
 
 
 class VanillaDtaModifier(BaseDatasetModifier):
-    def __init__(self, dataset: datasets.Dataset) -> None:
+    def __init__(self, dataset: Optional[datasets.Dataset] = None) -> None:
         """
         Modifier for the DtaEvalMaker
 
         This modifier simply calls the functions that compute raw versions, whitespace and alignments from the tokenized version.
 
         """
-        super().__init__(dataset=dataset)
-
         # Dataset
-        self.dataset: datasets.Dataset = dataset
+        self.dataset = dataset
 
         # Keys for the relevant properties
         self.key_src_raw = "orig"
@@ -35,9 +34,25 @@ class VanillaDtaModifier(BaseDatasetModifier):
         # Detokenizer
         self.detokenizer = DtaEvalDetokenizer()
 
-    def modify_dataset(self) -> datasets.Dataset:
-        self.dataset = self.dataset.map(self.modify_sample)
-        return self.dataset
+        # NLP
+        self.nlp = spacy.load(
+            MODEL,
+            disable=[
+                "tok2vec",
+                "tagger",
+                "morphologizer",
+                "parser",
+                "lemmatizer",
+                "attribute_ruler",
+                "ner",
+            ],
+        )
+
+    def modify_dataset(self) -> Union[datasets.Dataset, None]:
+        if self.dataset:
+            self.dataset = self.dataset.map(self.modify_sample)
+            return self.dataset
+        return None
 
     def modify_sample(self, sample: Dict) -> Dict:
         """
