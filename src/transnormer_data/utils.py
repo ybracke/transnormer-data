@@ -7,7 +7,7 @@ import datasets
 
 def get_basename_no_ext(file_path: Union[str, os.PathLike]) -> str:
     try:
-        basename = os.path.splitext(os.path.basename(file_path))[0]
+        basename = os.path.basename(file_path).split(".")[0]
         return basename
     except IndexError:
         return ""
@@ -23,7 +23,7 @@ def save_dataset_to_json_grouped_by_property(
     `path_outdir` must be an existing directory path
     """
     value_property = None
-    f = None 
+    f = None
     for row in dataset:
         # open a new file when the value changed, write first row to file
         if row[property] != value_property:
@@ -36,4 +36,4 @@ def save_dataset_to_json_grouped_by_property(
         # otherwise just write row to open file
         else:
             if f is not None:
-                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")

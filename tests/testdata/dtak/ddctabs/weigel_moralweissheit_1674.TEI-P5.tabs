@@ -1,0 +1,788 @@
+%%$DDC:tokid.begin=69515940
+%%$DDC:tokid.end=69631049
+%%$DDC:meta.n_=641
+%%$DDC:meta.file_=dtak01/../../ddc_xml/data/./varnhagen_denkwuerdigkeiten02_1837.TEI-P5.ddc.xml
+%%$DDC:meta.scan_=
+%%$DDC:meta.orig_=
+%%$DDC:meta.date_=1837
+%%$DDC:meta.page_=-1
+%%$DDC:meta.access=P
+%%$DDC:meta.author=Varnhagen von Ense, Karl August (#118626167)
+%%$DDC:meta.avail=-
+%%$DDC:meta.availability=Distributed under the Creative Commons Attribution-ShareAlike 4.0 License.
+%%$DDC:meta.basename=varnhagen_denkwuerdigkeiten02_1837
+%%$DDC:meta.bibl=Varnhagen von Ense, Karl August: Denkwürdigkeiten und vermischte Schriften. Bd. 2. Mannheim, 1837.
+%%$DDC:meta.collection=dtak
+%%$DDC:meta.dtaid=17045
+%%$DDC:meta.empty=
+%%$DDC:meta.firstDate=1837
+%%$DDC:meta.flags=core::ready::mts
+%%$DDC:meta.library=BBAW
+%%$DDC:meta.pubPlace=Mannheim
+%%$DDC:meta.shelfmark=DWB/B4
+%%$DDC:meta.textClass=Belletristik::Prosa
+%%$DDC:meta.textClassDTA=Belletristik::Prosa
+%%$DDC:meta.timestamp=2021-02-18T14:42:45Z
+%%$DDC:meta.title=Denkwürdigkeiten und vermischte Schriften
+%%$DDC:index[0]=Token w
+%%$DDC:index[1]=Utf8 u
+%%$DDC:index[2]=CanonicalToken v
+%%$DDC:index[3]=Pos p
+%%$DDC:index[4]=Lemma l
+%%$DDC:index[5]=Coord coord
+%%$DDC:index[6]=Page page
+%%$DDC:index[7]=Rend r
+%%$DDC:index[8]=Context con
+%%$DDC:index[9]=XPath xpath
+%%$DDC:index[10]=Line lb
+%%$DDC:index[11]=WordSep ws
+%%$DDC:BREAK.s[2784820]=69515940
+%%$DDC:BREAK.c[640]=69515940
+%%$DDC:BREAK.p[1008008]=69515940
+%%$DDC:BREAK.file[640]=69515940
+%%$DDC:BREAK.textarea[640]=69515940
+Denkwürdigkeiten	Denkwuͤrdigkeiten	Denkwürdigkeiten	NN	Denkwürdigkeit	-	7	g	|front|hi|text|	front/titlePage/docTitle/titlePart/hi	1	1
+und	und	und	KON	und	-	7	-	|front|text|	front/titlePage/docTitle/titlePart	2	1
+vermischte	vermiſchte	vermischte	ADJA	vermischt	-	7	-	|front|text|	front/titlePage/docTitle/titlePart	3	1
+Schriften	Schriften	Schriften	NN	Schrift	-	7	-	|front|text|	front/titlePage/docTitle/titlePart	3	1
+von	von	von	APPR	von	-	7	-	|front|text|	front/titlePage/byline	4	1
+K.	K.	K.	NE	K.	-	7	g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+A.	A.	A.	APPRART	A.	-	7	g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+Varnhagen	Varnhagen	Varnhagen	NE	Varnhagen	-	7	g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+von	von	von	APPR	von	-	7	g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+Ense	Enſe	Ense	NE	Ense	-	7	g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+.	.	.	$.	.	-	7	g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	0
+
+%%$DDC:BREAK.s[2784821]=69515951
+%%$DDC:BREAK.p[1008009]=69515951
+In	In	In	APPR	in	-	8	b:head	|div_advertisement|front|head|hi|text|	front/div/head/hi	1	1
+demselben	demſelben	demselben	PDAT	demselben	-	8	b:head	|div_advertisement|front|head|hi|text|	front/div/head/hi	1	1
+Verlage	Verlage	Verlage	NN	Verlag	-	8	b:head	|div_advertisement|front|head|hi|text|	front/div/head/hi	1	1
+sind	ſind	sind	VAFIN	sein	-	8	b:head	|div_advertisement|front|head|hi|text|	front/div/head/hi	1	1
+erschienen	erſchienen	erschienen	VVPP	erscheinen	-	8	b:head	|div_advertisement|front|head|hi|text|	front/div/head/hi	1	1
+:	:	:	$.	:	-	8	b:head	|div_advertisement|front|head|hi|text|	front/div/head/hi	1	0
+
+%%$DDC:BREAK.s[2784822]=69515957
+%%$DDC:BREAK.p[1008010]=69515957
+Bauernfeld	Bauernfeld	Bauernfeld	NE	Bauernfeld	-	8	in	|div_advertisement|front|hi|text|	front/div/list/item/hi	2	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	0
+Theater	Theater	Theater	NN	Theater	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	0
+1r	1r	1r	CARD	1r	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	2	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+2	2	2	CARD	2	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	2	1
+r	r	r	NN	R	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+Bd.	Bd.	Bd.	NN	Bd.	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+Inhalt	Inhalt	Inhalt	NN	Inhalt	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+:	:	:	$.	:	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	0
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+Bekenntnisse	Bekenntniſſe	Bekenntnisse	NN	Bekenntnis	-	8	-	|div_advertisement|front|text|	front/div/list/item	2	1
+.--	.—	.--	$(	.--	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	0
+Franz	Franz	Franz	NE	Franz	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+Walter	Walter	Walter	NE	Walter	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	0
+
+%%$DDC:BREAK.s[2784823]=69515974
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+Helene	Helene	Helene	FM.xy	helene	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	0
+
+%%$DDC:BREAK.s[2784824]=69515977
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+Der	Der	Der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+Zauberdrache	Zauberdrache	Zauberdrache	NN	Zauberdrache	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	0
+1835	1835	1835	CARD	1835	-	8	-	|div_advertisement|front|text|	front/div/list/item	3	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	1
+1836	1836	1836	CARD	1836	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	0
+8.	8.	8.	ADJA	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	1
+br.	br.	br.	NN	Br.	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	1
+3	3	3	CARD	3	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	1
+Thlr.	Thlr.	Thlr.	NN	Thlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	4	1
+
+%%$DDC:BREAK.s[2784825]=69515989
+%%$DDC:BREAK.p[1008011]=69515989
+Bechstein	Bechſtein	Bächstein	NN	Bachstein	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	0
+L.	L.	L.	NE	L.	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	0
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+Reisetage	Reiſetage	Reisetage	NN	Reisetage	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	0
+
+%%$DDC:BREAK.s[2784826]=69515996
+Aus	Aus	Aus	APPR	aus	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+meinem	meinem	meinem	PPOSAT	meine	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+Leben	Leben	Leben	NN	Leben	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	0
+
+%%$DDC:BREAK.s[2784827]=69516000
+2	2	2	FM.xy	2	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	5	1
+Theile	Theile	Teile	FM.xy	teile	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	5	0
+1836	1836	1836	FM.xy	1836	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	0
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+br.	br.	br.	FM.xy	br.	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+2	2	2	FM.xy	2	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+Thlr.	Thlr.	Tlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+16	16	16	FM.xy	16	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+gr	gr	gr	FM.xy	gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	6	0
+
+%%$DDC:BREAK.s[2784828]=69516012
+%%$DDC:BREAK.p[1008012]=69516012
+Erlach	Erlach	Erlach	NE	Erlach	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	0
+Freih.	Freih.	Freih.	NE	Freih.	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+K.	K.	K.	NE	K.	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+von	von	von	NE	Von	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	0
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+Volkslieder	Volkslieder	Volkslieder	NN	Volkslied	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+Deutschen	Deutſchen	Deutschen	NN	Deutsche	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	0
+
+%%$DDC:BREAK.s[2784829]=69516023
+Eine	Eine	Eine	ART	eine	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+vollständige	vollſtaͤndige	vollständige	ADJA	vollständig	-	8	-	|div_advertisement|front|text|	front/div/list/item	7	1
+Sammlung	Sammlung	Sammlung	NN	Sammelung	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+derselben	derſelben	derselben	PDAT	dieselbe	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+von	von	von	APPR	von	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+Mitte	Mitte	Mitte	NN	Mitte	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+des	des	des	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+fünfzehnten	fuͤnfzehnten	fünfzehnten	ADJA	fünfzehnt	-	8	-	|div_advertisement|front|text|	front/div/list/item	8	1
+bis	bis	bis	KON	bis	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+in	in	in	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+erste	erſte	erste	ADJA	erst	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+Hälfte	Haͤlfte	Hälfte	NN	Hälfte	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+des	des	des	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+neunzehnten	neunzehnten	neunzehnten	ADJA	neunzehnt	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+Jahrhunderts	Jahrhunderts	Jahrhunderts	NN	Jahrhundert	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	0
+
+%%$DDC:BREAK.s[2784830]=69516041
+Fünf	Fuͤnf	Fünf	CARD	fünf	-	8	-	|div_advertisement|front|text|	front/div/list/item	9	1
+Bände.	Baͤnde.	Bände.	NN	Bände.	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+gr.	gr.	gr.	NN	Gr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+8.	8.	8.	ADJA	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+1834--36.	1834—36.	1834--36.	CARD	1834--36.	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+8	8	8	CARD	8	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+Thlr.	Thlr.	Thlr.	NN	Thlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+
+%%$DDC:BREAK.s[2784831]=69516048
+8	8	8	CARD	8	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+gr	gr	gr	NN	Gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	10	0
+
+%%$DDC:BREAK.s[2784832]=69516051
+%%$DDC:BREAK.p[1008013]=69516051
+Geib	Geib	Geib	NE	Geib	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	0
+K.	K.	K.	NE	K.	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	0
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+Sagen	Sagen	Sagen	NN	Sage	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+Geschichten	Geſchichten	Geschichten	NN	Geschichte	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+des	des	des	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+Rheinlandes	Rheinlandes	Rheinlandes	NN	Rheinlandes	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	0
+
+%%$DDC:BREAK.s[2784833]=69516062
+In	In	In	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+umfassender	umfaſſender	umfassender	ADJA	umfaßend	-	8	-	|div_advertisement|front|text|	front/div/list/item	11	1
+Auswahl	Auswahl	Auswahl	NN	Auswahl	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+gesammelt	geſammelt	gesammelt	VVPP	sammeln	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+bearbeitet	bearbeitet	bearbeitet	VVPP	bearbeiten	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	0
+
+%%$DDC:BREAK.s[2784834]=69516069
+1836.	1836.	1836.	FM.xy	1836.	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+gr.	gr.	gr.	FM.xy	gr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+cart.	cart.	cart.	FM.xy	cart.	-	8	-	|div_advertisement|front|text|	front/div/list/item	12	1
+2	2	2	FM.xy	2	-	8	right	|div_advertisement|front|hi|text|	front/div/list/item/hi	13	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	right	|div_advertisement|front|hi|text|	front/div/list/item/hi	13	1
+
+%%$DDC:BREAK.s[2784835]=69516075
+%%$DDC:BREAK.p[1008014]=69516075
+Guttenstein	Guttenſtein	Gutenstein	NE	Gutenstein	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	0
+D.	D.	D.	NE	D.	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+B.	B.	B.	NE	B.	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+F.	F.	F.	NE	F.	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	0
+Geschichte	Geſchichte	Geschichte	NN	Geschichte	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+des	des	des	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+spanischen	ſpaniſchen	spanischen	ADJA	spanisch	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+Volkes	Volkes	Volkes	NN	Volk	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	0
+
+%%$DDC:BREAK.s[2784836]=69516086
+In	In	In	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+gedrängter	gedraͤngter	gedrängter	ADJA	gedrängt	-	8	-	|div_advertisement|front|text|	front/div/list/item	14	1
+Uebersicht	Ueberſicht	Übersicht	NN	Übersicht	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+dargestellt	dargeſtellt	dargestellt	VVPP	darstellen	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	0
+
+%%$DDC:BREAK.s[2784837]=69516091
+1r	1r	1r	CARD	1r	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	0
+
+%%$DDC:BREAK.s[2784838]=69516093
+Bd.	Bd.	Bd.	FM.xy	bd.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+1836.	1836.	1836.	FM.xy	1836.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+br.	br.	br.	FM.xy	br.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+
+%%$DDC:BREAK.s[2784839]=69516098
+6	6	6	CARD	6	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+gr	gr	gr	NN	Gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	15	0
+
+%%$DDC:BREAK.s[2784840]=69516101
+%%$DDC:BREAK.p[1008015]=69516101
+Hamilton	Hamilton	Hamilton	NE	Hamilton	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	0
+Oberst	Oberſt	Oberst	NN	Oberst	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	0
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+Menschen	Menſchen	Menschen	NN	Mensch	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+Sitten	Sitten	Sitten	NN	Sitte	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+in	in	in	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+den	den	den	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+vereinigten	vereinigten	vereinigten	ADJA	vereinigt	-	8	-	|div_advertisement|front|text|	front/div/list/item	16	1
+Staaten	Staaten	Staaten	NN	Staat	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+von	von	von	APPR	von	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+Nordamerika	Nordamerika	Nordamerika	NE	Nordamerika	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	0
+
+%%$DDC:BREAK.s[2784841]=69516117
+Zwei	Zwei	Zwei	CARD	zwei	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+Theile	Theile	Teile	NN	Teil	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+in	in	in	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+einem	einem	einem	ART	eine	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+Band	Band	Band	NN	Band	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	17	0
+
+%%$DDC:BREAK.s[2784842]=69516123
+1834.	1834.	1834.	FM.xy	1834.	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+gr.	gr.	gr.	FM.xy	gr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+12	12	12	FM.xy	12	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+gr	gr	gr	FM.xy	gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	18	0
+
+%%$DDC:BREAK.s[2784843]=69516131
+%%$DDC:BREAK.p[1008016]=69516131
+Laube	Laube	Laube	NE	Laube	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	0
+H.	H.	H.	NE	H.	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	0
+Moderne	Moderne	Moderne	ADJA	modern	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	1
+Charakteristiken.	Charakteriſtiken.	Charakteristiken.	NN	Charakteristiken.	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	1
+2	2	2	CARD	2	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	19	1
+Theile.	Theile.	Theile.	XY	theile.	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	1
+1835	1835	1835	CARD	1835	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	19	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	0
+8.	8.	8.	ADJA	8.	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	19	1
+3	3	3	CARD	3	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	19	1
+Thlr	Thlr	Thlr	NN	Thlr	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	19	0
+
+%%$DDC:BREAK.s[2784844]=69516145
+%%$DDC:BREAK.p[1008017]=69516145
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+Reisenovellen	Reiſenovellen	Reisenovellen	NN	Reisenovelle	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	0
+
+%%$DDC:BREAK.s[2784845]=69516148
+1r	1r	1r	FM.xy	1r	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+2r	2r	2r	FM.xy	2r	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+Bd.	Bd.	Bd.	FM.xy	bd.	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+1835	1835	1835	FM.xy	1835	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	0
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+br.	br.	br.	FM.xy	br.	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+4	4	4	FM.xy	4	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+Thlr	Thlr	Thlr	FM.xy	thlr	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	20	0
+
+%%$DDC:BREAK.s[2784846]=69516158
+%%$DDC:BREAK.p[1008018]=69516158
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+Reisenovellen	Reiſenovellen	Reisenovellen	NN	Reisenovelle	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	0
+
+%%$DDC:BREAK.s[2784847]=69516161
+3r	3r	3r	FM.xy	3r	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+4r	4r	4r	FM.xy	4r	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+Bd.	Bd.	Bd.	FM.xy	bd.	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+1836	1836	1836	FM.xy	1836	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	0
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+br.	br.	br.	FM.xy	br.	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+3	3	3	FM.xy	3	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+Thlr	Thlr	Thlr	FM.xy	thlr	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	21	0
+
+%%$DDC:BREAK.s[2784848]=69516171
+%%$DDC:BREAK.p[1008019]=69516171
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+Liebesbriefe.	Liebesbriefe.	Liebesbriefe.	FM.xy	liebesbriefe.	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+1836	1836	1836	FM.xy	1836	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	0
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+br.	br.	br.	FM.xy	br.	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+Thlr	Thlr	Thlr	FM.xy	thlr	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	22	0
+
+%%$DDC:BREAK.s[2784849]=69516180
+%%$DDC:BREAK.p[1008020]=69516180
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+Poeten	Poeten	Poeten	NN	Poet	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	0
+Novelle	Novelle	Novelle	NN	Novelle	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	0
+
+%%$DDC:BREAK.s[2784850]=69516186
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+broschirt	broſchirt	broschirt	FM.xy	broschirt	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	0
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+12	12	12	FM.xy	12	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+gr	gr	gr	FM.xy	gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	23	0
+
+%%$DDC:BREAK.s[2784851]=69516194
+%%$DDC:BREAK.p[1008021]=69516194
+--	—	--	$(	--	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+die	die	die	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+Schauspielerin	Schauſpielerin	Schauspielerin	NN	Schauspielerin	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	0
+
+%%$DDC:BREAK.s[2784852]=69516198
+Novelle.	Novelle.	Novelle.	FM.xy	novelle.	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+1836	1836	1836	FM.xy	1836	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	0
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+
+%%$DDC:BREAK.s[2784853]=69516204
+4	4	4	CARD	4	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+gr	gr	gr	NN	Gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	24	0
+
+%%$DDC:BREAK.s[2784854]=69516207
+%%$DDC:BREAK.p[1008022]=69516207
+Le	Le	Le	NE	Le	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+Petit	Petit	Petit	NE	Petit	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	0
+Sittengallerie	Sittengallerie	Sittengalerie	NN	Sittengalerie	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+Nationen	Nationen	Nationen	NN	Nation	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	0
+
+%%$DDC:BREAK.s[2784855]=69516214
+Das	Das	Das	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+Buch	Buch	Buch	NN	Buch	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+Völker	Voͤlker	Völker	NN	Volk	-	8	-	|div_advertisement|front|text|	front/div/list/item	25	1
+in	in	in	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+Bildern	Bildern	Bildern	NN	Bild	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+Vignetten	Vignetten	Vignetten	NN	Vignette	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	0
+
+%%$DDC:BREAK.s[2784856]=69516223
+1836.	1836.	1836.	FM.xy	1836.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+gr.	gr.	gr.	FM.xy	gr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+cart.	cart.	cart.	FM.xy	cart.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+12	12	12	FM.xy	12	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+gr	gr	gr	FM.xy	gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	26	0
+
+%%$DDC:BREAK.s[2784857]=69516232
+%%$DDC:BREAK.p[1008023]=69516232
+Lewald	Lewald	Lewald	NE	Lewald	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	0
+A.	A.	A.	NE	A.	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	0
+Aquarelle	Aquarelle	Aquarelle	NN	Aquarell	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+aus	aus	aus	APPR	aus	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+dem	dem	dem	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+Leben	Leben	Leben	NN	Leben	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	0
+4	4	4	CARD	4	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+Theile	Theile	Teile	NN	Teil	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	0
+1836	1836	1836	CARD	1836	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+und	und	und	KON	und	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+1837	1837	1837	CARD	1837	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	27	0
+6	6	6	CARD	6	-	8	right	|div_advertisement|front|hi|text|	front/div/list/item/hi	28	1
+Thlr	Thlr	Thlr	XY	thlr	-	8	right	|div_advertisement|front|hi|text|	front/div/list/item/hi	28	1
+.	.	.	$.	.	-	8	right	|div_advertisement|front|hi|text|	front/div/list/item/hi	28	0
+
+%%$DDC:BREAK.s[2784858]=69516251
+%%$DDC:BREAK.p[1008024]=69516251
+Saintine	Saintine	Saintine	NE	Saintine	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	0
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+Verstümmelte	Verſtuͤmmelte	Verstümmelte	NN	Verstümmelte	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	0
+
+%%$DDC:BREAK.s[2784859]=69516256
+Aus	Aus	Aus	APPR	aus	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+dem	dem	dem	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+Französischen	Franzoͤſiſchen	Französischen	ADJA	französisch	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+nach	nach	nach	APPR	nach	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	29	1
+4ten	4ten	4ten	ADJA	4ten	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+Auflage	Auflage	Auflage	NN	Auflage	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	0
+
+%%$DDC:BREAK.s[2784860]=69516264
+1835.	1835.	1835.	ADJA	1835.	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+gr.	gr.	gr.	NN	Gr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+12.	12.	12.	ADJA	12.	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+18	18	18	CARD	18	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+gr	gr	gr	NN	Gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	30	0
+
+%%$DDC:BREAK.s[2784861]=69516270
+%%$DDC:BREAK.p[1008025]=69516270
+Schütt	Schuͤtt	Schütte	NN	Schütte	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	0
+Ado	Ado	Ado	NE	Ado	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	0
+Psyche	Pſyche	Psyche	NN	Psyche	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	0
+
+%%$DDC:BREAK.s[2784862]=69516276
+Episches	Epiſches	Episches	ADJA	episch	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+Gedicht	Gedicht	Gedicht	NN	Gedicht	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+in	in	in	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+drei	drei	drei	CARD	drei	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+Gesängen.	Geſaͤngen.	Gesängen.	XY	gesängen.	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	1
+1836	1836	1836	CARD	1836	-	8	b	|div_advertisement|front|hi|text|	front/div/list/item/hi	31	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	31	0
+8.	8.	8.	ADJA	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	32	1
+cart.	cart.	cart.	NN	Cart.	-	8	-	|div_advertisement|front|text|	front/div/list/item	32	1
+1	1	1	CARD	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	32	1
+Thlr.	Thlr.	Tlr.	XY	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	32	1
+8gr	8gr	8gr	CARD	8gr	-	8	-	|div_advertisement|front|text|	front/div/list/item	32	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	32	0
+
+%%$DDC:BREAK.s[2784863]=69516289
+%%$DDC:BREAK.p[1008026]=69516289
+Zinkgref's	Zinkgref’s	Zinkgref's	NE	Zinkgref's	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	0
+J.	J.	J.	NE	J.	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+W.	W.	W.	NE	W.	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	0
+scharfsinnige	ſcharfſinnige	scharfsinnige	ADJA	scharfsinnig	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+Sprüche	Spruͤche	Sprüche	NN	Spruch	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+der	der	der	ART	d	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+Deutschen	Deutſchen	Deutschen	NN	Deutsche	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+,	,	,	$,	,	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	0
+Apophthegmata	Apophthegmata	Apophthegmata	NE	Apophthegmata	-	8	-	|div_advertisement|front|text|	front/div/list/item	33	1
+genannt	genannt	genannt	VVPP	nennen	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	0
+
+%%$DDC:BREAK.s[2784864]=69516302
+In	In	In	APPR	in	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	1
+einer	einer	einer	ART	eine	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	1
+umfassenden	umfaſſenden	umfassenden	ADJA	umfaßend	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	1
+Auswahl	Auswahl	Auswahl	NN	Auswahl	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	1
+herausgegeben	herausgegeben	herausgegeben	VVPP	herausgeben	-	8	-	|div_advertisement|front|text|	front/div/list/item	34	1
+von	von	von	APPR	von	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+D.	D.	D.	NE	D.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+B.	B.	B.	NE	B.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+F.	F.	F.	NE	F.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+Guttenstein	Guttenſtein	Gutenstein	NE	Gutenstein	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+.	.	.	$.	.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	0
+
+%%$DDC:BREAK.s[2784865]=69516313
+1835.	1835.	1835.	FM.xy	1835.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+gr.	gr.	gr.	FM.xy	gr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+8.	8.	8.	FM.xy	8.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+1	1	1	FM.xy	1	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+Thlr.	Thlr.	Thlr.	FM.xy	tlr.	-	8	-	|div_advertisement|front|text|	front/div/list/item	35	1
+
+%%$DDC:BREAK.s[2784866]=69516318
+%%$DDC:BREAK.p[1008027]=69516318
+Denkwürdigkeiten	Denkwürdigkeiten	Denkwürdigkeiten	NN	Denkwürdigkeit	-	9	b:g	|front|hi|text|	front/titlePage/docTitle/titlePart/hi	1	1
+und	und	und	KON	und	-	9	-	|front|text|	front/titlePage/docTitle/titlePart	2	1
+vermischte	vermiſchte	vermischte	ADJA	vermischt	-	9	-	|front|text|	front/titlePage/docTitle/titlePart	3	1
+Schriften	Schriften	Schriften	NN	Schrift	-	9	-	|front|text|	front/titlePage/docTitle/titlePart	3	1
+von	von	von	APPR	von	-	9	-	|front|text|	front/titlePage/byline	4	1
+K.	K.	K.	NE	K.	-	9	b:g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+A.	A.	A.	APPRART	A.	-	9	b:g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+Varnhagen	Varnhagen	Varnhagen	NE	Varnhagen	-	9	b:g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+von	von	von	APPR	von	-	9	b:g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+Ense	Enſe	Ense	NE	Ense	-	9	b:g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	1
+.	.	.	$.	.	-	9	b:g	|front|hi|text|	front/titlePage/byline/docAuthor/hi	5	0
+
+%%$DDC:BREAK.s[2784867]=69516329
+Zweiter	Zweiter	Zweiter	ADJA	zweit	-	9	g	|front|hi|text|	front/titlePage/titlePart/hi	7	1
+Band	Band	Band	NN	Band	-	9	g	|front|hi|text|	front/titlePage/titlePart/hi	7	1
+.	.	.	$.	.	-	9	g	|front|hi|text|	front/titlePage/titlePart/hi	7	0
+
+%%$DDC:BREAK.s[2784868]=69516332
+Mannheim	Mannheim	Mannheim	NE	Mannheim	-	9	b	|front|hi|text|	front/titlePage/docImprint/pubPlace/hi	9	1
+.	.	.	$.	.	-	9	b	|front|hi|text|	front/titlePage/docImprint/pubPlace/hi	9	0
+
+%%$DDC:BREAK.s[2784869]=69516334
+Verlag	Verlag	Verlag	NN	Verlag	-	9	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	10	1
+von	von	von	APPR	von	-	9	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	10	1
+Heinrich	Heinrich	Heinrich	NE	Heinrich	-	9	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	10	1
+Hoff	Hoff	Hoffe	VVFIN	hoffen	-	9	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	10	1
+.	.	.	$.	.	-	9	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	10	0
+1837	1837	1837	CARD	1837	-	9	b	|front|hi|text|	front/titlePage/docImprint/docDate/hi	12	1
+.	.	.	$.	.	-	9	b	|front|hi|text|	front/titlePage/docImprint/docDate/hi	12	0
+
+%%$DDC:BREAK.s[2784870]=69516341
+%%$DDC:BREAK.p[1008028]=69516341
+Druck	Druck	Druck	NN	Druck	-	10	c	|div_copyright|front|text|	front/div/p	3	1
+von	von	von	APPR	von	-	10	c	|div_copyright|front|text|	front/div/p	3	1
+Hoff	Hoff	Hoffe	VVFIN	hoffen	-	10	c:g	|div_copyright|front|hi|text|	front/div/p/hi	3	1
+&	&	&	$(	&	-	10	c	|div_copyright|front|text|	front/div/p	3	1
+Heuser	Heuſer	Häuser	NN	Haus	-	10	c:g	|div_copyright|front|hi|text|	front/div/p/hi	3	1
+in	in	in	APPR	in	-	10	c	|div_copyright|front|text|	front/div/p	3	1
+Mannheim	Mannheim	Mannheim	NE	Mannheim	-	10	c	|div_copyright|front|text|	front/div/p	3	1
+.	.	.	$.	.	-	10	c	|div_copyright|front|text|	front/div/p	3	0
+
+%%$DDC:BREAK.s[2784871]=69516349
+%%$DDC:BREAK.p[1008029]=69516349
+Inhalt	Inhalt	Inhalt	NN	Inhalt	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/head/hi	1	1
+des	des	des	ART	d	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/head/hi	1	1
+zweiten	zweiten	zweiten	ADJA	zweit	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/head/hi	1	1
+Bandes	Bandes	Bandes	NN	Band	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/head/hi	1	1
+.	.	.	$.	.	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/head/hi	1	0
+
+%%$DDC:BREAK.s[2784872]=69516354
+%%$DDC:BREAK.p[1008030]=69516354
+Aus	Aus	Aus	APPR	aus	-	11	b:head	|div_contents|front|head|hi|text|	front/div/list/head/hi	3	1
+eignen	eignen	eigenen	ADJA	eigen	-	11	b:head	|div_contents|front|head|hi|text|	front/div/list/head/hi	3	1
+Denkwürdigkeiten	Denkwürdigkeiten	Denkwürdigkeiten	NN	Denkwürdigkeit	-	11	b:head	|div_contents|front|head|hi|text|	front/div/list/head/hi	3	1
+.	.	.	$.	.	-	11	b:head	|div_contents|front|head|hi|text|	front/div/list/head/hi	3	0
+
+%%$DDC:BREAK.s[2784873]=69516358
+%%$DDC:BREAK.p[1008031]=69516358
+Herkommen	Herkommen	Herkommen	NN	Herkommen	-	11	in	|div_contents|front|hi|text|	front/div/list/item/hi	4	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	4	0
+
+%%$DDC:BREAK.s[2784874]=69516360
+Erste	Erſte	Erste	ADJA	erst	-	11	-	|div_contents|front|text|	front/div/list/item	4	1
+Jugend	Jugend	Jugend	NN	Jugend	-	11	-	|div_contents|front|text|	front/div/list/item	4	1
+3	3	3	CARD	3	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	4	1
+
+%%$DDC:BREAK.s[2784875]=69516363
+%%$DDC:BREAK.p[1008032]=69516363
+Jugendfreunde	Jugendfreunde	Jugendfreunde	NN	Jugendfreund	-	11	-	|div_contents|front|text|	front/div/list/item	5	1
+25	25	25	CARD	25	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	5	1
+
+%%$DDC:BREAK.s[2784876]=69516365
+%%$DDC:BREAK.p[1008033]=69516365
+Die	Die	Die	ART	d	-	11	-	|div_contents|front|text|	front/div/list/item	6	1
+Universität	Univerſitaͤt	Universität	NN	Universität	-	11	-	|div_contents|front|text|	front/div/list/item	6	1
+86	86	86	CARD	86	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	6	1
+
+%%$DDC:BREAK.s[2784877]=69516368
+%%$DDC:BREAK.p[1008034]=69516368
+Rahel	Rahel	Rahel	NN	Rahel	-	11	-	|div_contents|front|text|	front/div/list/item	7	1
+151	151	151	CARD	151	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	7	1
+
+%%$DDC:BREAK.s[2784878]=69516370
+%%$DDC:BREAK.p[1008035]=69516370
+Die	Die	Die	ART	d	-	11	-	|div_contents|front|text|	front/div/list/item	8	1
+Schlacht	Schlacht	Schlacht	NN	Schlacht	-	11	-	|div_contents|front|text|	front/div/list/item	8	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item	8	1
+Deutsch-Wagram	Deutſch-Wagram	Deutsch-Wagram	NE	Deutsch-Wagram	-	11	-	|div_contents|front|text|	front/div/list/item	8	1
+179	179	179	CARD	179	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	8	1
+
+%%$DDC:BREAK.s[2784879]=69516375
+%%$DDC:BREAK.p[1008036]=69516375
+Das	Das	Das	ART	d	-	11	-	|div_contents|front|text|	front/div/list/item	9	1
+Fest	Feſt	Fest	NN	Fest	-	11	-	|div_contents|front|text|	front/div/list/item	9	1
+des	des	des	ART	d	-	11	-	|div_contents|front|text|	front/div/list/item	9	1
+Fürsten	Fuͤrſten	Fürsten	NN	Fürst	-	11	-	|div_contents|front|text|	front/div/list/item	9	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item	9	1
+Schwarzenberg	Schwarzenberg	Schwarzenberg	NN	Schwarzenberg	-	11	-	|div_contents|front|text|	front/div/list/item	9	1
+252	252	252	CARD	252	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	9	1
+
+%%$DDC:BREAK.s[2784880]=69516382
+%%$DDC:BREAK.p[1008037]=69516382
+Am	Am	Am	APPRART	am	-	11	-	|div_contents|front|text|	front/div/list/item	10	1
+Hofe	Hofe	Hofe	NN	Hof	-	11	-	|div_contents|front|text|	front/div/list/item	10	1
+Napoleons	Napoleons	Napoleons	NE	Napoleon	-	11	-	|div_contents|front|text|	front/div/list/item	10	1
+292	292	292	CARD	292	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	10	1
+
+%%$DDC:BREAK.s[2784881]=69516386
+%%$DDC:BREAK.p[1008038]=69516386
+Kritiken	Kritiken	Kritiken	NN	Kritik	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/list/head/hi	11	1
+.	.	.	$.	.	-	11	b:g:head	|div_contents|front|head|hi|text|	front/div/list/head/hi	11	0
+
+%%$DDC:BREAK.s[2784882]=69516388
+%%$DDC:BREAK.p[1008039]=69516388
+Aus	Aus	Aus	APPR	aus	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+meinem	meinem	meinem	PPOSAT	meine	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+Leben	Leben	Leben	NN	Leben	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	12	0
+
+%%$DDC:BREAK.s[2784883]=69516392
+Dichtung	Dichtung	Dichtung	NN	Dichtung	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+und	und	und	KON	und	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+Wahrheit	Wahrheit	Wahrheit	NN	Wahrheit	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	12	0
+
+%%$DDC:BREAK.s[2784884]=69516396
+Von	Von	Von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item	12	1
+Goethe	Goethe	Goethe	NE	Goethe	-	11	g	|div_contents|front|hi|text|	front/div/list/item/hi	12	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	12	0
+
+%%$DDC:BREAK.s[2784885]=69516399
+Vierter	Vierter	Vierter	NN	Vierter	-	11	-	|div_contents|front|text|	front/div/list/item	13	1
+Theil	Theil	Teil	NN	Teil	-	11	-	|div_contents|front|text|	front/div/list/item	13	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	13	0
+
+%%$DDC:BREAK.s[2784886]=69516402
+Nemo	Nemo	Nemo	FM.la	nemo	-	11	aq	|div_contents|front|hi|text|	front/div/list/item/hi	13	1
+contra	contra	contra	FM.la	contra	-	11	aq	|div_contents|front|hi|text|	front/div/list/item/hi	13	1
+deum	deum	deum	FM.la	deum	-	11	aq	|div_contents|front|hi|text|	front/div/list/item/hi	13	1
+nisi	nisi	nisi	FM.la	nisi	-	11	aq	|div_contents|front|hi|text|	front/div/list/item/hi	13	1
+deus	deus	deus	FM.la	deus	-	11	aq	|div_contents|front|hi|text|	front/div/list/item/hi	13	1
+ipse	ipse	ipse	FM.la	ipse	-	11	aq	|div_contents|front|hi|text|	front/div/list/item/hi	13	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	13	0
+
+%%$DDC:BREAK.s[2784887]=69516409
+Stuttgart	Stuttgart	Stuttgart	NE	Stuttgart	-	11	-	|div_contents|front|text|	front/div/list/item	13	1
+und	und	und	KON	und	-	11	-	|div_contents|front|text|	front/div/list/item	14	1
+Tübingen	Tuͤbingen	Tübingen	NE	Tübingen	-	11	-	|div_contents|front|text|	front/div/list/item	14	1
+,	,	,	$,	,	-	11	-	|div_contents|front|text|	front/div/list/item	14	0
+Cotta	Cotta	Cotta	NE	Cotta	-	11	-	|div_contents|front|text|	front/div/list/item	14	1
+,	,	,	$,	,	-	11	-	|div_contents|front|text|	front/div/list/item	14	0
+1833	1833	1833	CARD	1833	-	11	b	|div_contents|front|hi|text|	front/div/list/item/hi	14	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	14	0
+
+%%$DDC:BREAK.s[2784888]=69516417
+12.	12.	12.	ADJA	12.	-	11	b	|div_contents|front|hi|text|	front/div/list/item/hi	14	1
+311	311	311	CARD	311	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	14	1
+
+%%$DDC:BREAK.s[2784889]=69516419
+%%$DDC:BREAK.p[1008040]=69516419
+Kritische	Kritiſche	Kritische	ADJA	kritisch	-	11	-	|div_contents|front|text|	front/div/list/item	15	1
+Tagesworte	Tagesworte	Tagesworte	NN	Tageswort	-	11	-	|div_contents|front|text|	front/div/list/item	15	1
+332	332	332	CARD	332	-	11	b	|div_contents|front|hi|text|	front/div/list/item/ref/hi	15	1
+
+%%$DDC:BREAK.s[2784890]=69516422
+%%$DDC:BREAK.p[1008041]=69516422
+Immermann	Immermann	Immermann	NE	Immermann	-	11	-	|div_contents|front|text|	front/div/list/item	16	1
+:	:	:	$.	:	-	11	-	|div_contents|front|text|	front/div/list/item	16	0
+
+%%$DDC:BREAK.s[2784891]=69516424
+%%$DDC:BREAK.p[1008042]=69516424
+1.Trauerspiele	1.Trauerſpiele	1.Trauerspiele	NE	1.trauerspiele	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	17	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	17	1
+Karl	Karl	Karl	NE	Karl	-	11	g	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	17	1
+Immermann	Immermann	Immermann	NE	Immermann	-	11	g	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	17	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	17	0
+
+%%$DDC:BREAK.s[2784892]=69516429
+Hamm	Hamm	Hamm	NE	Hamm	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	17	1
+und	und	und	KON	und	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	17	1
+Münster	Muͤnſter	Münster	NE	Münster	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	18	1
+,	,	,	$,	,	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	18	0
+1822	1822	1822	CARD	1822	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	18	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	18	0
+8.	8.	8.	ADJA	8.	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	18	1
+340	340	340	CARD	340	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/ref/hi	18	1
+
+%%$DDC:BREAK.s[2784893]=69516437
+%%$DDC:BREAK.p[1008043]=69516437
+2.	2.	2.	ADJA	2.	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	19	1
+Brief	Brief	Brief	NN	Brief	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+an	an	an	APPR	an	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+einen	einen	einen	ART	eine	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+Freund	Freund	Freund	NN	Freund	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+über	uͤber	über	APPR	über	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+die	die	die	ART	d	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+falschen	falſchen	falschen	ADJA	falsch	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+Wanderjahre	Wanderjahre	Wanderjahre	NN	Wanderjahr	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	19	0
+
+%%$DDC:BREAK.s[2784894]=69516447
+Von	Von	Von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	20	1
+Karl	Karl	Karl	NE	Karl	-	11	g	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	20	1
+Immermann	Immermann	Immermann	NE	Immermann	-	11	g	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	20	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	20	0
+
+%%$DDC:BREAK.s[2784895]=69516451
+Münster	Muͤnſter	Münster	NE	Münster	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	20	1
+,	,	,	$,	,	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	20	0
+1823	1823	1823	CARD	1823	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	20	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	20	0
+8.	8.	8.	ADJA	8.	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	20	1
+345	345	345	CARD	345	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/ref/hi	20	1
+
+%%$DDC:BREAK.s[2784896]=69516457
+%%$DDC:BREAK.p[1008044]=69516457
+3.	3.	3.	ADJA	3.	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	21	1
+Cardenio	Cardenio	Cardenio	NN	Cardenio	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	21	1
+und	und	und	KON	und	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	21	1
+Celinde	Celinde	Gelinde	NN	Gelinde	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	21	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	21	0
+
+%%$DDC:BREAK.s[2784897]=69516462
+Trauerspiel	Trauerſpiel	Trauerspiel	NN	Trauerspiel	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	21	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	21	1
+Karl	Karl	Karl	NE	Karl	-	11	g	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	21	1
+Immermann	Immermann	Immermann	NE	Immermann	-	11	g	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	21	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	22	0
+
+%%$DDC:BREAK.s[2784898]=69516467
+Berlin	Berlin	Berlin	NE	Berlin	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	22	1
+,	,	,	$,	,	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	22	0
+1826	1826	1826	CARD	1826	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	22	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item/list/item	22	0
+8.	8.	8.	ADJA	8.	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/hi	22	1
+349	349	349	CARD	349	-	11	b	|div_contents|front|hi|text|	front/div/list/item/list/item/ref/hi	22	1
+
+%%$DDC:BREAK.s[2784899]=69516473
+%%$DDC:BREAK.p[1008045]=69516473
+Helene	Helene	Helene	NE	Helene	-	11	-	|div_contents|front|text|	front/div/list/item	23	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item	23	1
+Tournon	Tournon	Tournon	NE	Tournon	-	11	-	|div_contents|front|text|	front/div/list/item	23	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	23	0
+
+%%$DDC:BREAK.s[2784900]=69516477
+Erzählung	Erzaͤhlung	Erzählung	NN	Erzählung	-	11	-	|div_contents|front|text|	front/div/list/item	23	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item	23	1
+Amalia	Amalia	Amalia	NE	Amalia	-	11	g	|div_contents|front|hi|text|	front/div/list/item/hi	23	1
+von	von	von	APPR	von	-	11	g	|div_contents|front|hi|text|	front/div/list/item/hi	23	1
+Helvig	Helvig	Helvig	NE	Helvig	-	11	g	|div_contents|front|hi|text|	front/div/list/item/hi	23	1
+,	,	,	$,	,	-	11	-	|div_contents|front|text|	front/div/list/item	24	0
+geborne	geborne	geborene	ADJA	gebären	-	11	-	|div_contents|front|text|	front/div/list/item	24	1
+Freiin	Freiin	Freiin	NN	Freiin	-	11	-	|div_contents|front|text|	front/div/list/item	24	1
+von	von	von	APPR	von	-	11	-	|div_contents|front|text|	front/div/list/item	24	1
+Imhof	Imhof	Imhof	NE	Imhof	-	11	-	|div_contents|front|text|	front/div/list/item	24	1
+.	.	.	$.	.	-	11	-	|div_contents|front|text|	front/div/list/item	24	0

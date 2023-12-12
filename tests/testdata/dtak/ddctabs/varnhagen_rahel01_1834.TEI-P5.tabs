@@ -1,0 +1,746 @@
+%%$DDC:tokid.begin=69631049
+%%$DDC:tokid.end=69810275
+%%$DDC:meta.n_=642
+%%$DDC:meta.file_=dtak01/../../ddc_xml/data/./varnhagen_rahel01_1834.TEI-P5.ddc.xml
+%%$DDC:meta.scan_=
+%%$DDC:meta.orig_=
+%%$DDC:meta.date_=1834
+%%$DDC:meta.page_=-1
+%%$DDC:meta.access=P
+%%$DDC:meta.author=Varnhagen, Rahel (#118626175)
+%%$DDC:meta.avail=-
+%%$DDC:meta.availability=Distributed under the Creative Commons Attribution-ShareAlike 4.0 License.
+%%$DDC:meta.basename=varnhagen_rahel01_1834
+%%$DDC:meta.bibl=Varnhagen von Ense, Rahel: Rahel. Bd. 1. Berlin, 1834.
+%%$DDC:meta.collection=dtak
+%%$DDC:meta.dtaid=17053
+%%$DDC:meta.empty=
+%%$DDC:meta.firstDate=1834
+%%$DDC:meta.flags=core::ready::china
+%%$DDC:meta.library=Staatsbibliothek zu Berlin – Preußischer Kulturbesitz
+%%$DDC:meta.pubPlace=Berlin
+%%$DDC:meta.shelfmark=SBB-PK, Av 19851-1
+%%$DDC:meta.textClass=Belletristik::Prosa
+%%$DDC:meta.textClassDTA=Belletristik::Prosa
+%%$DDC:meta.timestamp=2021-02-18T14:42:50Z
+%%$DDC:meta.title=Rahel: Ein Buch des Andenkens für ihre Freunde
+%%$DDC:index[0]=Token w
+%%$DDC:index[1]=Utf8 u
+%%$DDC:index[2]=CanonicalToken v
+%%$DDC:index[3]=Pos p
+%%$DDC:index[4]=Lemma l
+%%$DDC:index[5]=Coord coord
+%%$DDC:index[6]=Page page
+%%$DDC:index[7]=Rend r
+%%$DDC:index[8]=Context con
+%%$DDC:index[9]=XPath xpath
+%%$DDC:index[10]=Line lb
+%%$DDC:index[11]=WordSep ws
+%%$DDC:BREAK.s[2788118]=69631049
+%%$DDC:BREAK.c[641]=69631049
+%%$DDC:BREAK.p[1008784]=69631049
+%%$DDC:BREAK.file[641]=69631049
+%%$DDC:BREAK.textarea[641]=69631049
+Rahel	Rahel	Rahel	NE	Rahel	-	11	b:g:red	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi/hi	1	1
+.	.	.	$.	.	-	11	b:red	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi	1	0
+
+%%$DDC:BREAK.s[2788119]=69631051
+Ein	Ein	Ein	ART	eine	-	11	b:g	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi	2	1
+Buch	Buch	Buch	NN	Buch	-	11	b:g	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi	3	1
+des	des	des	ART	d	-	11	b:g	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi	3	1
+Andenkens	Andenkens	Andenkens	NN	Andenken	-	11	b:g	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi	3	1
+für	für	für	APPR	für	-	11	-	|front|text|	front/titlePage/docTitle/titlePart	4	1
+ihre	ihre	ihre	PPOSAT	ihr	-	11	-	|front|text|	front/titlePage/docTitle/titlePart	4	1
+Freunde	Freunde	Freunde	NN	Freund	-	11	b:g:red	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi/hi	5	1
+.	.	.	$.	.	-	11	b:red	|front|hi|text|	front/titlePage/docTitle/titlePart/hi/hi	5	0
+--	—	--	$(	--	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/quote	6	1
+--	—	--	$(	--	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/quote	6	1
+still	ſtill	still	PTKVZ	still	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/quote	6	1
+und	und	und	KON	und	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/quote	6	1
+bewegt	bewegt	bewegt	VVFIN	bewegen	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/quote	6	1
+.	.	.	$.	.	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/quote	6	0
+
+%%$DDC:BREAK.s[2788120]=69631065
+Hyperion	Hyperion	Hyperion	NE	Hyperion	-	11	g	|cit|front|hi|text|	front/titlePage/epigraph/cit/bibl/hi	7	1
+.	.	.	$.	.	-	11	-	|cit|front|text|	front/titlePage/epigraph/cit/bibl	7	0
+
+%%$DDC:BREAK.s[2788121]=69631067
+Erster	Erſter	Erster	NN	Erster	-	11	b:g	|front|hi|text|	front/titlePage/titlePart/hi/hi	8	1
+Theil	Theil	Teil	NN	Teil	-	11	b:g	|front|hi|text|	front/titlePage/titlePart/hi/hi	8	1
+.	.	.	$.	.	-	11	b	|front|hi|text|	front/titlePage/titlePart/hi	8	0
+
+%%$DDC:BREAK.s[2788122]=69631070
+Mit	Mit	Mit	APPR	mit	-	11	-	|front|text|	front/titlePage/titlePart	9	1
+Rahel's	Rahel’s	Rahel's	NE	Rahel	-	11	-	|front|text|	front/titlePage/titlePart	9	1
+Bildniß	Bildniß	Bildnis	NN	Bildnis	-	11	-	|front|text|	front/titlePage/titlePart	9	1
+.	.	.	$.	.	-	11	-	|front|text|	front/titlePage/titlePart	9	0
+
+%%$DDC:BREAK.s[2788123]=69631074
+Berlin	Berlin	Berlin	NE	Berlin	-	11	b:g	|front|hi|text|	front/titlePage/docImprint/pubPlace/hi/hi	10	1
+,	,	,	$,	,	-	11	b	|front|hi|text|	front/titlePage/docImprint/pubPlace/hi	10	0
+1834	1834	1834	CARD	1834	-	11	b:g	|front|hi|text|	front/titlePage/docImprint/docDate/hi/hi	10	1
+.	.	.	$.	.	-	11	b	|front|hi|text|	front/titlePage/docImprint/docDate/hi	10	0
+
+%%$DDC:BREAK.s[2788124]=69631078
+Bei	Bei	Bei	APPR	bei	-	11	g	|front|hi|text|	front/titlePage/docImprint/hi	11	1
+Duncker	Duncker	Dunker	NE	Dunker	-	11	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	11	1
+und	und	und	KON	und	-	11	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	11	1
+Humblot	Humblot	Humblot	NE	Humblot	-	11	g	|front|hi|text|	front/titlePage/docImprint/publisher/hi	11	1
+.	.	.	$.	.	-	11	-	|front|text|	front/titlePage/docImprint/publisher	11	0
+
+%%$DDC:BREAK.s[2788125]=69631083
+%%$DDC:BREAK.p[1008785]=69631083
+Vorwort	Vorwort	Vorwort	NN	Vorwort	-	13	g:head	|div_other|front|head|hi|text|	front/div/head/hi	1	1
+.	.	.	$.	.	-	13	head	|div_other|front|head|text|	front/div/head	1	0
+
+%%$DDC:BREAK.s[2788126]=69631085
+%%$DDC:BREAK.p[1008786]=69631085
+Ehrwürdige	Ehrwürdige	Ehrwürdige	ADJA	ehrewürdig	-	13	-	|div_other|front|text|	front/div/p	2	1
+gewichtvolle	gewichtvolle	gewichtvolle	ADJA	gewichtvoll	-	13	-	|div_other|front|text|	front/div/p	2	1
+Stimmen	Stimmen	Stimmen	NN	Stimme	-	13	-	|div_other|front|text|	front/div/p	2	1
+fordern	fordern	fordern	VVFIN	fordern	-	13	-	|div_other|front|text|	front/div/p	2	1
+laut	laut	laut	ADJD	laut	-	13	-	|div_other|front|text|	front/div/p	2	1
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	2	1
+dringend	dringend	dringend	ADJD	dringend	-	13	-	|div_other|front|text|	front/div/p	3	1
+eine	eine	eine	ART	eine	-	13	-	|div_other|front|text|	front/div/p	3	1
+öffentliche	öffentliche	öffentliche	ADJA	öffentlich	-	13	-	|div_other|front|text|	front/div/p	3	1
+Herausgabe	Herausgabe	Herausgabe	NN	Herausgabe	-	13	-	|div_other|front|text|	front/div/p	3	1
+dieses	dieſes	dieses	PDAT	diese	-	13	-	|div_other|front|text|	front/div/p	3	1
+Buches	Buches	Buches	NN	Buch	-	13	-	|div_other|front|text|	front/div/p	3	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	3	0
+das	das	das	PRELS	die	-	13	-	|div_other|front|text|	front/div/p	3	1
+als	als	als	KOKOM	als	-	13	-	|div_other|front|text|	front/div/p	4	1
+"	„	"	$(	"	-	13	-	|div_other|front|text|	front/div/p	4	1
+ein	ein	ein	ART	eine	-	13	-	|div_other|front|text|	front/div/p	4	0
+Buch	Buch	Buch	NN	Buch	-	13	-	|div_other|front|text|	front/div/p	4	1
+des	des	des	ART	d	-	13	-	|div_other|front|text|	front/div/p	4	1
+Andenkens	Andenkens	Andenkens	NN	Andenken	-	13	-	|div_other|front|text|	front/div/p	4	1
+für	für	für	APPR	für	-	13	-	|div_other|front|text|	front/div/p	4	1
+Freunde	Freunde	Freunde	NN	Freund	-	13	-	|div_other|front|text|	front/div/p	4	1
+"	“	"	$(	"	-	13	-	|div_other|front|text|	front/div/p	4	0
+bisher	bisher	bisher	ADV	bisher	-	13	-	|div_other|front|text|	front/div/p	4	1
+nur	nur	nur	ADV	nur	-	13	-	|div_other|front|text|	front/div/p	4	1
+im	im	im	APPRART	im	-	13	-	|div_other|front|text|	front/div/p	5	1
+Stillen	Stillen	Stillen	NN	Stillen	-	13	-	|div_other|front|text|	front/div/p	5	1
+ausgetheilt	ausgetheilt	ausgeteilt	VVPP	austeilen	-	13	-	|div_other|front|text|	front/div/p	5	1
+wurde	wurde	wurde	VAFIN	werden	-	13	-	|div_other|front|text|	front/div/p	5	1
+.	.	.	$.	.	-	13	-	|div_other|front|text|	front/div/p	5	0
+
+%%$DDC:BREAK.s[2788127]=69631115
+Diese	Dieſe	Diese	PDAT	diese	-	13	-	|div_other|front|text|	front/div/p	5	1
+Bezeichnung	Bezeichnung	Bezeichnung	NN	Bezeichnung	-	13	-	|div_other|front|text|	front/div/p	5	1
+darf	darf	darf	VMFIN	dürfen	-	13	-	|div_other|front|text|	front/div/p	5	1
+indeß	indeß	indes	ADV	indes	-	13	-	|div_other|front|text|	front/div/p	6	1
+auch	auch	auch	ADV	auch	-	13	-	|div_other|front|text|	front/div/p	6	1
+jetzt	jetzt	jetzt	ADV	jetzt	-	13	-	|div_other|front|text|	front/div/p	6	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	6	0
+da	da	da	KOUS	da	-	13	-	|div_other|front|text|	front/div/p	6	1
+jenem	jenem	jenem	PDAT	jen	-	13	-	|div_other|front|text|	front/div/p	6	1
+Verlangen	Verlangen	Verlangen	NN	Verlangen	-	13	-	|div_other|front|text|	front/div/p	6	1
+nachgegeben	nachgegeben	nachgegeben	VVPP	nachgeben	-	13	-	|div_other|front|text|	front/div/p	6	1
+wird	wird	wird	VAFIN	werden	-	13	-	|div_other|front|text|	front/div/p	6	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	6	0
+im	im	im	APPRART	im	-	13	-	|div_other|front|text|	front/div/p	7	1
+vollen	vollen	vollen	ADJA	voll	-	13	-	|div_other|front|text|	front/div/p	7	1
+Sinne	Sinne	Sinne	NN	Sinn	-	13	-	|div_other|front|text|	front/div/p	7	1
+fortdauern	fortdauern	fortdauern	VVINF	fortdauern	-	13	-	|div_other|front|text|	front/div/p	7	1
+;	;	;	$.	;	-	13	-	|div_other|front|text|	front/div/p	7	0
+denn	denn	denn	KON	denn	-	13	-	|div_other|front|text|	front/div/p	7	1
+noch	noch	noch	ADV	noch	-	13	-	|div_other|front|text|	front/div/p	7	1
+immer	immer	immer	ADV	immer	-	13	-	|div_other|front|text|	front/div/p	7	1
+sind	ſind	sind	VAFIN	sein	-	13	-	|div_other|front|text|	front/div/p	7	1
+es	es	es	PPER	es	-	13	-	|div_other|front|text|	front/div/p	7	1
+wesentlich	weſentlich	wesentlich	ADJD	wesentlich	-	13	-	|div_other|front|text|	front/div/p	8	1
+die	die	die	ART	d	-	13	-	|div_other|front|text|	front/div/p	8	1
+Freunde	Freunde	Freunde	NN	Freund	-	13	-	|div_other|front|text|	front/div/p	8	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	8	0
+für	für	für	APPR	für	-	13	-	|div_other|front|text|	front/div/p	8	1
+welche	welche	welche	PRELS	welche	-	13	-	|div_other|front|text|	front/div/p	8	1
+der	der	der	ART	d	-	13	-	|div_other|front|text|	front/div/p	8	1
+neue	neue	neue	ADJA	neu	-	13	-	|div_other|front|text|	front/div/p	8	1
+Abdruck	Abdruck	Abdruck	NN	Abdruck	-	13	-	|div_other|front|text|	front/div/p	8	1
+Statt	Statt	Stadt	NN	Stadt	-	13	-	|div_other|front|text|	front/div/p	9	1
+findet	findet	findet	VVFIN	finden	-	13	-	|div_other|front|text|	front/div/p	9	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	9	0
+nur	nur	nur	ADV	nur	-	13	-	|div_other|front|text|	front/div/p	9	1
+daß	daß	daß	KOUS	daß	-	13	-	|div_other|front|text|	front/div/p	9	1
+den	den	den	ART	d	-	13	-	|div_other|front|text|	front/div/p	9	1
+im	im	im	APPRART	im	-	13	-	|div_other|front|text|	front/div/p	9	1
+Leben	Leben	Leben	NN	Leben	-	13	-	|div_other|front|text|	front/div/p	9	1
+gekannten	gekannten	gekannten	ADJA	gekennt	-	13	-	|div_other|front|text|	front/div/p	9	1
+jetzt	jetzt	jetzt	ADV	jetzt	-	13	-	|div_other|front|text|	front/div/p	9	1
+auch	auch	auch	ADV	auch	-	13	-	|div_other|front|text|	front/div/p	10	1
+die	die	die	ART	d	-	13	-	|div_other|front|text|	front/div/p	10	1
+nach	nach	nach	APPR	nach	-	13	-	|div_other|front|text|	front/div/p	10	1
+dem	dem	dem	ART	d	-	13	-	|div_other|front|text|	front/div/p	10	1
+Scheiden	Scheiden	Scheiden	NN	Scheide	-	13	-	|div_other|front|text|	front/div/p	10	1
+erworbenen	erworbenen	erworbenen	ADJA	erwerben	-	13	-	|div_other|front|text|	front/div/p	10	1
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	10	1
+künftigen	künftigen	künftigen	ADJA	künftig	-	13	-	|div_other|front|text|	front/div/p	10	1
+sich	ſich	sich	PRF	sich	-	13	-	|div_other|front|text|	front/div/p	11	1
+anschließen	anſchließen	anschließen	VVINF	anschließen	-	13	-	|div_other|front|text|	front/div/p	11	1
+.	.	.	$.	.	-	13	-	|div_other|front|text|	front/div/p	11	0
+
+%%$DDC:BREAK.s[2788128]=69631168
+Hiernach	Hiernach	Hiernach	PAV	hiernach	-	13	-	|div_other|front|text|	front/div/p	11	1
+ist	iſt	ist	VAFIN	sein	-	13	-	|div_other|front|text|	front/div/p	11	1
+auch	auch	auch	ADV	auch	-	13	-	|div_other|front|text|	front/div/p	11	1
+der	der	der	ART	d	-	13	-	|div_other|front|text|	front/div/p	11	1
+Gesichtspunkt	Geſichtspunkt	Gesichtspunkt	NN	Gesichtspunkt	-	13	-	|div_other|front|text|	front/div/p	11	1
+festzuhalten	feſtzuhalten	festzuhalten	VVIZU	festhalten	-	13	-	|div_other|front|text|	front/div/p	12	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	12	0
+nach	nach	nach	APPR	nach	-	13	-	|div_other|front|text|	front/div/p	12	1
+welchem	welchem	welchem	PWAT	welchem	-	13	-	|div_other|front|text|	front/div/p	12	1
+sowohl	ſowohl	sowohl	KON	sowohl	-	13	-	|div_other|front|text|	front/div/p	12	1
+die	die	die	ART	d	-	13	-	|div_other|front|text|	front/div/p	12	1
+erste	erſte	erste	ADJA	erst	-	13	-	|div_other|front|text|	front/div/p	12	1
+Auswahl	Auswahl	Auswahl	NN	Auswahl	-	13	-	|div_other|front|text|	front/div/p	12	1
+des	des	des	ART	d	-	13	-	|div_other|front|text|	front/div/p	12	1
+Mitgetheilten	Mitgetheilten	Mitgeteilten	NN	Mitgeteilte	-	13	-	|div_other|front|text|	front/div/p	13	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	13	0
+als	als	als	KOKOM	als	-	13	-	|div_other|front|text|	front/div/p	13	1
+auch	auch	auch	ADV	auch	-	13	-	|div_other|front|text|	front/div/p	13	1
+dessen	deſſen	dessen	PDS	die	-	13	-	|div_other|front|text|	front/div/p	13	1
+jetzige	jetzige	jetzige	ADJA	jetzig	-	13	-	|div_other|front|text|	front/div/p	13	1
+Vermehrung	Vermehrung	Vermehrung	NN	Vermehrung	-	13	-	|div_other|front|text|	front/div/p	13	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	13	0
+beinah	beinah	beinahe	ADV	beinahe	-	13	-	|div_other|front|text|	front/div/p	13	1
+auf	auf	auf	APPR	auf	-	13	-	|div_other|front|text|	front/div/p	14	1
+das	das	das	ART	d	-	13	-	|div_other|front|text|	front/div/p	14	1
+Dreifache	Dreifache	Dreifache	NN	Dreifach	-	13	-	|div_other|front|text|	front/div/p	14	1
+des	des	des	ART	d	-	13	-	|div_other|front|text|	front/div/p	14	1
+früheren	früheren	früheren	ADJA	früh	-	13	-	|div_other|front|text|	front/div/p	14	1
+Umfanges	Umfanges	Umfanges	NN	Umfang	-	13	-	|div_other|front|text|	front/div/p	14	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	14	0
+sich	ſich	sich	PRF	sich	-	13	-	|div_other|front|text|	front/div/p	14	1
+bestimmen	beſtimmen	bestimmen	VVINF	bestimmen	-	13	-	|div_other|front|text|	front/div/p	14	1
+mußte	mußte	mußte	VMFIN	müssen	-	13	-	|div_other|front|text|	front/div/p	15	1
+.	.	.	$.	.	-	13	-	|div_other|front|text|	front/div/p	15	0
+
+%%$DDC:BREAK.s[2788129]=69631202
+Die	Die	Die	ART	d	-	13	-	|div_other|front|text|	front/div/p	15	1
+Persönlichkeit	Perſönlichkeit	Persönlichkeit	NN	Persönlichkeit	-	13	-	|div_other|front|text|	front/div/p	15	1
+selbst	ſelbſt	selbst	ADV	selbst	-	13	-	|div_other|front|text|	front/div/p	15	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	15	0
+ihr	ihr	ihr	PPOSAT	ihr	-	13	-	|div_other|front|text|	front/div/p	15	1
+Karakter	Karakter	Charakter	NN	Charakter	-	13	-	|div_other|front|text|	front/div/p	15	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	15	0
+ihr	ihr	ihr	PPOSAT	ihr	-	13	-	|div_other|front|text|	front/div/p	16	1
+Schicksal	Schickſal	Schicksal	NN	Schicksal	-	13	-	|div_other|front|text|	front/div/p	16	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	16	0
+ihr	ihr	ihr	PPOSAT	ihr	-	13	-	|div_other|front|text|	front/div/p	16	1
+Sinn	Sinn	Sinn	NN	Sinn	-	13	-	|div_other|front|text|	front/div/p	16	1
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	16	1
+ihre	ihre	ihre	PPOSAT	ihr	-	13	-	|div_other|front|text|	front/div/p	16	1
+Begegnisse	Begegniſſe	Begegnungen	NN	Begegnung	-	13	-	|div_other|front|text|	front/div/p	16	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	16	0
+sind	ſind	sind	VAFIN	sein	-	13	-	|div_other|front|text|	front/div/p	16	1
+vor	vor	vor	APPR	vor	-	13	-	|div_other|front|text|	front/div/p	16	1
+allen	allen	allen	PIAT	alle	-	13	-	|div_other|front|text|	front/div/p	17	1
+andern	andern	anderen	ADJA	ander	-	13	-	|div_other|front|text|	front/div/p	17	1
+Gegenständen	Gegenſtänden	Gegenständen	NN	Gegenstand	-	13	-	|div_other|front|text|	front/div/p	17	1
+dem	dem	dem	ART	d	-	13	-	|div_other|front|text|	front/div/p	17	1
+Antheil	Antheil	Anteil	NN	Anteil	-	13	-	|div_other|front|text|	front/div/p	17	1
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	17	1
+der	der	der	ART	d	-	13	-	|div_other|front|text|	front/div/p	17	1
+Zuneigung	Zuneigung	Zuneigung	NN	Zuneigung	-	13	-	|div_other|front|text|	front/div/p	17	1
+der	der	der	ART	d	-	13	-	|div_other|front|text|	front/div/p	18	1
+Leser	Leſer	Leser	NN	Leser	-	13	-	|div_other|front|text|	front/div/p	18	1
+lieb	lieb	lieb	ADJD	lieb	-	13	-	|div_other|front|text|	front/div/p	18	1
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	18	1
+wichtig	wichtig	wichtig	ADJD	wichtig	-	13	-	|div_other|front|text|	front/div/p	18	1
+geworden	geworden	geworden	VAPP	werden	-	13	-	|div_other|front|text|	front/div/p	18	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	18	0
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	18	1
+jedes	jedes	jedes	PIAT	jede	-	13	-	|div_other|front|text|	front/div/p	18	1
+Blatt	Blatt	Blatt	NN	Blatt	-	13	-	|div_other|front|text|	front/div/p	19	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	19	0
+welches	welches	welches	PRELS	welche	-	13	-	|div_other|front|text|	front/div/p	19	1
+diese	dieſe	diese	PDAT	diese	-	13	-	|div_other|front|text|	front/div/p	19	1
+Beziehung	Beziehung	Beziehung	NN	Beziehung	-	13	-	|div_other|front|text|	front/div/p	19	1
+hatte	hatte	hatte	VAFIN	haben	-	13	-	|div_other|front|text|	front/div/p	19	1
+,	,	,	$,	,	-	13	-	|div_other|front|text|	front/div/p	19	0
+durfte	durfte	durfte	VMFIN	dürfen	-	13	-	|div_other|front|text|	front/div/p	19	1
+zulässig	zuläſſig	zulässig	ADJD	zulässig	-	13	-	|div_other|front|text|	front/div/p	19	1
+und	und	und	KON	und	-	13	-	|div_other|front|text|	front/div/p	19	1
+willkommen	willkommen	willkommen	ADJD	willkommen	-	14	-	|div_other|front|text|	front/div/p	1	1
+scheinen	ſcheinen	scheinen	VVFIN	scheinen	-	14	-	|div_other|front|text|	front/div/p	1	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	1	0
+wenn	wenn	wenn	KOUS	wenn	-	14	-	|div_other|front|text|	front/div/p	1	1
+auch	auch	auch	ADV	auch	-	14	-	|div_other|front|text|	front/div/p	1	1
+der	der	der	ART	d	-	14	-	|div_other|front|text|	front/div/p	1	1
+Stoff	Stoff	Stoff	NN	Stoff	-	14	-	|div_other|front|text|	front/div/p	1	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	1	0
+in	in	in	APPR	in	-	14	-	|div_other|front|text|	front/div/p	1	1
+welchem	welchem	welchem	PWAT	welchem	-	14	-	|div_other|front|text|	front/div/p	1	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	2	1
+vermittelst	vermittelſt	vermittels	APPR	vermittels	-	14	-	|div_other|front|text|	front/div/p	2	1
+dessen	deſſen	dessen	PDS	die	-	14	-	|div_other|front|text|	front/div/p	2	1
+sie	ſie	sie	PPER	sie	-	14	-	|div_other|front|text|	front/div/p	2	1
+hervortrat	hervortrat	hervortrat	VVFIN	hervortreten	-	14	-	|div_other|front|text|	front/div/p	2	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	2	0
+bisweilen	bisweilen	bisweilen	ADV	bisweilen	-	14	-	|div_other|front|text|	front/div/p	2	1
+sonst	ſonſt	sonst	ADV	sonst	-	14	-	|div_other|front|text|	front/div/p	2	1
+geringfügig	geringfügig	geringfügig	ADJD	geringfügig	-	14	-	|div_other|front|text|	front/div/p	2	1
+oder	oder	oder	KON	oder	-	14	-	|div_other|front|text|	front/div/p	3	1
+auch	auch	auch	ADV	auch	-	14	-	|div_other|front|text|	front/div/p	3	1
+ungewöhnlich	ungewöhnlich	ungewöhnlich	ADJD	ungewöhnlich	-	14	-	|div_other|front|text|	front/div/p	3	1
+dünken	dünken	dünken	VVINF	dünken	-	14	-	|div_other|front|text|	front/div/p	3	1
+konnte	konnte	konnte	VMFIN	können	-	14	-	|div_other|front|text|	front/div/p	3	1
+.	.	.	$.	.	-	14	-	|div_other|front|text|	front/div/p	3	0
+
+%%$DDC:BREAK.s[2788130]=69631272
+So	So	So	ADV	so	-	14	-	|div_other|front|text|	front/div/p	3	1
+war	war	war	VAFIN	sein	-	14	-	|div_other|front|text|	front/div/p	4	1
+auch	auch	auch	ADV	auch	-	14	-	|div_other|front|text|	front/div/p	4	1
+oft	oft	oft	ADV	oft	-	14	-	|div_other|front|text|	front/div/p	4	1
+Lob	Lob	Lob	NN	Lob	-	14	-	|div_other|front|text|	front/div/p	4	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	4	1
+Tadel	Tadel	Tadel	NN	Tadel	-	14	-	|div_other|front|text|	front/div/p	4	1
+weniger	weniger	weniger	ADV	wenige	-	14	-	|div_other|front|text|	front/div/p	4	1
+seines	ſeines	seines	PPOSAT	seine	-	14	-	|div_other|front|text|	front/div/p	4	1
+Gegenstandes	Gegenſtandes	Gegenstandes	NN	Gegenstand	-	14	-	|div_other|front|text|	front/div/p	4	1
+wegen	wegen	wegen	APPR	wegen	-	14	-	|div_other|front|text|	front/div/p	5	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	5	0
+als	als	als	KOKOM	als	-	14	-	|div_other|front|text|	front/div/p	5	1
+um	um	um	APPR	um	-	14	-	|div_other|front|text|	front/div/p	5	1
+seiner	ſeiner	seiner	PPOSAT	seine	-	14	-	|div_other|front|text|	front/div/p	5	1
+Gestalt	Geſtalt	Gestalt	NN	Gestalt	-	14	-	|div_other|front|text|	front/div/p	5	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	5	1
+Gesinnung	Geſinnung	Gesinnung	NN	Gesinnung	-	14	-	|div_other|front|text|	front/div/p	5	1
+willen	willen	Willen	NN	Willen	-	14	-	|div_other|front|text|	front/div/p	5	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	5	0
+aufzunehmen	aufzunehmen	aufzunehmen	VVIZU	aufnehmen	-	14	-	|div_other|front|text|	front/div/p	6	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	6	0
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	6	1
+in	in	in	APPR	in	-	14	-	|div_other|front|text|	front/div/p	6	1
+diesem	dieſem	diesem	PDAT	diese	-	14	-	|div_other|front|text|	front/div/p	6	1
+Betreff	Betreff	Betreff	NN	Betreff	-	14	-	|div_other|front|text|	front/div/p	6	1
+durfte	durfte	durfte	VMFIN	dürfen	-	14	-	|div_other|front|text|	front/div/p	6	1
+kleinliche	kleinliche	kleinliche	ADJA	kleinlich	-	14	-	|div_other|front|text|	front/div/p	6	1
+Scheu	Scheu	Scheu	NN	Scheu	-	14	-	|div_other|front|text|	front/div/p	6	1
+so	ſo	so	ADV	so	-	14	-	|div_other|front|text|	front/div/p	7	1
+wenig	wenig	wenig	PIS	wenig	-	14	-	|div_other|front|text|	front/div/p	7	1
+als	als	als	KOKOM	als	-	14	-	|div_other|front|text|	front/div/p	7	1
+eitle	eitle	eitle	ADJA	eitel	-	14	-	|div_other|front|text|	front/div/p	7	1
+Absicht	Abſicht	Absicht	NN	Absicht	-	14	-	|div_other|front|text|	front/div/p	7	1
+hier	hier	hier	ADV	hier	-	14	-	|div_other|front|text|	front/div/p	7	1
+vorwalten	vorwalten	vorwalten	VVINF	vorwalten	-	14	-	|div_other|front|text|	front/div/p	7	1
+.	.	.	$.	.	-	14	-	|div_other|front|text|	front/div/p	7	0
+
+%%$DDC:BREAK.s[2788131]=69631309
+Manches	Manches	Manches	PIS	manche	-	14	-	|div_other|front|text|	front/div/p	7	1
+lag	lag	lag	VVFIN	liegen	-	14	-	|div_other|front|text|	front/div/p	7	1
+auf	auf	auf	APPR	auf	-	14	-	|div_other|front|text|	front/div/p	8	1
+dem	dem	dem	ART	d	-	14	-	|div_other|front|text|	front/div/p	8	1
+Wege	Wege	Wege	NN	Weg	-	14	-	|div_other|front|text|	front/div/p	8	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	8	0
+war	war	war	VAFIN	sein	-	14	-	|div_other|front|text|	front/div/p	8	1
+nicht	nicht	nicht	PTKNEG	nicht	-	14	-	|div_other|front|text|	front/div/p	8	1
+zu	zu	zu	PTKZU	zu	-	14	-	|div_other|front|text|	front/div/p	8	1
+umgehen	umgehen	umgehen	VVINF	umgehen	-	14	-	|div_other|front|text|	front/div/p	8	1
+;	;	;	$.	;	-	14	-	|div_other|front|text|	front/div/p	8	0
+so	ſo	so	ADV	so	-	14	-	|div_other|front|text|	front/div/p	8	1
+wurde	wurde	wurde	VAFIN	werden	-	14	-	|div_other|front|text|	front/div/p	8	1
+denn	denn	denn	ADV	denn	-	14	-	|div_other|front|text|	front/div/p	8	1
+darüber	darüber	darüber	PAV	darüber	-	14	-	|div_other|front|text|	front/div/p	9	1
+hingeschritten	hingeſchritten	hingeschritten	VVPP	hinschreiten	-	14	-	|div_other|front|text|	front/div/p	9	1
+;	;	;	$.	;	-	14	-	|div_other|front|text|	front/div/p	9	0
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	9	1
+länger	länger	länger	ADJD	lang	-	14	-	|div_other|front|text|	front/div/p	9	1
+als	als	als	KOKOM	als	-	14	-	|div_other|front|text|	front/div/p	9	1
+nöthig	nöthig	nötig	ADJD	nötig	-	14	-	|div_other|front|text|	front/div/p	9	1
+dabei	dabei	dabei	PAV	dabei	-	14	-	|div_other|front|text|	front/div/p	9	1
+stehen	ſtehen	stehen	VVINF	stehen	-	14	-	|div_other|front|text|	front/div/p	9	1
+zu	zu	zu	PTKZU	zu	-	14	-	|div_other|front|text|	front/div/p	10	1
+bleiben	bleiben	bleiben	VVINF	bleiben	-	14	-	|div_other|front|text|	front/div/p	10	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	10	0
+wäre	wäre	wäre	VAFIN	sein	-	14	-	|div_other|front|text|	front/div/p	10	1
+die	die	die	ART	d	-	14	-	|div_other|front|text|	front/div/p	10	1
+Schuld	Schuld	Schuld	NN	Schuld	-	14	-	|div_other|front|text|	front/div/p	10	1
+des	des	des	ART	d	-	14	-	|div_other|front|text|	front/div/p	10	1
+Lesers	Leſers	Lesers	NN	Leser	-	14	-	|div_other|front|text|	front/div/p	10	1
+.	.	.	$.	.	-	14	-	|div_other|front|text|	front/div/p	10	0
+
+%%$DDC:BREAK.s[2788132]=69631341
+--	—	--	$(	--	-	14	-	|div_other|front|text|	front/div/p	10	1
+Der	Der	Der	ART	d	-	14	-	|div_other|front|text|	front/div/p	10	1
+Wiederabdruck	Wiederabdruck	Wiederabdruck	NN	Wiederabdruck	-	14	-	|div_other|front|text|	front/div/p	11	1
+machte	machte	machte	VVFIN	machen	-	14	-	|div_other|front|text|	front/div/p	11	1
+die	die	die	ART	d	-	14	-	|div_other|front|text|	front/div/p	11	1
+Berichtigung	Berichtigung	Berichtigung	NN	Berichtigung	-	14	-	|div_other|front|text|	front/div/p	11	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	11	1
+Ergänzung	Ergänzung	Ergänzung	NN	Ergänzung	-	14	-	|div_other|front|text|	front/div/p	11	1
+mancher	mancher	mancher	PIAT	manche	-	14	-	|div_other|front|text|	front/div/p	12	1
+Stellen	Stellen	Stellen	NN	Stelle	-	14	-	|div_other|front|text|	front/div/p	12	1
+möglich	möglich	möglich	ADJD	möglich	-	14	-	|div_other|front|text|	front/div/p	12	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	12	0
+wo	wo	wo	PWAV	wo	-	14	-	|div_other|front|text|	front/div/p	12	1
+vorher	vorher	vorher	ADV	vorher	-	14	-	|div_other|front|text|	front/div/p	12	1
+nur	nur	nur	ADV	nur	-	14	-	|div_other|front|text|	front/div/p	12	1
+ungenaue	ungenaue	ungenaue	ADJA	ungenau	-	14	-	|div_other|front|text|	front/div/p	12	1
+Abschriften	Abſchriften	Abschriften	NN	Abschrift	-	14	-	|div_other|front|text|	front/div/p	12	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	13	1
+Auszüge	Auszüge	Auszüge	NN	Auszug	-	14	-	|div_other|front|text|	front/div/p	13	1
+gedient	gedient	gedient	VVPP	dienen	-	14	-	|div_other|front|text|	front/div/p	13	1
+hatten	hatten	hatten	VAFIN	haben	-	14	-	|div_other|front|text|	front/div/p	13	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	13	0
+nunmehr	nunmehr	nunmehr	ADV	nunmehr	-	14	-	|div_other|front|text|	front/div/p	13	1
+aber	aber	aber	ADV	aber	-	14	-	|div_other|front|text|	front/div/p	13	1
+die	die	die	ART	d	-	14	-	|div_other|front|text|	front/div/p	13	1
+Urschriften	Urſchriften	Urschriften	NN	Urschrift	-	14	-	|div_other|front|text|	front/div/p	14	1
+zur	zur	zur	APPRART	zur	-	14	-	|div_other|front|text|	front/div/p	14	1
+Hand	Hand	Hand	NN	Hand	-	14	-	|div_other|front|text|	front/div/p	14	1
+waren	waren	waren	VAFIN	sein	-	14	-	|div_other|front|text|	front/div/p	14	1
+.	.	.	$.	.	-	14	-	|div_other|front|text|	front/div/p	14	0
+
+%%$DDC:BREAK.s[2788133]=69631371
+Freilich	Freilich	Freilich	ADV	freilich	-	14	-	|div_other|front|text|	front/div/p	14	1
+bleiben	bleiben	bleiben	VVFIN	bleiben	-	14	-	|div_other|front|text|	front/div/p	14	1
+auch	auch	auch	ADV	auch	-	14	-	|div_other|front|text|	front/div/p	14	1
+jetzt	jetzt	jetzt	ADV	jetzt	-	14	-	|div_other|front|text|	front/div/p	14	1
+noch	noch	noch	ADV	noch	-	14	-	|div_other|front|text|	front/div/p	15	1
+immer	immer	immer	ADV	immer	-	14	-	|div_other|front|text|	front/div/p	15	1
+Auslassungen	Auslaſſungen	Auslassungen	NN	Auslaßung	-	14	-	|div_other|front|text|	front/div/p	15	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	15	1
+Lücken	Lücken	Lücken	NN	Lücke	-	14	-	|div_other|front|text|	front/div/p	15	1
+genug	genug	genug	ADV	genug	-	14	-	|div_other|front|text|	front/div/p	15	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	15	0
+indem	indem	indem	KOUS	indem	-	14	-	|div_other|front|text|	front/div/p	15	1
+vieles	vieles	vieles	PIS	vieles	-	14	-	|div_other|front|text|	front/div/p	15	1
+Geschriebene	Geſchriebene	Geschriebene	NN	Geschreibene	-	14	-	|div_other|front|text|	front/div/p	16	1
+verloren	verloren	verloren	VVPP	verlieren	-	14	-	|div_other|front|text|	front/div/p	16	1
+oder	oder	oder	KON	oder	-	14	-	|div_other|front|text|	front/div/p	16	1
+noch	noch	noch	ADV	noch	-	14	-	|div_other|front|text|	front/div/p	16	1
+nicht	nicht	nicht	PTKNEG	nicht	-	14	-	|div_other|front|text|	front/div/p	16	1
+eingesammelt	eingeſammelt	eingesammelt	VVPP	einsammeln	-	14	-	|div_other|front|text|	front/div/p	16	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	16	0
+anderes	anderes	anderes	PIS	andere	-	14	-	|div_other|front|text|	front/div/p	16	1
+mit	mit	mit	APPR	mit	-	14	-	|div_other|front|text|	front/div/p	17	1
+Absicht	Abſicht	Absicht	NN	Absicht	-	14	-	|div_other|front|text|	front/div/p	17	1
+zurückbehalten	zurückbehalten	zurückbehalten	VVPP	zurückbehalten	-	14	-	|div_other|front|text|	front/div/p	17	1
+ist	iſt	ist	VAFIN	sein	-	14	-	|div_other|front|text|	front/div/p	17	1
+;	;	;	$.	;	-	14	-	|div_other|front|text|	front/div/p	17	0
+aber	aber	aber	ADV	aber	-	14	-	|div_other|front|text|	front/div/p	17	1
+die	die	die	ART	d	-	14	-	|div_other|front|text|	front/div/p	17	1
+Möglichkeit	Möglichkeit	Möglichkeit	NN	Möglichkeit	-	14	-	|div_other|front|text|	front/div/p	17	1
+vollständiger	vollſtändiger	vollständiger	ADJA	vollständig	-	14	-	|div_other|front|text|	front/div/p	17	1
+Mittheilung	Mittheilung	Mitteilung	NN	Mitteilung	-	14	-	|div_other|front|text|	front/div/p	18	1
+wird	wird	wird	VAFIN	werden	-	14	-	|div_other|front|text|	front/div/p	18	1
+hier	hier	hier	ADV	hier	-	14	-	|div_other|front|text|	front/div/p	18	1
+durch	durch	durch	APPR	durch	-	14	-	|div_other|front|text|	front/div/p	18	1
+Erfordernisse	Erforderniſſe	Erfordernisse	NN	Erfordernis	-	14	-	|div_other|front|text|	front/div/p	18	1
+bedingt	bedingt	bedingt	ADJD	bedingt	-	14	-	|div_other|front|text|	front/div/p	18	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	19	0
+denen	denen	denen	PRELS	die	-	14	-	|div_other|front|text|	front/div/p	19	1
+nur	nur	nur	ADV	nur	-	14	-	|div_other|front|text|	front/div/p	19	1
+in	in	in	APPR	in	-	14	-	|div_other|front|text|	front/div/p	19	1
+einer	einer	einer	ART	eine	-	14	-	|div_other|front|text|	front/div/p	19	1
+größeren	größeren	größeren	ADJA	groß	-	14	-	|div_other|front|text|	front/div/p	19	1
+Zahl	Zahl	Zahl	NN	Zahl	-	14	-	|div_other|front|text|	front/div/p	19	1
+von	von	von	APPR	von	-	14	-	|div_other|front|text|	front/div/p	19	1
+Bänden	Bänden	Bänden	NN	Band	-	14	-	|div_other|front|text|	front/div/p	19	1
+und	und	und	KON	und	-	14	-	|div_other|front|text|	front/div/p	20	1
+erst	erſt	erst	ADV	erst	-	14	-	|div_other|front|text|	front/div/p	20	1
+in	in	in	APPR	in	-	14	-	|div_other|front|text|	front/div/p	20	1
+vielen	vielen	vielen	PIAT	viel	-	14	-	|div_other|front|text|	front/div/p	20	1
+Jahren	Jahren	Jahren	NN	Jahr	-	14	-	|div_other|front|text|	front/div/p	20	1
+zu	zu	zu	PTKZU	zu	-	14	-	|div_other|front|text|	front/div/p	20	1
+entsprechen	entſprechen	entsprechen	VVINF	entsprechen	-	14	-	|div_other|front|text|	front/div/p	20	1
+sein	ſein	sein	VAINF	sein	-	14	-	|div_other|front|text|	front/div/p	20	1
+dürfte	dürfte	dürfte	VMFIN	dürfen	-	14	-	|div_other|front|text|	front/div/p	20	1
+.	.	.	$.	.	-	14	-	|div_other|front|text|	front/div/p	20	0
+
+%%$DDC:BREAK.s[2788134]=69631426
+%%$DDC:BREAK.p[1008787]=69631426
+Berlin	Berlin	Berlin	NE	Berlin	-	14	-	|div_other|front|text|	front/div/p	21	1
+,	,	,	$,	,	-	14	-	|div_other|front|text|	front/div/p	21	0
+im	im	im	APPRART	im	-	14	-	|div_other|front|text|	front/div/p	21	1
+December	December	Dezember	NN	Dezember	-	14	-	|div_other|front|text|	front/div/p	21	1
+1833	1833	1833	CARD	1833	-	14	-	|div_other|front|text|	front/div/p	21	1
+.	.	.	$.	.	-	14	-	|div_other|front|text|	front/div/p	21	0
+
+%%$DDC:BREAK.s[2788135]=69631432
+%%$DDC:BREAK.p[1008788]=69631432
+Rahel	Rahel	Rahel	NN	Rahel	-	15	-	|body|div_other|text|	body/div/p	1	1
+Antonie	Antonie	Antonie	NE	Antonie	-	15	-	|body|div_other|text|	body/div/p	1	1
+Friederike	Friederike	Friederike	NE	Friederike	-	15	-	|body|div_other|text|	body/div/p	1	1
+Varnhagen	Varnhagen	Varnhagen	NE	Varnhagen	-	15	-	|body|div_other|text|	body/div/p	1	1
+von	von	von	APPR	von	-	15	-	|body|div_other|text|	body/div/p	1	1
+Ense	Enſe	Ense	NE	Ense	-	15	-	|body|div_other|text|	body/div/p	1	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	1	0
+geborne	geborne	geborene	ADJA	gebären	-	15	-	|body|div_other|text|	body/div/p	1	1
+Rahel	Rahel	Rahel	NN	Rahel	-	15	-	|body|div_other|text|	body/div/p	2	1
+Levin	Levin	Levin	NE	Levin	-	15	-	|body|div_other|text|	body/div/p	2	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	2	0
+nachher	nachher	nachher	ADV	nachher	-	15	-	|body|div_other|text|	body/div/p	2	1
+unter	unter	unter	APPR	unter	-	15	-	|body|div_other|text|	body/div/p	2	1
+dem	dem	dem	ART	d	-	15	-	|body|div_other|text|	body/div/p	2	1
+Familiennamen	Familiennamen	Familiennamen	NN	Familienname	-	15	-	|body|div_other|text|	body/div/p	2	1
+Robert	Robert	Robert	NE	Robert	-	15	-	|body|div_other|text|	body/div/p	2	1
+bekannt	bekannt	bekannt	PTKVZ	bekannt	-	15	-	|body|div_other|text|	body/div/p	2	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	3	0
+wurde	wurde	wurde	VAFIN	werden	-	15	-	|body|div_other|text|	body/div/p	3	1
+geboren	geboren	geboren	VVPP	gebären	-	15	-	|body|div_other|text|	body/div/p	3	1
+zu	zu	zu	APPR	zu	-	15	-	|body|div_other|text|	body/div/p	3	1
+Berlin	Berlin	Berlin	NE	Berlin	-	15	-	|body|div_other|text|	body/div/p	3	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	3	0
+am	am	am	APPRART	am	-	15	-	|body|div_other|text|	body/div/p	3	1
+ersten	erſten	ersten	ADJA	erst	-	15	-	|body|div_other|text|	body/div/p	3	1
+Pfingstfeiertage	Pfingſtfeiertage	Pfingstfeiertage	NN	Pfingstfeiertag	-	15	-	|body|div_other|text|	body/div/p	3	1
+des	des	des	ART	d	-	15	-	|body|div_other|text|	body/div/p	4	1
+Jahres	Jahres	Jahres	NN	Jahr	-	15	-	|body|div_other|text|	body/div/p	4	1
+1771	1771	1771	CARD	1771	-	15	-	|body|div_other|text|	body/div/p	4	1
+.	.	.	$.	.	-	15	-	|body|div_other|text|	body/div/p	4	0
+
+%%$DDC:BREAK.s[2788136]=69631462
+Sie	Sie	Sie	PPER	sie	-	15	-	|body|div_other|text|	body/div/p	4	1
+starb	ſtarb	starb	VVFIN	sterben	-	15	-	|body|div_other|text|	body/div/p	4	1
+daselbst	daſelbſt	daselbst	PAV	daselbst	-	15	-	|body|div_other|text|	body/div/p	4	1
+am	am	am	APPRART	am	-	15	-	|body|div_other|text|	body/div/p	4	1
+7.	7.	7.	ADJA	7.	-	15	-	|body|div_other|text|	body/div/p	4	1
+März	März	März	NN	März	-	15	-	|body|div_other|text|	body/div/p	4	1
+des	des	des	ART	d	-	15	-	|body|div_other|text|	body/div/p	4	1
+Jahres	Jahres	Jahres	NN	Jahr	-	15	-	|body|div_other|text|	body/div/p	4	1
+1833	1833	1833	CARD	1833	-	15	-	|body|div_other|text|	body/div/p	5	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	5	0
+noch	noch	noch	ADV	noch	-	15	-	|body|div_other|text|	body/div/p	5	1
+nicht	nicht	nicht	PTKNEG	nicht	-	15	-	|body|div_other|text|	body/div/p	5	1
+zweiundsechszig	zweiundſechszig	zweiundsechszig	ADJA	zweiundsechszig	-	15	-	|body|div_other|text|	body/div/p	5	1
+Jahr	Jahr	Jahr	NN	Jahr	-	15	-	|body|div_other|text|	body/div/p	5	1
+alt	alt	alt	ADJD	alt	-	15	-	|body|div_other|text|	body/div/p	5	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	5	0
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	5	1
+erst	erſt	erst	ADV	erst	-	15	-	|body|div_other|text|	body/div/p	5	1
+im	im	im	APPRART	im	-	15	-	|body|div_other|text|	body/div/p	5	1
+neunzehnten	neunzehnten	neunzehnten	ADJA	neunzehnt	-	15	-	|body|div_other|text|	body/div/p	6	1
+unsrer	unſrer	unserer	PPOSAT	unsere	-	15	-	|body|div_other|text|	body/div/p	6	1
+durch	durch	durch	APPR	durch	-	15	-	|body|div_other|text|	body/div/p	6	1
+die	die	die	ART	d	-	15	-	|body|div_other|text|	body/div/p	6	1
+tiefste	tiefſte	tiefste	ADJA	tief	-	15	-	|body|div_other|text|	body/div/p	6	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	6	1
+festeste	feſteſte	festeste	ADJA	fest	-	15	-	|body|div_other|text|	body/div/p	6	1
+Liebe	Liebe	Liebe	NN	Liebe	-	15	-	|body|div_other|text|	body/div/p	6	1
+geknüpften	geknüpften	geknüpften	ADJA	geknüpft	-	15	-	|body|div_other|text|	body/div/p	6	1
+Vereinigung	Vereinigung	Vereinigung	NN	Vereinigung	-	15	-	|body|div_other|text|	body/div/p	7	1
+.	.	.	$.	.	-	15	-	|body|div_other|text|	body/div/p	7	0
+
+%%$DDC:BREAK.s[2788137]=69631492
+%%$DDC:BREAK.p[1008789]=69631492
+Welches	Welches	Welches	PWAT	welches	-	15	-	|body|div_other|text|	body/div/p	8	1
+einzige	einzige	einzige	ADJA	einzig	-	15	-	|body|div_other|text|	body/div/p	8	1
+Glück	Glück	Glück	NN	Glück	-	15	-	|body|div_other|text|	body/div/p	8	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	8	0
+welchen	welchen	welchen	PWAT	welchen	-	15	-	|body|div_other|text|	body/div/p	8	1
+edlen	edlen	edlen	ADJA	edel	-	15	-	|body|div_other|text|	body/div/p	8	1
+Schatz	Schatz	Schatz	NN	Schatz	-	15	-	|body|div_other|text|	body/div/p	8	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	8	1
+reichen	reichen	reichen	ADJA	reich	-	15	-	|body|div_other|text|	body/div/p	8	1
+Trost	Troſt	Trost	NN	Trost	-	15	-	|body|div_other|text|	body/div/p	9	1
+ich	ich	ich	PPER	ich	-	15	-	|body|div_other|text|	body/div/p	9	1
+mit	mit	mit	APPR	mit	-	15	-	|body|div_other|text|	body/div/p	9	1
+der	der	der	ART	d	-	15	-	|body|div_other|text|	body/div/p	9	1
+ewig	ewig	ewig	ADJD	ewig	-	15	-	|body|div_other|text|	body/div/p	9	1
+theuren	theuren	teuren	ADJA	teuer	-	15	-	|body|div_other|text|	body/div/p	9	1
+Gattin	Gattin	Gattin	NN	Gattein	-	15	-	|body|div_other|text|	body/div/p	9	1
+verloren	verloren	verloren	VVPP	verlieren	-	15	-	|body|div_other|text|	body/div/p	9	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	9	0
+ist	iſt	ist	VAFIN	sein	-	15	-	|body|div_other|text|	body/div/p	9	1
+den	den	den	ART	d	-	15	-	|body|div_other|text|	body/div/p	9	1
+Freunden	Freunden	Freunden	NN	Freund	-	15	-	|body|div_other|text|	body/div/p	9	1
+wohlbekannt	wohlbekannt	wohlbekannt	ADJD	wohlbekannt	-	15	-	|body|div_other|text|	body/div/p	10	1
+;	;	;	$.	;	-	15	-	|body|div_other|text|	body/div/p	10	0
+meine	meine	meine	PPOSAT	meine	-	15	-	|body|div_other|text|	body/div/p	10	1
+Trauer	Trauer	Trauer	NN	Trauer	-	15	-	|body|div_other|text|	body/div/p	10	1
+braucht	braucht	braucht	VVFIN	brauchen	-	15	-	|body|div_other|text|	body/div/p	10	1
+es	es	es	PPER	es	-	15	-	|body|div_other|text|	body/div/p	10	1
+ihnen	ihnen	ihnen	PPER	sie	-	15	-	|body|div_other|text|	body/div/p	10	1
+nicht	nicht	nicht	PTKNEG	nicht	-	15	-	|body|div_other|text|	body/div/p	10	1
+zu	zu	zu	PTKZU	zu	-	15	-	|body|div_other|text|	body/div/p	10	1
+sagen	ſagen	sagen	VVINF	sagen	-	15	-	|body|div_other|text|	body/div/p	10	1
+;	;	;	$.	;	-	15	-	|body|div_other|text|	body/div/p	11	0
+sie	ſie	sie	PPER	sie	-	15	-	|body|div_other|text|	body/div/p	11	1
+fühlen	fühlen	fühlen	VVFIN	fühlen	-	15	-	|body|div_other|text|	body/div/p	11	1
+meinen	meinen	meinen	PPOSAT	meine	-	15	-	|body|div_other|text|	body/div/p	11	1
+Verlust	Verluſt	Verlust	NN	Verlust	-	15	-	|body|div_other|text|	body/div/p	11	1
+in	in	in	APPR	in	-	15	-	|body|div_other|text|	body/div/p	11	1
+demjenigen	demjenigen	demjenigen	PDS	diejenige	-	15	-	|body|div_other|text|	body/div/p	11	1
+mit	mit	mit	PTKVZ	mit	-	15	-	|body|div_other|text|	body/div/p	11	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	11	0
+der	der	der	PRELS	die	-	15	-	|body|div_other|text|	body/div/p	11	1
+auch	auch	auch	ADV	auch	-	15	-	|body|div_other|text|	body/div/p	11	1
+sie	ſie	sie	PPER	sie	-	15	-	|body|div_other|text|	body/div/p	12	1
+selbst	ſelbſt	selbst	ADV	selbst	-	15	-	|body|div_other|text|	body/div/p	12	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	12	0
+in	in	in	APPR	in	-	15	-	|body|div_other|text|	body/div/p	12	1
+mannigfacher	mannigfacher	mannigfacher	ADJA	mannigfach	-	15	-	|body|div_other|text|	body/div/p	12	1
+Abstufung	Abſtufung	Abstufung	NN	Abstufung	-	15	-	|body|div_other|text|	body/div/p	12	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	12	1
+Richtung	Richtung	Richtung	NN	Richtung	-	15	-	|body|div_other|text|	body/div/p	12	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	12	0
+aber	aber	aber	ADV	aber	-	15	-	|body|div_other|text|	body/div/p	12	1
+gewiß	gewiß	gewiß	ADV	gewiß	-	15	-	|body|div_other|text|	body/div/p	12	1
+Alle	Alle	Alle	PIAT	alle	-	15	-	|body|div_other|text|	body/div/p	13	1
+zu	zu	zu	PTKA	zu	-	15	-	|body|div_other|text|	body/div/p	13	1
+schmerzlich	ſchmerzlich	schmerzlich	ADJD	schmerzlich	-	15	-	|body|div_other|text|	body/div/p	13	1
+hoher	hoher	hoher	ADJA	hoch	-	15	-	|body|div_other|text|	body/div/p	13	1
+Würdigung	Würdigung	Würdigung	NN	Würdigung	-	15	-	|body|div_other|text|	body/div/p	13	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	13	0
+durch	durch	durch	APPR	durch	-	15	-	|body|div_other|text|	body/div/p	13	1
+dieses	dieſes	dieses	PDAT	diese	-	15	-	|body|div_other|text|	body/div/p	13	1
+Scheiden	Scheiden	Scheiden	NN	Scheide	-	15	-	|body|div_other|text|	body/div/p	13	1
+betroffen	betroffen	betroffen	VVPP	betreffen	-	15	-	|body|div_other|text|	body/div/p	14	1
+hat	hat	hat	VAFIN	haben	-	15	-	|body|div_other|text|	body/div/p	14	1
+.	.	.	$.	.	-	15	-	|body|div_other|text|	body/div/p	14	0
+
+%%$DDC:BREAK.s[2788138]=69631557
+Und	Und	Und	KON	und	-	15	-	|body|div_other|text|	body/div/p	14	1
+wenn	wenn	wenn	KOUS	wenn	-	15	-	|body|div_other|text|	body/div/p	14	1
+auch	auch	auch	ADV	auch	-	15	-	|body|div_other|text|	body/div/p	14	1
+der	der	der	ART	d	-	15	-	|body|div_other|text|	body/div/p	14	1
+volle	volle	volle	ADJA	voll	-	15	-	|body|div_other|text|	body/div/p	14	1
+Reichthum	Reichthum	Reichtum	NN	Reichtum	-	15	-	|body|div_other|text|	body/div/p	14	1
+dieses	dieſes	dieses	PDAT	diese	-	15	-	|body|div_other|text|	body/div/p	14	1
+von	von	von	APPR	von	-	15	-	|body|div_other|text|	body/div/p	15	1
+Geist	Geiſt	Geist	NN	Geist	-	15	-	|body|div_other|text|	body/div/p	15	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	15	1
+Liebe	Liebe	Liebe	NN	Liebe	-	15	-	|body|div_other|text|	body/div/p	15	1
+beseelten	beſeelten	beseelten	ADJA	beseelt	-	15	-	|body|div_other|text|	body/div/p	15	1
+Gemüthes	Gemüthes	Gemütes	NN	Gemüt	-	15	-	|body|div_other|text|	body/div/p	15	1
+nicht	nicht	nicht	PTKNEG	nicht	-	15	-	|body|div_other|text|	body/div/p	15	1
+unmittelbar	unmittelbar	unmittelbar	ADJD	unmittelbar	-	15	-	|body|div_other|text|	body/div/p	15	1
+jedem	jedem	jedem	PIAT	jede	-	15	-	|body|div_other|text|	body/div/p	16	1
+Auge	Auge	Auge	NN	Auge	-	15	-	|body|div_other|text|	body/div/p	16	1
+ganz	ganz	ganz	ADV	ganz	-	15	-	|body|div_other|text|	body/div/p	16	1
+entfaltet	entfaltet	entfaltet	VVPP	entfalten	-	15	-	|body|div_other|text|	body/div/p	16	1
+lag	lag	lag	VVFIN	liegen	-	15	-	|body|div_other|text|	body/div/p	16	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	16	0
+so	ſo	so	ADV	so	-	15	-	|body|div_other|text|	body/div/p	16	1
+bekennen	bekennen	bekennen	VVFIN	bekennen	-	15	-	|body|div_other|text|	body/div/p	16	1
+doch	doch	doch	ADV	doch	-	15	-	|body|div_other|text|	body/div/p	16	1
+Alle	Alle	Alle	PIS	alle	-	15	-	|body|div_other|text|	body/div/p	16	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	16	0
+die	die	die	PRELS	die	-	15	-	|body|div_other|text|	body/div/p	16	1
+auch	auch	auch	ADV	auch	-	15	-	|body|div_other|text|	body/div/p	17	1
+nur	nur	nur	ADV	nur	-	15	-	|body|div_other|text|	body/div/p	17	1
+Momente	Momente	Momente	NN	Moment	-	15	-	|body|div_other|text|	body/div/p	17	1
+dieses	dieſes	dieses	PDAT	diese	-	15	-	|body|div_other|text|	body/div/p	17	1
+in	in	in	APPR	in	-	15	-	|body|div_other|text|	body/div/p	17	1
+Wohlwollen	Wohlwollen	Wohlwollen	NN	Wohlwollen	-	15	-	|body|div_other|text|	body/div/p	17	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	17	1
+Wahrheitseifer	Wahrheitseifer	Wahrheitseifer	NN	Wahrheitseifer	-	15	-	|body|div_other|text|	body/div/p	17	1
+stets	ſtets	stets	ADV	stets	-	15	-	|body|div_other|text|	body/div/p	18	1
+erregten	erregten	erregten	ADJA	erregt	-	15	-	|body|div_other|text|	body/div/p	18	1
+Lebens	Lebens	Lebens	NN	Leben	-	15	-	|body|div_other|text|	body/div/p	18	1
+angeschaut	angeſchaut	angeschaut	VVPP	anschauen	-	15	-	|body|div_other|text|	body/div/p	18	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	18	0
+daß	daß	daß	KOUS	daß	-	15	-	|body|div_other|text|	body/div/p	18	1
+sie	ſie	sie	PPER	sie	-	15	-	|body|div_other|text|	body/div/p	18	1
+von	von	von	APPR	von	-	15	-	|body|div_other|text|	body/div/p	18	1
+dieser	dieſer	dieser	PDAT	diese	-	15	-	|body|div_other|text|	body/div/p	18	1
+Erscheinung	Erſcheinung	Erscheinung	NN	Erscheinung	-	15	-	|body|div_other|text|	body/div/p	18	1
+einen	einen	einen	ART	eine	-	15	-	|body|div_other|text|	body/div/p	19	1
+seltenen	ſeltenen	seltenen	ADJA	selten	-	15	-	|body|div_other|text|	body/div/p	19	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	19	1
+ahndungsvollen	ahndungsvollen	ahndungsvollen	ADJA	ahndungsvoll	-	15	-	|body|div_other|text|	body/div/p	19	1
+Eindruck	Eindruck	Eindruck	NN	Eindruck	-	15	-	|body|div_other|text|	body/div/p	19	1
+der	der	der	ART	d	-	15	-	|body|div_other|text|	body/div/p	19	1
+eigenthümlichsten	eigenthümlichſten	eigentümlichsten	ADJA	eigentümlich	-	15	-	|body|div_other|text|	body/div/p	20	1
+Kraft	Kraft	Kraft	NN	Kraft	-	15	-	|body|div_other|text|	body/div/p	20	1
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	20	1
+Anmuth	Anmuth	Anmut	NN	Anmut	-	15	-	|body|div_other|text|	body/div/p	20	1
+empfangen	empfangen	empfangen	VVPP	empfangen	-	15	-	|body|div_other|text|	body/div/p	20	1
+haben	haben	haben	VAINF	haben	-	15	-	|body|div_other|text|	body/div/p	20	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	20	0
+der	der	der	PRELS	die	-	15	-	|body|div_other|text|	body/div/p	20	1
+jeder	jeder	jeder	PIAT	jede	-	15	-	|body|div_other|text|	body/div/p	21	1
+freigebigsten	freigebigſten	freigebigsten	ADJA	freigebig	-	15	-	|body|div_other|text|	body/div/p	21	1
+Voraussetzung	Vorausſetzung	Voraussetzung	NN	Voraussetzung	-	15	-	|body|div_other|text|	body/div/p	21	1
+Raum	Raum	Raum	NN	Raum	-	15	-	|body|div_other|text|	body/div/p	21	1
+giebt	giebt	gibt	VVFIN	geben	-	15	-	|body|div_other|text|	body/div/p	21	1
+,	,	,	$,	,	-	15	-	|body|div_other|text|	body/div/p	21	0
+und	und	und	KON	und	-	15	-	|body|div_other|text|	body/div/p	21	1
+Alle	Alle	Alle	PIS	alle	-	15	-	|body|div_other|text|	body/div/p	21	1
+mitfühlend	mitfühlend	mitfühlend	ADJD	mitfühlend	-	15	-	|body|div_other|text|	body/div/p	21	1
+unsrer	unſrer	unserer	PPOSAT	unsere	-	15	-	|body|div_other|text|	body/div/p	22	1
+Wehklage	Wehklage	Wehklage	NN	Wehklage	-	15	-	|body|div_other|text|	body/div/p	22	1
+beistimmen	beiſtimmen	beistimmen	VVINF	beistimmen	-	15	-	|body|div_other|text|	body/div/p	22	1
+läßt	läßt	läßt	VVFIN	lassen	-	15	-	|body|div_other|text|	body/div/p	22	1
+.	.	.	$.	.	-	15	-	|body|div_other|text|	body/div/p	22	0
+
+%%$DDC:BREAK.s[2788139]=69631630
+%%$DDC:BREAK.p[1008790]=69631630
+Von	Von	Von	APPR	von	-	16	-	|body|div_other|text|	body/div/p	1	1
+vielen	vielen	vielen	PIAT	viel	-	16	-	|body|div_other|text|	body/div/p	1	1
+Seiten	Seiten	Seiten	NN	Seite	-	16	-	|body|div_other|text|	body/div/p	1	1
+,	,	,	$,	,	-	16	-	|body|div_other|text|	body/div/p	1	0
+aus	aus	aus	APPR	aus	-	16	-	|body|div_other|text|	body/div/p	1	1
+einem	einem	einem	ART	eine	-	16	-	|body|div_other|text|	body/div/p	1	1
+weiten	weiten	weiten	ADJA	weit	-	16	-	|body|div_other|text|	body/div/p	1	1
+Kreise	Kreiſe	Kreise	NN	Kreis	-	16	-	|body|div_other|text|	body/div/p	1	1
+edler	edler	edler	ADJA	edel	-	16	-	|body|div_other|text|	body/div/p	1	1
+Freunde	Freunde	Freunde	NN	Freund	-	16	-	|body|div_other|text|	body/div/p	1	1
+und	und	und	KON	und	-	16	-	|body|div_other|text|	body/div/p	2	1
+trauter	trauter	trauter	ADJA	traut	-	16	-	|body|div_other|text|	body/div/p	2	1
+Bekannten	Bekannten	Bekannten	NN	Bekannte	-	16	-	|body|div_other|text|	body/div/p	2	1
+,	,	,	$,	,	-	16	-	|body|div_other|text|	body/div/p	2	0
+werde	werde	werde	VAFIN	werden	-	16	-	|body|div_other|text|	body/div/p	2	1
+ich	ich	ich	PPER	ich	-	16	-	|body|div_other|text|	body/div/p	2	1
+dringend	dringend	dringend	ADJD	dringend	-	16	-	|body|div_other|text|	body/div/p	2	1
+aufgefordert	aufgefordert	aufgefordert	VVPP	auffordern	-	16	-	|body|div_other|text|	body/div/p	2	1
+,	,	,	$,	,	-	16	-	|body|div_other|text|	body/div/p	2	0
+ihrem	ihrem	ihrem	PPOSAT	ihr	-	16	-	|body|div_other|text|	body/div/p	2	1
+treuen	treuen	treuen	ADJA	treu	-	16	-	|body|div_other|text|	body/div/p	3	1
+und	und	und	KON	und	-	16	-	|body|div_other|text|	body/div/p	3	1
+beeiferten	beeiferten	beeiferten	ADJA	beeifert	-	16	-	|body|div_other|text|	body/div/p	3	1
+Antheil	Antheil	Anteil	NN	Anteil	-	16	-	|body|div_other|text|	body/div/p	3	1
+einige	einige	einige	PIAT	einige	-	16	-	|body|div_other|text|	body/div/p	3	1
+Nachrichten	Nachrichten	Nachrichten	NN	Nachricht	-	16	-	|body|div_other|text|	body/div/p	3	1
+über	über	über	APPR	über	-	16	-	|body|div_other|text|	body/div/p	3	1
+die	die	die	ART	d	-	16	-	|body|div_other|text|	body/div/p	3	1
+letzten	letzten	letzten	ADJA	letzte	-	16	-	|body|div_other|text|	body/div/p	3	1
+Zeiten	Zeiten	Zeiten	NN	Zeit	-	16	-	|body|div_other|text|	body/div/p	4	1
+der	der	der	ART	d	-	16	-	|body|div_other|text|	body/div/p	4	1
+geliebten	geliebten	geliebten	ADJA	geliebt	-	16	-	|body|div_other|text|	body/div/p	4	1
+Freundin	Freundin	Freundin	NN	Freundin	-	16	-	|body|div_other|text|	body/div/p	4	1
+zu	zu	zu	PTKZU	zu	-	16	-	|body|div_other|text|	body/div/p	4	1
+geben	geben	geben	VVINF	geben	-	16	-	|body|div_other|text|	body/div/p	4	1
+,	,	,	$,	,	-	16	-	|body|div_other|text|	body/div/p	4	0
+und	und	und	KON	und	-	16	-	|body|div_other|text|	body/div/p	4	1
+auch	auch	auch	ADV	auch	-	16	-	|body|div_other|text|	body/div/p	4	1
+vielfach	vielfach	vielfach	ADV	vielfach	-	16	-	|body|div_other|text|	body/div/p	4	1
+wird	wird	wird	VAFIN	werden	-	16	-	|body|div_other|text|	body/div/p	5	1
+von	von	von	APPR	von	-	16	-	|body|div_other|text|	body/div/p	5	1
+Nahen	Nahen	Nahen	ADJA	nah	-	16	-	|body|div_other|text|	body/div/p	5	1
+und	und	und	KON	und	-	16	-	|body|div_other|text|	body/div/p	5	1
+Entfernten	Entfernten	Entfernten	NN	Entfernte	-	16	-	|body|div_other|text|	body/div/p	5	1
+der	der	der	ART	d	-	16	-	|body|div_other|text|	body/div/p	5	1
+lebhafte	lebhafte	lebhafte	ADJA	lebhaft	-	16	-	|body|div_other|text|	body/div/p	5	1
+Wunsch	Wunſch	Wunsch	NN	Wunsch	-	16	-	|body|div_other|text|	body/div/p	5	1
+ausgesprochen	ausgeſprochen	ausgesprochen	VVPP	aussprechen	-	16	-	|body|div_other|text|	body/div/p	5	1
+,	,	,	$,	,	-	16	-	|body|div_other|text|	body/div/p	6	0
+dieser	dieſer	dieser	PDAT	diese	-	16	-	|body|div_other|text|	body/div/p	6	1
+Gabe	Gabe	Gabe	NN	Gabe	-	16	-	|body|div_other|text|	body/div/p	6	1
+zugleich	zugleich	zugleich	ADV	zugleich	-	16	-	|body|div_other|text|	body/div/p	6	1
+eine	eine	eine	ART	eine	-	16	-	|body|div_other|text|	body/div/p	6	1
+Auswahl	Auswahl	Auswahl	NN	Auswahl	-	16	-	|body|div_other|text|	body/div/p	6	1
+denkwürdiger	denkwürdiger	denkwürdiger	ADJA	denkwürdig	-	16	-	|body|div_other|text|	body/div/p	6	1
+Zeugnisse	Zeugniſſe	Zeugnisse	NN	Zeugnis	-	16	-	|body|div_other|text|	body/div/p	7	1
+von	von	von	APPR	von	-	16	-	|body|div_other|text|	body/div/p	7	1
+der	der	der	ART	d	-	16	-	|body|div_other|text|	body/div/p	7	1
+Geistes-	Geiſtes-	Geistes-	TRUNC	geistes-	-	16	-	|body|div_other|text|	body/div/p	7	1
+und	und	und	KON	und	-	16	-	|body|div_other|text|	body/div/p	7	1
+Sinnesart	Sinnesart	Sinnesart	NN	Sinnesart	-	16	-	|body|div_other|text|	body/div/p	7	1
+hinzuzufügen	hinzuzufügen	hinzuzufügen	VVIZU	hinzufügen	-	16	-	|body|div_other|text|	body/div/p	7	1
+,	,	,	$,	,	-	16	-	|body|div_other|text|	body/div/p	7	0
+durch	durch	durch	APPR	durch	-	16	-	|body|div_other|text|	body/div/p	7	1
+welche	welche	welche	PRELS	welche	-	16	-	|body|div_other|text|	body/div/p	8	1
+die	die	die	ART	d	-	16	-	|body|div_other|text|	body/div/p	8	1
+Dahingeschiedene	Dahingeſchiedene	Dahingeschiedene	NN	Dahingeschiedene	-	16	-	|body|div_other|text|	body/div/p	8	1
+ihnen	ihnen	ihnen	PPER	sie	-	16	-	|body|div_other|text|	body/div/p	8	1
+so	ſo	so	ADV	so	-	16	-	|body|div_other|text|	body/div/p	8	1
+bedeutend	bedeutend	bedeutend	ADJD	bedeutend	-	16	-	|body|div_other|text|	body/div/p	8	1
+und	und	und	KON	und	-	16	-	|body|div_other|text|	body/div/p	8	1
+werth	werth	wert	ADJD	wert	-	16	-	|body|div_other|text|	body/div/p	8	1
+geworden	geworden	geworden	VAPP	werden	-	16	-	|body|div_other|text|	body/div/p	9	1
+.	.	.	$.	.	-	16	-	|body|div_other|text|	body/div/p	9	0
