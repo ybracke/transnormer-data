@@ -37,3 +37,16 @@ def save_dataset_to_json_grouped_by_property(
         else:
             if f is not None:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def save_dataset_to_json(
+    dataset: datasets.Dataset, path_outfile: Union[str, os.PathLike]
+) -> None:
+    """Save a datasets.Dataset into a single JSONL file
+
+    Use this instead of `dataset.to_json` because it creates the same
+    separating whitespace as `save_dataset_to_json_grouped_by_property`
+    """
+    with open(path_outfile, "w") as f:
+        for row in dataset:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
