@@ -12,7 +12,7 @@ from transnormer_data.modifier.replace_token_1to1_modifier import (
 class ReplaceToken1to1ModifierTester(unittest.TestCase):
     def setUp(self) -> None:
         self.dataset = None
-        self.modifier = ReplaceToken1to1Modifier(self.dataset, mapping_files=[])
+        self.modifier = ReplaceToken1to1Modifier(mapping_files=[])
         self.mapping_files = ["tests/testdata/type-replacements/old2new.tsv"]
 
     def tearDown(self) -> None:
@@ -145,12 +145,11 @@ class ReplaceToken1to1ModifierTester(unittest.TestCase):
 
     def test_modify_dataset(self) -> None:
         mapping_files = ["tests/testdata/type-replacements/old2new.tsv"]
-        data_files = ["tests/testdata/jsonl/varnhagen_rahel01_1834.jsonl"]
+        data_files = ["tests/testdata/jsonl/dtak/varnhagen_rahel01_1834.jsonl"]
         mapping = self.modifier._load_replacement_mapping(mapping_files)
         dataset = datasets.load_dataset("json", data_files=data_files, split="train")
-        self.modifier.dataset = dataset
         self.modifier.type_mapping = mapping
-        dataset_mod = self.modifier.modify_dataset()
+        dataset_mod = self.modifier.modify_dataset(dataset)
         assert (
             dataset[9]["norm"]
             == "Diese Bezeichnung darf indes auch jetzt, da jenem Verlangen nachgegeben wird, im vollen Sinne fortdauern; denn noch immer sind es wesentlich die Freunde, für welche der neue Abdruck Stadt findet, nur daß den im Leben gekannten jetzt auch die nach dem Scheiden erworbenen und künftigen sich anschließen."

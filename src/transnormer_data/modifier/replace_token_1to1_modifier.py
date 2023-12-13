@@ -12,7 +12,7 @@ from transnormer_data import utils
 
 
 class ReplaceToken1to1Modifier(BaseDatasetModifier):
-    def __init__(self, dataset: datasets.Dataset, mapping_files: List[str]) -> None:
+    def __init__(self, mapping_files: List[str]) -> None:
         """
         Example implementation of a type replacement modifier
 
@@ -20,8 +20,6 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         (here "norm_tok") and propagates the changes to the raw version ("norm")
 
         """
-        # Dataset
-        self.dataset = dataset
 
         # Keys in the sample dictionary
         self.raw = "norm"
@@ -41,18 +39,16 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         )
 
     def modify_dataset(
-        self, save_to: Optional[Union[str, os.PathLike]] = None
+        self, dataset: datasets.Dataset, save_to: Optional[Union[str, os.PathLike]] = None
     ) -> Union[datasets.Dataset, None]:
-        if self.dataset:
-            self.dataset = self.dataset.map(self.modify_sample)
-            return self.dataset
+        dataset = dataset.map(self.modify_sample)
         if save_to:
             if not os.path.isdir(save_to):
                 os.makedirs(save_to)
             utils.save_dataset_to_json_grouped_by_property(
-                self.dataset, property="basename", path_outdir=save_to
+                dataset, property="basename", path_outdir=save_to
             )
-        return None
+        return dataset
 
     def modify_sample(self, sample: Dict) -> Dict:
         """

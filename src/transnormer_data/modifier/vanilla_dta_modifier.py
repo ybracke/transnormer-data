@@ -8,15 +8,13 @@ from transnormer_data.detokenizer import DtaEvalDetokenizer
 
 
 class VanillaDtaModifier(BaseDatasetModifier):
-    def __init__(self, dataset: Optional[datasets.Dataset] = None) -> None:
+    def __init__(self) -> None:
         """
         Modifier for the DtaEvalMaker
 
         This modifier simply calls the functions that compute raw versions, whitespace and alignments from the tokenized version.
 
         """
-        # Dataset
-        self.dataset = dataset
 
         # Keys for the relevant properties
         self.key_src_raw = "orig"
@@ -48,11 +46,9 @@ class VanillaDtaModifier(BaseDatasetModifier):
             ],
         )
 
-    def modify_dataset(self) -> Union[datasets.Dataset, None]:
-        if self.dataset:
-            self.dataset = self.dataset.map(self.modify_sample)
-            return self.dataset
-        return None
+    def modify_dataset(self, dataset: datasets.Dataset) -> datasets.Dataset:
+        dataset = dataset.map(self.modify_sample)
+        return dataset
 
     def modify_sample(self, sample: Dict) -> Dict:
         """

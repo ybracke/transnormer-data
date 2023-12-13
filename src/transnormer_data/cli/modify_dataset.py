@@ -74,8 +74,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (4) Iterate over files lists, modify, save
     for files in files_list:
         dataset = datasets.load_dataset("json", data_files=files, split="train")
-        modifier.dataset = dataset
-        dataset = modifier.modify_dataset()
+        dataset = modifier.modify_dataset(dataset)
 
         # (4.x) Save
         if not os.path.isdir(output_dir):

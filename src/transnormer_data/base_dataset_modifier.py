@@ -1,6 +1,5 @@
 from typing import Any, Callable, Dict, List, Optional, Tuple
 
-import datasets
 import spacy
 from nltk.tokenize.treebank import TreebankWordDetokenizer
 
@@ -13,20 +12,10 @@ class BaseDatasetModifier:
     """Base class for implementation of modifiers"""
 
     def __init__(
-        self, dataset: Optional[datasets.Dataset] = None, spacy_model: str = MODEL
+        self, spacy_model: str = MODEL
     ) -> None:
-        self.dataset = dataset
         self.nlp = spacy.load(spacy_model)
         self.detokenizer: Optional[TreebankWordDetokenizer] = None
-
-        # self.modify_functions: Dict[Callable, dict]
-
-    # def modify_dataset(self) -> None:
-    #     """Apply the specified modification(s) to the entire dataset"""
-    #     for func, args in self.modify_functions:
-    #         self.dataset = self.dataset.map(
-    #             self.modify_sample(func), fn_kwargs=args, batched=False
-    #         )
 
     def update_tok_from_raw(
         self, sample: Dict, key_raw: str, key_tok: str, key_ws: str
