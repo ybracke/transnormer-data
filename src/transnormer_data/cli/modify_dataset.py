@@ -1,7 +1,9 @@
 import argparse
 import glob
 import os
+import time
 
+from datetime import datetime
 from typing import List, Optional
 
 import datasets
@@ -97,4 +99,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
 
 
 if __name__ == "__main__":
+    print(f"Current time: {datetime.now().time()}")
+    t = time.process_time()
     main()
+    elapsed_time = time.process_time() - t
+    print(f"Process took: {elapsed_time}")
+    print(f"Current time: {datetime.now().time()}")
