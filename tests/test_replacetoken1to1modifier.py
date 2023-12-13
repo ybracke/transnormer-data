@@ -2,6 +2,8 @@ import csv
 import pytest
 import unittest
 
+import datasets
+
 from transnormer_data.modifier.replace_token_1to1_modifier import (
     ReplaceToken1to1Modifier,
 )
@@ -140,3 +142,20 @@ class ReplaceToken1to1ModifierTester(unittest.TestCase):
         }
         result = self.modifier.modify_sample(input_sample)
         assert result == target
+
+    def test_modify_dataset(self) -> None:
+        mapping_files = ["tests/testdata/type-replacements/old2new.tsv"]
+        data_files = ["tests/testdata/jsonl/varnhagen_rahel01_1834.jsonl"]
+        mapping = self.modifier._load_replacement_mapping(mapping_files)
+        dataset = datasets.load_dataset("json", data_files=data_files, split="train")
+        self.modifier.dataset = dataset
+        self.modifier.type_mapping = mapping
+        dataset_mod = self.modifier.modify_dataset()
+        assert (
+            dataset[9]["norm"]
+            == "Diese Bezeichnung darf indes auch jetzt, da jenem Verlangen nachgegeben wird, im vollen Sinne fortdauern; denn noch immer sind es wesentlich die Freunde, für welche der neue Abdruck Stadt findet, nur daß den im Leben gekannten jetzt auch die nach dem Scheiden erworbenen und künftigen sich anschließen."
+        )
+        assert (
+            dataset_mod[9]["norm"]
+            == "Diese Bezeichnung darf indes auch jetzt, da jenem Verlangen nachgegeben wird, im vollen Sinne fortdauern; denn noch immer sind es wesentlich die Freunde, für welche der neue Abdruck Stadt findet, nur dass den im Leben gekannten jetzt auch die nach dem Scheiden erworbenen und künftigen sich anschließen."
+        )
