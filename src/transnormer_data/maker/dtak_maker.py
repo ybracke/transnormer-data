@@ -56,8 +56,7 @@ class DtakMaker(DtaMaker):
         for files in files_list:
             self._dataset = self._load_data(files=files)
             self._dataset = self._join_data_and_metadata(join_on="basename")
-            self._modifier.dataset = self._dataset
-            self._dataset = self._modifier.modify_dataset()
+            self._dataset = self._modifier.modify_dataset(self._dataset)
             if save:
                 if not os.path.isdir(self.path_output):
                     os.makedirs(self.path_output)

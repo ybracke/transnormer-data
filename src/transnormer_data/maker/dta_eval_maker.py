@@ -34,8 +34,8 @@ class DtaEvalMaker(DtaMaker):
         self._metadata = self._load_metadata()
         self._dataset = self._load_data()
         self._dataset = self._join_data_and_metadata(join_on="basename")
-        self._modifier = VanillaDtaModifier(self._dataset)
-        self._dataset = self._modifier.modify_dataset()
+        self._modifier = VanillaDtaModifier()
+        self._dataset = self._modifier.modify_dataset(self._dataset)
         if save:
             if not os.path.isdir(self.path_output):
                 os.makedirs(self.path_output)
