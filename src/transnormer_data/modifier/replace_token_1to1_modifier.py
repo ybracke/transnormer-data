@@ -1,12 +1,14 @@
 import csv
+import os
 
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import datasets
 import spacy
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.detokenizer import DtaEvalDetokenizer
+from transnormer_data import utils
 
 
 class ReplaceToken1to1Modifier(BaseDatasetModifier):
@@ -38,10 +40,18 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
             mapping_files
         )
 
-    def modify_dataset(self) -> Union[datasets.Dataset, None]:
+    def modify_dataset(
+        self, save_to: Optional[Union[str, os.PathLike]] = None
+    ) -> Union[datasets.Dataset, None]:
         if self.dataset:
             self.dataset = self.dataset.map(self.modify_sample)
             return self.dataset
+        if save_to:
+            if not os.path.isdir(save_to):
+                os.makedirs(save_to)
+            utils.save_dataset_to_json_grouped_by_property(
+                self.dataset, property="basename", path_outdir=save_to
+            )
         return None
 
     def modify_sample(self, sample: Dict) -> Dict:
@@ -92,7 +102,7 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
                 reader = csv.reader(csvfile, dialect)
                 for row in reader:
                     pair = tuple(row)
-                    assert len(pair) == 2 # TODO
+                    assert len(pair) == 2  # TODO
                     all_pairs.append(pair)
         replacement_mapping: Dict[str, str] = dict(all_pairs)
         return replacement_mapping
