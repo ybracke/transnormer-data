@@ -94,11 +94,12 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         for file in files:
             with open(file, newline="") as csvfile:
                 dialect = csv.Sniffer().sniff(csvfile.read(1024))
+                dialect.quotechar = "`" # FIXME
                 csvfile.seek(0)
                 reader = csv.reader(csvfile, dialect)
                 for row in reader:
                     pair = tuple(row)
-                    assert len(pair) == 2  # TODO
+                    assert len(pair) == 2, print(pair)
                     all_pairs.append(pair)
         replacement_mapping: Dict[str, str] = dict(all_pairs)
         return replacement_mapping
