@@ -1,7 +1,9 @@
 import argparse
 import glob
 import os
+import time
 
+from datetime import datetime
 from typing import List, Optional
 
 import datasets
@@ -83,7 +85,8 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (4) Iterate over files lists, modify, save
     for files in files_list:
         # (4.1) Load dataset
-        dataset = datasets.load_dataset("json", data_files=files, split="train")
+        dataset: datasets.Dataset = utils.load_dataset_via_pandas(data_files=files)
+        dataset.data.validate()
 
         # (4.2) Modify dataset
         dataset = modifier.modify_dataset(dataset)
@@ -99,4 +102,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
 
 
 if __name__ == "__main__":
+    print(f"Current time: {datetime.now().time()}")
+    t = time.process_time()
     main()
+    elapsed_time = time.process_time() - t
+    print(f"Process took: {elapsed_time}")
+    print(f"Current time: {datetime.now().time()}")
