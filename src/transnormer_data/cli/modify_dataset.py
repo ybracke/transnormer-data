@@ -74,7 +74,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (3) Create modifier
     if plugin.lower() == "replacetoken1to1modifier":
         mapping_files = modifier_kwargs["mapping_files"].split(",")
+        layer = modifier_kwargs["layer"]
         modifier = replace_token_1to1_modifier.ReplaceToken1to1Modifier(
+            layer=layer,
             mapping_files=mapping_files
         )
 

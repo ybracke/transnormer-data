@@ -158,3 +158,55 @@ class ReplaceToken1to1ModifierTester(unittest.TestCase):
             dataset_mod[9]["norm"]
             == "Diese Bezeichnung darf indes auch jetzt, da jenem Verlangen nachgegeben wird, im vollen Sinne fortdauern; denn noch immer sind es wesentlich die Freunde, für welche der neue Abdruck Stadt findet, nur dass den im Leben gekannten jetzt auch die nach dem Scheiden erworbenen und künftigen sich anschließen."
         )
+
+
+
+class ReplaceToken1to1ModifierTesterOrigLayer(unittest.TestCase):
+    def setUp(self) -> None:
+        self.dataset = None
+        self.modifier = ReplaceToken1to1Modifier(layer="orig", mapping_files=[])
+        self.mapping_files = ["tests/testdata/type-replacements/old2new.tsv"]
+
+    def tearDown(self) -> None:
+        pass
+
+
+    def test_modify_sample(self) -> None:
+        mapping_files = [
+            "tests/testdata/type-replacements/old2new.tsv",
+            "tests/testdata/type-replacements/error2correct.tsv",
+        ]
+        self.modifier.type_mapping = self.modifier._load_replacement_mapping(
+            mapping_files
+        )
+
+        input_sample = {
+            "orig": "daß es heute in der Schiffahrt.",
+            "orig_tok": ["daß", "es", "heute", "in", "der", "Schiffahrt", "."],
+            "orig_ws": [False, True, True, True, True, True, False],
+            "orig_spans": [
+                [0, 3],
+                [4, 6],
+                [7, 12],
+                [13, 15],
+                [16, 19],
+                [20, 30],
+                [30, 31],
+            ],
+        }
+        target = {
+            "orig": "dass es heute in der Schifffahrt.",
+            "orig_tok": ["dass", "es", "heute", "in", "der", "Schifffahrt", "."],
+            "orig_ws": [False, True, True, True, True, True, False],
+            "orig_spans": [
+                [0, 4],
+                [5, 7],
+                [8, 13],
+                [14, 16],
+                [17, 20],
+                [21, 32],
+                [32, 33],
+            ],
+        }
+        result = self.modifier.modify_sample(input_sample)
+        assert result == target

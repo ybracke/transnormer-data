@@ -12,7 +12,7 @@ from transnormer_data import utils
 
 
 class ReplaceToken1to1Modifier(BaseDatasetModifier):
-    def __init__(self, mapping_files: List[str]) -> None:
+    def __init__(self, layer: str = "norm", mapping_files: List[str] = []) -> None:
         """
         Example implementation of a type replacement modifier
 
@@ -22,10 +22,13 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         """
 
         # Keys in the sample dictionary
-        self.raw = "norm"
-        self.tok = "norm_tok"
-        self.ws = "norm_ws"
-        self.spans = "norm_spans"
+        valid_layers = {"norm", "orig"}
+        if layer not in valid_layers:
+            raise ValueError(f"ReplaceToken1to1Modifier: layer must be one of{valid_layers}")
+        self.raw = f"{layer}"
+        self.tok = f"{layer}_tok"
+        self.ws = f"{layer}_ws"
+        self.spans = f"{layer}_spans"
 
         # Detokenizer
         self.detokenizer = DtaEvalDetokenizer()
