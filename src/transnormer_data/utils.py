@@ -3,6 +3,7 @@ import os
 from typing import Dict, List, Tuple, Union
 
 import datasets
+import pandas as pd
 
 
 def get_basename_no_ext(file_path: Union[str, os.PathLike]) -> str:
@@ -37,3 +38,33 @@ def save_dataset_to_json_grouped_by_property(
         else:
             if f is not None:
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def save_dataset_to_json(
+    dataset: datasets.Dataset, path_outfile: Union[str, os.PathLike]
+) -> None:
+    """Save a datasets.Dataset into a single JSONL file
+
+    Use this instead of `dataset.to_json` because it creates the same
+    separating whitespace as `save_dataset_to_json_grouped_by_property`
+    """
+    with open(path_outfile, "w") as f:
+        for row in dataset:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+
+def load_dataset_via_pandas(
+    data_files: List[Union[str, os.PathLike]]
+) -> datasets.Dataset:
+    """Load a datasets.Dataset from a list of JSONL files
+
+    Same behavior as calling `datasets.load_dataset_("json", data_files=files, split="train")`, but without causing unexpected and hard to explain `datasets.builder.DatasetGenerationError`s while processing some files.
+    This problem is prevented by loading the JSONL files into a pandas dataframe first and then cast it into a Dataset. Presented as a solution here: https://github.com/huggingface/datasets/issues/5531
+    """
+    dfs = []
+    for file in data_files:
+        data = pd.read_json(file, lines=True)
+        dfs.append(data)
+    # concatenate all the data frames in the list
+    df_concatenated = pd.concat(dfs, ignore_index=True)
+    return datasets.Dataset.from_pandas(df_concatenated)
