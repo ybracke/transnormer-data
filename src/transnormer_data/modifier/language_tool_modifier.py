@@ -89,12 +89,14 @@ class LanguageToolModifier(BaseDatasetModifier):
         """
         Load the file with the LanguageTool rule identifiers as a set of strings
 
-        `file` must be a path to a file that contains a single line of string identifiers for LanguageTool rules (e.g. OLD_SPELLING) separated by commas.
+        `file` must be a path to a text file that contains a list of identifiers for LanguageTool rules (e.g. OLD_SPELLING), one rule ID per line.
         """
         rules_set = set()
         with open(file, "r") as f:
-            line = f.readline().strip()
-            rules_set.update(line.split(","))
+            for line in f:
+                rule_id = line.strip()  # Remove leading/trailing whitespace
+                if rule_id:  # Skip empty lines
+                    rules_set.add(rule_id)
         return rules_set
 
     def set_langtool_rules(self, rules: Set[str]) -> None:
