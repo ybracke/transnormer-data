@@ -14,10 +14,10 @@ from transnormer_data import utils
 class ReplaceToken1toNModifier(BaseDatasetModifier):
     def __init__(self, layer: str = "norm", mapping_files: List[str] = []) -> None:
         """
-        Example implementation of a type replacement modifier
+        1:n type replacement modifier.
 
-        This modifier replaces types on the tokenized version of the target layer
-        (here "norm_tok") and propagates the changes to the raw version ("norm")
+        This modifier replaces unigrams on the tokenized version of the target layer
+        (here "norm_tok" or "orig_tok") by ngrams, propagates the changes to the raw version ("norm" or "orig") and computes a new alignment with the source layer ("orig_tok" or "norm_tok", respectively).
 
         """
 
@@ -65,8 +65,8 @@ class ReplaceToken1toNModifier(BaseDatasetModifier):
         Apply a modification function to a property of the sample
         and propagate the modifications to other properties of the sample.
 
-        E.g., if the modification was applied to norm_tok,
-        the changes have to be propagated to norm_raw.
+        Here the modification is applied to {layer}_tok, and the changes are
+        propagated to {layer}_raw.
         """
         tokens_old = sample[self.tok]
         ws_old = sample[self.ws]
@@ -96,7 +96,10 @@ class ReplaceToken1toNModifier(BaseDatasetModifier):
     def map_tokens(
         self, tokens_old: List[str], ws_old: List[bool]
     ) -> Tuple[List[str], List[bool], bool]:
-        """Modifies `tokens_old` and `ws_old` by applying the type mapping on each token, if necessary. Returns a tuple `(tokens_new, any_changes)` where `any_changes` is False iff `tokens_new==tokens_old`."""
+        """
+        Modifies `tokens_old` and `ws_old` by applying the 1:n type mapping on each token, if necessary. Returns a tuple `(tokens_new, ws_new, any_changes)` where `any_changes` is False iff `tokens_new==tokens_old`.
+        """
+
         tokens_new = []
         ws_new = []
         any_changes = False
@@ -119,7 +122,7 @@ class ReplaceToken1toNModifier(BaseDatasetModifier):
         for file in files:
             with open(file, newline="") as csvfile:
                 dialect = csv.Sniffer().sniff(csvfile.read(1024))
-                dialect.quotechar = "`"  # FIXME
+                dialect.quotechar = "`"
                 csvfile.seek(0)
                 reader = csv.reader(csvfile, dialect)
                 for row in reader:
