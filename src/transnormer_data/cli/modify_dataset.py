@@ -9,7 +9,11 @@ from typing import List, Optional
 import datasets
 
 from transnormer_data import utils
-from transnormer_data.modifier import replace_token_1to1_modifier
+from transnormer_data.base_dataset_modifier import BaseDatasetModifier
+from transnormer_data.modifier import (
+    replace_token_1to1_modifier,
+    replace_token_1ton_modifier,
+)
 
 
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
@@ -77,15 +81,25 @@ def main(arguments: Optional[List[str]] = None) -> None:
     if plugin.lower() == "replacetoken1to1modifier":
         mapping_files = modifier_kwargs["mapping_files"].split(",")
         layer = modifier_kwargs["layer"]
-        modifier = replace_token_1to1_modifier.ReplaceToken1to1Modifier(
-            layer=layer,
-            mapping_files=mapping_files
+        modifier: BaseDatasetModifier = (
+            replace_token_1to1_modifier.ReplaceToken1to1Modifier(
+                layer=layer, mapping_files=mapping_files
+            )
+        )
+
+    elif plugin.lower() == "replacetoken1tonmodifier":
+        mapping_files = modifier_kwargs["mapping_files"].split(",")
+        layer = modifier_kwargs["layer"]
+        modifier = replace_token_1ton_modifier.ReplaceToken1toNModifier(
+            layer=layer, mapping_files=mapping_files
         )
 
     # (4) Iterate over files lists, modify, save
     for files in files_list:
         # (4.1) Load dataset
-        dataset: datasets.Dataset = utils.load_dataset_via_pandas(data_files=files)
+        dataset: datasets.Dataset = utils.load_dataset_via_pandas(
+            data_files=files
+        )  # type:ignore
         dataset.data.validate()
 
         # (4.2) Modify dataset
