@@ -1,9 +1,13 @@
-from typing import Any, Callable, Dict, List, Optional, Tuple
+import os
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
+from abc import abstractmethod
+import datasets
 import spacy
 from nltk.tokenize.treebank import TreebankWordDetokenizer
-
 from textalign import Aligner
+
+from transnormer_data import utils
 
 MODEL = "de_core_news_sm"  # alternative, bigger model: "de_dep_news_trf"
 
@@ -11,9 +15,7 @@ MODEL = "de_core_news_sm"  # alternative, bigger model: "de_dep_news_trf"
 class BaseDatasetModifier:
     """Base class for implementation of modifiers"""
 
-    def __init__(
-        self, spacy_model: str = MODEL
-    ) -> None:
+    def __init__(self, spacy_model: str = MODEL) -> None:
         self.nlp = spacy.load(spacy_model)
         self.detokenizer: Optional[TreebankWordDetokenizer] = None
 
@@ -133,3 +135,21 @@ class BaseDatasetModifier:
             spans.append([start_idx, end_idx])
         assert self._tok2raw(tokens, whitespaces) == raw
         return spans, whitespaces
+
+    def modify_dataset(
+        self,
+        dataset: datasets.Dataset,
+        save_to: Optional[Union[str, os.PathLike]] = None,
+    ) -> Union[datasets.Dataset, None]:
+        dataset = dataset.map(self.modify_sample)
+        if save_to:
+            if not os.path.isdir(save_to):
+                os.makedirs(save_to)
+            utils.save_dataset_to_json_grouped_by_property(
+                dataset, property="basename", path_outdir=save_to
+            )
+        return dataset
+
+    @abstractmethod
+    def modify_sample(self, sample: Dict):
+        pass
