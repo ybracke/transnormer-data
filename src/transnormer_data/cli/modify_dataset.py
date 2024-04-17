@@ -9,7 +9,10 @@ from typing import List, Optional
 import datasets
 
 from transnormer_data import utils
-from transnormer_data.modifier import replace_token_1to1_modifier
+from transnormer_data.modifier import (
+    replace_token_1to1_modifier,
+    language_tool_modifier,
+)
 
 
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
@@ -78,9 +81,12 @@ def main(arguments: Optional[List[str]] = None) -> None:
         mapping_files = modifier_kwargs["mapping_files"].split(",")
         layer = modifier_kwargs["layer"]
         modifier = replace_token_1to1_modifier.ReplaceToken1to1Modifier(
-            layer=layer,
-            mapping_files=mapping_files
+            layer=layer, mapping_files=mapping_files
         )
+
+    elif plugin.lower() == "languagetoolmodifier":
+        rule_file = modifier_kwargs["rule_file"]
+        modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
 
     # (4) Iterate over files lists, modify, save
     for files in files_list:
