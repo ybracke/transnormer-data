@@ -13,6 +13,7 @@ from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
+    language_tool_modifier,
 )
 
 
@@ -93,6 +94,10 @@ def main(arguments: Optional[List[str]] = None) -> None:
         modifier = replace_token_1ton_modifier.ReplaceToken1toNModifier(
             layer=layer, mapping_files=mapping_files
         )
+
+    elif plugin.lower() == "languagetoolmodifier":
+        rule_file = modifier_kwargs["rule_file"]
+        modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
 
     # (4) Iterate over files lists, modify, save
     for files in files_list:
