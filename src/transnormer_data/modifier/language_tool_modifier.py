@@ -31,7 +31,9 @@ class LanguageToolModifier(BaseDatasetModifier):
         self.nlp = spacy.blank("de")
 
         # LanguageTool instance
-        self.langtool: LanguageTool = LanguageTool(language="de-DE")
+        self.langtool: LanguageTool = LanguageTool(
+            language="de-DE", language_tool_download_version="6.3"
+        )
         self.set_langtool_rules(self._load_rules(rule_file))
 
     def modify_dataset(
