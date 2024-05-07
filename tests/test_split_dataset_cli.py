@@ -73,7 +73,7 @@ class SplitDatasetTester(unittest.TestCase):
         ]
         num_works_per_author = Counter(authors)
         train_authors, val_authors, test_authors = split_authors(
-            authors, num_works_per_author
+            authors, num_works_per_author, 0.1
         )
         self.assertEqual(len(train_authors), 8)
         self.assertEqual(len(val_authors), 1)
@@ -83,7 +83,7 @@ class SplitDatasetTester(unittest.TestCase):
         filepaths = self.create_test_files()
         documents_meta = load_document_metadata(self.temp_dir, lambda x: True)
         groups = group_documents_by_decade_genre(documents_meta)
-        train_docs, val_docs, test_docs = create_splits(groups)
+        train_docs, val_docs, test_docs = create_splits(groups, 0.1)
         self.assertEqual(len(train_docs), 8)
         self.assertEqual(len(val_docs), 1)
         self.assertEqual(len(test_docs), 1)
