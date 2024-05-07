@@ -1,11 +1,12 @@
-import os
+import argparse
 import json
+import os
 import re
 import shutil
-import argparse
-from collections import defaultdict, Counter
-from sklearn.model_selection import train_test_split
+from collections import Counter, defaultdict
 from typing import Callable, Dict, List, Optional, Tuple
+
+from sklearn.model_selection import train_test_split
 
 
 def load_document_metadata(
@@ -174,13 +175,13 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
         "--size-test",
         type=float,
         default=0.1,
-        help="Size of the validation set and test set (default is 0.1).",
+        help="Size of the validation set and test set, respectively. Default is 0.1",
     )
 
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Do not actually move any files, but just print the split",
+        help="Perform a trial run with no changes made. Print the splits.",
     )
     return parser.parse_args(arguments)
 
