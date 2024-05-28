@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, List, Tuple, Union
+from typing import List, Union
 
 import datasets
 import pandas as pd
@@ -19,7 +19,11 @@ def save_dataset_to_json_grouped_by_property(
 ) -> None:
     """Save a datasets.Dataset into multiple JSONL files grouped by a common value of property
 
-    `property` must be a column in the dataset. The common value by which records are grouped will be used as the output filename, i.e. the path will be "path_outputdir/{value_property}.jsonl". For example, if the "basename" property is taken (for DTA EvalCorpus and DTAK), the output path can be "path/to/dir/fontane_stechlin_1899.jsonl"
+    `property` must be a column in the dataset. The common value by which records 
+    are grouped will be used as the output filename, i.e. the path will be 
+    "path_outputdir/{value_property}.jsonl". For example, if the "basename" 
+    property is taken (for DTA EvalCorpus and DTAK), the output path can be 
+    "path/to/dir/fontane_stechlin_1899.jsonl"
 
     `path_outdir` must be an existing directory path
     """
@@ -58,8 +62,12 @@ def load_dataset_via_pandas(
 ) -> datasets.Dataset:
     """Load a datasets.Dataset from a list of JSONL files
 
-    Same behavior as calling `datasets.load_dataset_("json", data_files=files, split="train")`, but without causing unexpected and hard to explain `datasets.builder.DatasetGenerationError`s while processing some files.
-    This problem is prevented by loading the JSONL files into a pandas dataframe first and then cast it into a Dataset. Presented as a solution here: https://github.com/huggingface/datasets/issues/5531
+    Same behavior as calling `datasets.load_dataset_("json", data_files=files, 
+    split="train")`, but without causing unexpected and hard to explain 
+    `datasets.builder.DatasetGenerationError`s while processing some files.
+    This problem is prevented by loading the JSONL files into a pandas dataframe 
+    first and then cast it into a Dataset. Presented as a solution here: 
+    https://github.com/huggingface/datasets/issues/5531
     """
     dfs = []
     for file in data_files:
@@ -68,3 +76,20 @@ def load_dataset_via_pandas(
     # concatenate all the data frames in the list
     df_concatenated = pd.concat(dfs, ignore_index=True)
     return datasets.Dataset.from_pandas(df_concatenated)
+
+
+def save_pandas_to_jsonl(
+    df: pd.DataFrame, path_outfile: Union[str, os.PathLike]
+) -> None:
+    """Save a pandas Dataframe to a single JSONL file
+
+    Use this instead of `pandas.to_json` because it creates the same
+    separating whitespace as the other to_json functions used in this project.
+    """
+    with open(path_outfile, "w", encoding="utf-8") as f:
+        # Iterate over each row in the DataFrame
+        for index, row in df.iterrows():
+            # Convert the row to a dictionary
+            row_dict = row.to_dict()
+            row = json.dumps(row_dict, ensure_ascii=False)
+            f.write(row + "\n")
