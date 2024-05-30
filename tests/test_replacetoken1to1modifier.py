@@ -160,7 +160,6 @@ class ReplaceToken1to1ModifierTester(unittest.TestCase):
         )
 
 
-
 class ReplaceToken1to1ModifierTesterOrigLayer(unittest.TestCase):
     def setUp(self) -> None:
         self.dataset = None
@@ -169,7 +168,6 @@ class ReplaceToken1to1ModifierTesterOrigLayer(unittest.TestCase):
 
     def tearDown(self) -> None:
         pass
-
 
     def test_modify_sample(self) -> None:
         mapping_files = [
