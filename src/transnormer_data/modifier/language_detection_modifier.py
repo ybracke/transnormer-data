@@ -50,7 +50,7 @@ class LanguageIdentificationEnsemble(object):
 
 
 class LanguageDetectionModifier(BaseDatasetModifier):
-    def __init__(self) -> None:
+    def __init__(self, layer: Optional[str]=None) -> None:
         """
         This modifier runs language detection algorithms over the raw version of the source or target layer of the corpus and adds the language labels as additional properties to the dataset.
 
@@ -59,8 +59,15 @@ class LanguageDetectionModifier(BaseDatasetModifier):
 
         self.languagedetector = LanguageIdentificationEnsemble()
 
-        # Relevant keys in the sample dictionary
-        self.raw = "orig"
+        # Set layer
+        accepted_layers = {"orig", "norm"}
+        if layer is None:
+            layer = "orig"
+        if layer not in accepted_layers: 
+            raise NotImplementedError(
+            f"""num_tokens_from_messages() is not implemented for layer '{layer}'. Choose one of {accepted_layers}"""
+        )
+        self.raw = layer
 
     def modify_sample(self, sample: Dict) -> Dict:
         """
