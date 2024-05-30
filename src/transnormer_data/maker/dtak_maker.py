@@ -12,7 +12,7 @@ from transnormer_data.modifier.vanilla_dta_modifier import VanillaDtaModifier
 
 
 class DtakMaker(DtaMaker):
-    """An object that creates a dataset in the transnormer format from the DTA Eval Corpus in its original XML format, plus metadata in JSONL format"""
+    """An object that creates a dataset in the transnormer format from the DTAK Corpus in its original ddctabs format, plus metadata in JSONL format"""
 
     def __init__(
         self,
