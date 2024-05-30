@@ -5,3 +5,6 @@
 .hidden
 __pycache__
 .coverage
+.env
+.log
+TODO
