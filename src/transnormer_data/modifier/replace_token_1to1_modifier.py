@@ -24,7 +24,9 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         # Keys in the sample dictionary
         valid_layers = {"norm", "orig"}
         if layer not in valid_layers:
-            raise ValueError(f"ReplaceToken1to1Modifier: layer must be one of{valid_layers}")
+            raise ValueError(
+                f"ReplaceToken1to1Modifier: layer must be one of{valid_layers}"
+            )
         self.raw = f"{layer}"
         self.tok = f"{layer}_tok"
         self.ws = f"{layer}_ws"
@@ -85,7 +87,7 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         for file in files:
             with open(file, newline="") as csvfile:
                 dialect = csv.Sniffer().sniff(csvfile.read(1024))
-                dialect.quotechar = "`" # FIXME
+                dialect.quotechar = "`"  # FIXME
                 csvfile.seek(0)
                 reader = csv.reader(csvfile, dialect)
                 for row in reader:

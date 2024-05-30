@@ -9,6 +9,7 @@ from transnormer_data.maker.dta_eval_maker import DtaEvalMaker
 
 TMPDIR = "tests/testdata/tmp"
 
+
 class DtaEvalMakerTester(unittest.TestCase):
     def setUp(self) -> None:
         self.input_dir_data = "tests/testdata/dtaeval/xml"
@@ -24,7 +25,7 @@ class DtaEvalMakerTester(unittest.TestCase):
             "is_bad": bool,
             "orig": str,
             "orig_tok": List[str],
-            "orig_class" : List[str], 
+            "orig_class": List[str],
             "orig_ws": List[bool],
             "orig_spans": List[List[int]],
             "norm": str,
@@ -51,9 +52,9 @@ class DtaEvalMakerTester(unittest.TestCase):
         """Test the custom split function used by DtaEvalMaker"""
         result = self.maker.custom_split("Haus")
         assert result == (["Haus"], False)
-        result = self.maker.custom_split("bin_es") 
+        result = self.maker.custom_split("bin_es")
         assert result == (["bin", "es"], True)
-        result = self.maker.custom_split("bin_es nicht") 
+        result = self.maker.custom_split("bin_es nicht")
         assert result == (["bin", "es", "nicht"], True)
 
     def test_file_creation(self) -> None:
@@ -75,38 +76,111 @@ class DtaEvalMakerTester(unittest.TestCase):
         """Check whether the correct alignments were computed"""
         # Target alignments for brentano
         target_alignments = [
-            [[i,i] for i in range(75)], 
-            [[i,i] for i in range(9)] + [[9,9], [10,9]] + [[i,i-1] for i in range(11,17)],
-            [[i,i] for i in range(33)], 
-            [[i,i] for i in range(49)], 
-            [[i,i] for i in range(35)], 
-            [[i,i] for i in range(6)], 
-            [[i,i] for i in range(13)], 
-            [[i,i] for i in range(32)] + [[32,32], [33,32], [34,33]],
-            [[i,i] for i in range(23)], 
-            [[i,i] for i in range(13)], 
-            [[i,i] for i in range(13)], 
-            [[i,i] for i in range(36)], 
-            [[i,i] for i in range(8)], 
-            [[i,i] for i in range(20)], 
-            [[i,i] for i in range(32)], 
-            [[i,i] for i in range(18)], 
-            [[i,i] for i in range(14)], 
-            [[0,0], [1,1],[2,2],[3,2],[4,2]] + [[i,i-2] for i in range(5,20)], 
+            [[i, i] for i in range(75)],
+            [[i, i] for i in range(9)]
+            + [[9, 9], [10, 9]]
+            + [[i, i - 1] for i in range(11, 17)],
+            [[i, i] for i in range(33)],
+            [[i, i] for i in range(49)],
+            [[i, i] for i in range(35)],
+            [[i, i] for i in range(6)],
+            [[i, i] for i in range(13)],
+            [[i, i] for i in range(32)] + [[32, 32], [33, 32], [34, 33]],
+            [[i, i] for i in range(23)],
+            [[i, i] for i in range(13)],
+            [[i, i] for i in range(13)],
+            [[i, i] for i in range(36)],
+            [[i, i] for i in range(8)],
+            [[i, i] for i in range(20)],
+            [[i, i] for i in range(32)],
+            [[i, i] for i in range(18)],
+            [[i, i] for i in range(14)],
+            [[0, 0], [1, 1], [2, 2], [3, 2], [4, 2]]
+            + [[i, i - 2] for i in range(5, 20)],
         ]
-        brentano = self.dataset.filter(lambda example: example["basename"] == "brentano_kasperl_1838")
-        for example, target_alignment in zip(self.dataset.filter(lambda example: example["basename"].startswith("brentano_kasperl_1838")), target_alignments):
+        brentano = self.dataset.filter(
+            lambda example: example["basename"] == "brentano_kasperl_1838"
+        )
+        for example, target_alignment in zip(
+            self.dataset.filter(
+                lambda example: example["basename"].startswith("brentano_kasperl_1838")
+            ),
+            target_alignments,
+        ):
             # print(example)
             assert example["alignment"] == target_alignment
 
     def test_create_example_from_s_with_join(self) -> None:
         """Test example creation from a single sentence"""
-        tree = etree.parse(os.path.join(self.input_dir_data,"brentano_kasperl_1838.xml"))
-        s = tree.findall(".//s")[-1] # last sentence in brentano
+        tree = etree.parse(
+            os.path.join(self.input_dir_data, "brentano_kasperl_1838.xml")
+        )
+        s = tree.findall(".//s")[-1]  # last sentence in brentano
         target = (
-            ["ich", "bin", "acht", "und", "achtzig", "Jahr", "alt", ",", "und", "der", "Herzog", "wird", "mich", "gewiß", "nicht", "von", "ſeiner", "Schwelle", "treiben", "."],
-            ["Ich", "bin", "achtundachtzig", "Jahr", "alt", ",", "und", "der", "Herzog", "wird", "mich", "gewiß", "nicht", "von", "seiner", "Schwelle", "treiben", "."],
-            ["LEX", "LEX", "JOIN", "JOIN", "JOIN", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX"],
+            [
+                "ich",
+                "bin",
+                "acht",
+                "und",
+                "achtzig",
+                "Jahr",
+                "alt",
+                ",",
+                "und",
+                "der",
+                "Herzog",
+                "wird",
+                "mich",
+                "gewiß",
+                "nicht",
+                "von",
+                "ſeiner",
+                "Schwelle",
+                "treiben",
+                ".",
+            ],
+            [
+                "Ich",
+                "bin",
+                "achtundachtzig",
+                "Jahr",
+                "alt",
+                ",",
+                "und",
+                "der",
+                "Herzog",
+                "wird",
+                "mich",
+                "gewiß",
+                "nicht",
+                "von",
+                "seiner",
+                "Schwelle",
+                "treiben",
+                ".",
+            ],
+            [
+                "LEX",
+                "LEX",
+                "JOIN",
+                "JOIN",
+                "JOIN",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+                "LEX",
+            ],
         )
         result = self.maker._create_example_from_s(s)
         assert result == target
@@ -131,14 +205,35 @@ class DtaEvalMakerTester(unittest.TestCase):
 <w class="LEX" new="." old="." pok="1"/>
 </s>"""
         target = (
-            ['In', 'der', 'allgemeinen', 'Zeitung', 'ſtehen', 'Berichte', 'über', 'die', 'Stände-Verſammlungen', '.'],
-            ['In', 'der', 'Allgemeinen', 'Zeitung', 'stehen', 'Berichte', 'über', 'die', 'Ständeversammlungen', '.'], 
-            ['LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX', 'LEX']
+            [
+                "In",
+                "der",
+                "allgemeinen",
+                "Zeitung",
+                "ſtehen",
+                "Berichte",
+                "über",
+                "die",
+                "Stände-Verſammlungen",
+                ".",
+            ],
+            [
+                "In",
+                "der",
+                "Allgemeinen",
+                "Zeitung",
+                "stehen",
+                "Berichte",
+                "über",
+                "die",
+                "Ständeversammlungen",
+                ".",
+            ],
+            ["LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX", "LEX"],
         )
         s = etree.fromstring(xml_string)
         result = self.maker._create_example_from_s(s)
         assert result == target
-
 
     def test_join_wrongly_splitted_tokens(self) -> None:
         """Test token joining function"""
