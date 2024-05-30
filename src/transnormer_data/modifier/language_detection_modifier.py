@@ -31,9 +31,9 @@ class LanguageIdentificationEnsemble(object):
 
         Possible output:
         {
-        "fastText" : "de",
-        "py3langid" : "en",
-        "cld3" : "de",
+        "lang_fastText" : "de",
+        "lang_py3langid" : "en",
+        "lang_cld3" : "de",
         }
         """
         labels = dict()
@@ -70,9 +70,11 @@ class LanguageDetectionModifier(BaseDatasetModifier):
 
         guesses = self.languagedetector(sample[self.raw])
         sample.update(guesses)
+        sample["lang_de"] = sum(lang == "de" for lang in guesses.values()) / len(
+            guesses
+        )
 
         return sample
-
 
     def modify_dataset(
         self,

@@ -27,6 +27,15 @@ class LanguageDetectionModifierTester(unittest.TestCase):
             "lang_cld3": "de",
         }
 
+    def test_test_langdetec_latin(self) -> None:
+        guesses = self.modifier.languagedetector("Homos homini lupus.")
+        # Does not work so well
+        assert guesses == {
+            "lang_fastText": "en",
+            "lang_py3langid": "es",
+            "lang_cld3": "la",
+        }
+
     def test_langdetec_oldgerman(self) -> None:
         guesses = self.modifier.languagedetector(
             "DVRchleuchtigſte/ Hochgeborne Churfuͤrſtin/ Gnaͤ-digſte Fraw/ meine Gottſelige liebe Mutter Anna Wecke- rin/ hat kurtz vor jrem ſeligen Ende gegenwertig Kochbuch/ ſo ſie auß langer eigner Vbung vnnd Erfahrung viel Jahr hero fleiſſig zuſammen getragen/ endlich/ auff embſiges an-halten viler guthertziger/ vnd der ſachen verſtaͤndiger lent/ zum Truck ver-fertiget/ vnd iſt ſolches E. C. G. zuzuſchreiben hoͤchlich begierig geweſen."
@@ -48,6 +57,7 @@ class LanguageDetectionModifierTester(unittest.TestCase):
             "lang_fastText": "de",
             "lang_py3langid": "de",
             "lang_cld3": "de",
+            "lang_de": 1.0,
         }
         result = self.modifier.modify_sample(input_sample)
         assert result == target
@@ -59,3 +69,4 @@ class LanguageDetectionModifierTester(unittest.TestCase):
         assert dataset_mod[20]["lang_fastText"] == "de"
         assert dataset_mod[20]["lang_py3langid"] == "de"
         assert dataset_mod[20]["lang_cld3"] == "de"
+        assert dataset_mod[20]["lang_de"] == 1.0
