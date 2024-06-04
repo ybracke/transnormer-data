@@ -1,6 +1,7 @@
 from datetime import datetime
 import logging
 import unittest
+import pytest
 
 from typing import List
 
@@ -165,6 +166,21 @@ class GPTModifierTester(unittest.TestCase):
             ds_final = datasets.concatenate_datasets([dataset, preds_ds], axis=1)
             print(ds_final[:])
 
+    @pytest.mark.skip
+    def test_query_client(self) -> None:
+        # model
+        self.modifier.model = "gpt-3.5-turbo-0125"
+
+        prompt = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "I give you a list and you respond with the element's index, followed by a tab, 'Hi'. List elements are separated by two newlines."},
+            {"role": "user", "content": "1\tA\n\n2\tB"},
+            {"role": "assistant", "content": "1\tHi\n\n2\tHi"},
+            {"role": "user", "content": "1\tC\n\n2\tD\n\n3\tE"},
+        ]
+
+        response = self.modifier.query_client(prompt)
+        assert response.choices[0].message.content == "1\tHi\n\n2\tHi\n\n3\tHi"
 
 # ALT
 """
