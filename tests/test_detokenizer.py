@@ -18,7 +18,36 @@ class DtaEvalDetokenizerTester(unittest.TestCase):
         assert target_raw == detokenized
 
     def test_detokenize_02(self) -> None:
-        tokens = ["„", "Irgend", "'", "was", ";", "es", "iſt", "ganz", "gleich", ",", "es", "muß", "nur", "einen", "Reim", "auf", "‚", "u", "‘", "haben", ";", "‚", "u", "‘", "iſt", "immer", "Trauervokal", "."]
+        tokens = [
+            "„",
+            "Irgend",
+            "'",
+            "was",
+            ";",
+            "es",
+            "iſt",
+            "ganz",
+            "gleich",
+            ",",
+            "es",
+            "muß",
+            "nur",
+            "einen",
+            "Reim",
+            "auf",
+            "‚",
+            "u",
+            "‘",
+            "haben",
+            ";",
+            "‚",
+            "u",
+            "‘",
+            "iſt",
+            "immer",
+            "Trauervokal",
+            ".",
+        ]
         target_raw = "„Irgend' was; es iſt ganz gleich, es muß nur einen Reim auf ‚u‘ haben; ‚u‘ iſt immer Trauervokal."
         detokenized = self.detokenizer.detokenize(tokens)
         assert target_raw == detokenized
