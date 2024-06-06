@@ -14,6 +14,7 @@ from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
     language_tool_modifier,
+    gpt_modifier,
 )
 
 
@@ -98,6 +99,15 @@ def main(arguments: Optional[List[str]] = None) -> None:
     elif plugin.lower() == "languagetoolmodifier":
         rule_file = modifier_kwargs["rule_file"]
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
+
+    elif plugin.lower() == "gptmodifier":
+        configs = gpt_modifier.load_configs(modifier_kwargs["configs"])
+        prompt = gpt_modifier.load_user_prompt(modifier_kwargs["prompt"])
+        modifier = gpt_modifier.GPTModifier(
+            model_name=configs["model"],
+            max_len_prompt=configs["max_len_prompt"],
+            user_prompt=prompt,
+        )
 
     # (4) Iterate over files lists, modify, save
     for files in files_list:
