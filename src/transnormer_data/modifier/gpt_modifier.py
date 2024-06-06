@@ -75,11 +75,11 @@ class GPTModifier(BaseDatasetModifier):
     def __init__(
         self,
         model_name: str,
-        system_prompt: str,
         user_prompt: str,
-        example_query: str,
-        example_response: str,
-        max_len_prompt: int,
+        system_prompt: str = "",
+        example_query: str = "",
+        example_response: str = "",
+        max_len_prompt: Optional[int] = None,
     ) -> None:
         """
         This modifier uses OpenAI's GPT models (via API) to apply changes to a layer of the data and propagates the changes to the other layers.
@@ -100,15 +100,13 @@ class GPTModifier(BaseDatasetModifier):
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
 
-        # TODO: configuration file with gpt model
         self.model = model_name
-
-        # TODO: prompt-file for system prompt and example_query and response
         # maximum input length in tiktokens
-        self.max_len_prompt = max_len_prompt  # TODO: if None take model's max
+        self.max_len_prompt = max_len_prompt  # TODO: if None: take model's max
+
         # base prompt
         self.prompt_base = self._build_prompt_base(
-            system_prompt, user_prompt, example_query, example_response
+            user_prompt, system_prompt, example_query, example_response
         )
 
     def record_to_example_line(self, record: Dict[str, Any]) -> str:
@@ -128,21 +126,27 @@ class GPTModifier(BaseDatasetModifier):
         self,
         system_prompt: str,
         user_prompt: str,
-        example_query: Optional[str] = None,
-        example_response: Optional[str] = None,
+        system_prompt: str = "",
+        example_query: str = "",
+        example_response: str = "",
     ) -> List[Dict[str, str]]:
-        messages = [
-            {"role": "system", "content": system_prompt},
+        messages = []
+        if system_prompt:
+            messages.append(
+                {"role": "system", "content": system_prompt},
+            )
+        messages.append(
             {"role": "user", "content": user_prompt},
-        ]
-        if example_query is not None and example_response is not None:
+        )
+        if example_query and example_response:
             messages.append(
                 {"role": "user", "content": example_query},
             )
             messages.append(
                 {"role": "assistant", "content": example_response},
             )
-        messages.append({"role": "user", "content": ""})
+        # HOTFIX
+        # messages.append({"role": "user", "content": ""})
         return messages
 
     def parse_response(self, response: Optional[ChatCompletion]) -> List[str]:
