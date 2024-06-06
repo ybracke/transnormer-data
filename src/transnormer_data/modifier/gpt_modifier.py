@@ -6,6 +6,7 @@ from typing import Any, Dict, List, Optional, Union
 import datasets
 import dotenv
 import openai
+import tiktoken
 from openai.types.chat.chat_completion import ChatCompletion
 import tiktoken
 
@@ -18,7 +19,7 @@ dotenv.load_dotenv()
 # logging settings
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    filename=".log/gpt_modifier.log",  # TODO
+    filename=".log/gpt_modifier.log",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(name)s: %(message)s",
     datefmt="%y-%m-%d %H:%M:%S",
@@ -112,6 +113,7 @@ class GPTModifier(BaseDatasetModifier):
     def record_to_example_line(self, record: Dict[str, Any]) -> str:
         # Future TODO: offer different choices (add only 'orig', add both 'orig' and 'norm', add '*_tok', etc.)
         return f"{record['orig']}\t{record['norm']}"
+        # return f"{record['norm']}"
 
     def complete_prompt(
         self, prompt: List[Dict[str, str]], examples: List[str]
@@ -120,11 +122,12 @@ class GPTModifier(BaseDatasetModifier):
         Add line to the prompt.
         """
         prompt[-1]["content"] = "\n\n".join(examples)
+        # HOTFIX
+        # prompt[-1]["content"] += "\n\n" + "\n\n".join(examples) + "\n\n##assistant:\n\n"
         return prompt
 
     def _build_prompt_base(
         self,
-        system_prompt: str,
         user_prompt: str,
         system_prompt: str = "",
         example_query: str = "",
@@ -145,8 +148,7 @@ class GPTModifier(BaseDatasetModifier):
             messages.append(
                 {"role": "assistant", "content": example_response},
             )
-        # HOTFIX
-        # messages.append({"role": "user", "content": ""})
+        messages.append({"role": "user", "content": ""})
         return messages
 
     def parse_response(self, response: Optional[ChatCompletion]) -> List[str]:
@@ -229,8 +231,11 @@ class GPTModifier(BaseDatasetModifier):
         if save_to and ds_final is not None:
             if not os.path.isdir(save_to):
                 os.makedirs(save_to)
-            utils.save_dataset_to_json_grouped_by_property(
-                ds_final, property="basename", path_outdir=save_to
-            )
+            try:
+                utils.save_dataset_to_json_grouped_by_property(
+                    ds_final, property="basename", path_outdir=save_to
+                )
+            except:
+                print(preds)
 
         return ds_final
