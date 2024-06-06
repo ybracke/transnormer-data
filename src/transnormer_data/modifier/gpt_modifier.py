@@ -72,7 +72,7 @@ def num_tiktokens(s: str, model) -> int:
     return len(encoding.encode(s))
 
 
-def load_configs(file: str) -> Dict[str, Union[str, int]]:
+def load_configs(file: str) -> Dict[str, Any]:
     with open(file, mode="rb") as f:
         configs = tomli.load(f)
     return configs
@@ -205,7 +205,7 @@ class GPTModifier(BaseDatasetModifier):
 
         The loop makes sure the prompt length does not exceed the max_len_prompt
         """
-        preds: List[str] = []
+        preds: List[Dict[str, str]] = []
         prompt = self.prompt_base
         len_prompt_base = num_tokens_from_messages(self.prompt_base)
         examples: List[str] = []
@@ -251,3 +251,6 @@ class GPTModifier(BaseDatasetModifier):
                 print(preds)
 
         return ds_final
+
+    def modify_sample(self, sample: Dict):
+        pass

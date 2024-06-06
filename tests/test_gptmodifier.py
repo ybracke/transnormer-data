@@ -173,7 +173,10 @@ class GPTModifierTester(unittest.TestCase):
 
         prompt = [
             {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": "I give you a list and you respond with the element's index, followed by a tab, 'Hi'. List elements are separated by two newlines."},
+            {
+                "role": "user",
+                "content": "I give you a list and you respond with the element's index, followed by a tab, 'Hi'. List elements are separated by two newlines.",
+            },
             {"role": "user", "content": "1\tA\n\n2\tB"},
             {"role": "assistant", "content": "1\tHi\n\n2\tHi"},
             {"role": "user", "content": "1\tC\n\n2\tD\n\n3\tE"},
