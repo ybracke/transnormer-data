@@ -7,8 +7,8 @@ import datasets
 import dotenv
 import openai
 import tiktoken
+import tomli
 from openai.types.chat.chat_completion import ChatCompletion
-import tiktoken
 
 from transnormer_data import utils
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
@@ -70,6 +70,18 @@ def num_tiktokens(s: str, model) -> int:
         print("Warning: model not found. Using cl100k_base encoding.")
         encoding = tiktoken.get_encoding("cl100k_base")
     return len(encoding.encode(s))
+
+
+def load_configs(file: str) -> Dict[str, Union[str, int]]:
+    with open(file, mode="rb") as f:
+        configs = tomli.load(f)
+    return configs
+
+
+def load_user_prompt(file: str) -> str:
+    with open(file, "r") as f:
+        prompt = f.read().strip()
+    return prompt
 
 
 class GPTModifier(BaseDatasetModifier):
