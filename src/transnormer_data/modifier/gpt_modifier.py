@@ -187,7 +187,7 @@ class GPTModifier(BaseDatasetModifier):
 
         The loop makes sure the prompt length does not exceed the max_len_prompt
         """
-        preds = []
+        preds: List[str] = []
         prompt = self.prompt_base
         len_prompt_base = num_tokens_from_messages(self.prompt_base)
         examples: List[str] = []
@@ -198,7 +198,7 @@ class GPTModifier(BaseDatasetModifier):
             len_total = len_prompt_base + len_examples + len_current_example
             if len_total > self.max_len_prompt:
                 # build prompt and pass to client without current example
-                prompt = complete_prompt(prompt, examples)
+                prompt = self.complete_prompt(prompt, examples)
                 response = self.query_client(prompt)
                 answers = self.parse_response(response)
                 # collect predictions
@@ -206,6 +206,7 @@ class GPTModifier(BaseDatasetModifier):
                 # reset example list and length
                 examples = [current_example]
                 len_examples = len_current_example
+                len_total = len_prompt_base + len_examples + len_current_example
             else:
                 # extend example list and length
                 examples.append(current_example)
