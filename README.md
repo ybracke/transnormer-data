@@ -77,3 +77,20 @@ modify_dataset.py --plugin X --input-dir Y -output-dir Z
 ## API documentation [Planned]
 
 See the [docs/](docs)folder (**TODO**)
+
+
+## Modifiers
+
+### LanguageDetectionModifier
+
+
+Required: 
+
+1. Install protobuf compiler for pycld3
+`sudo apt install -y protobuf-compiler`
+
+2. Download model for fastText
+```bash
+mkdir resources
+wget -nc -q "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz" -O "resources/lid.176.ftz"
+```

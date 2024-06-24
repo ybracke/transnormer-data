@@ -14,6 +14,7 @@ from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
     language_tool_modifier,
+    language_detection_modifier
 )
 
 
@@ -63,6 +64,8 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # Parse --modifier-kwargs into a dictionary
     if args.modifier_kwargs:
         modifier_kwargs = dict(item.split("=") for item in args.modifier_kwargs.split())
+    else:
+        modifier_kwargs = {}
 
     # (2) Get data files
     # TODO: Perhaps exchange the part in DtakMaker.make with this code
@@ -71,9 +74,11 @@ def main(arguments: Optional[List[str]] = None) -> None:
     files_list: List[List[str]] = sorted(
         [
             [fname]
-            for fname in glob.iglob(os.path.join(input_dir_data, "*"), recursive=True)
+            for fname in glob.iglob(os.path.join(input_dir_data, "**"), recursive=True) 
+            if fname.endswith(".jsonl")
         ]
     )
+
     # Prevent this, if desired --> len(files_list) == 1
     if args.merge_into_single_dataset:
         files_list = [[fname for fname in files_list[0]]]
@@ -98,6 +103,10 @@ def main(arguments: Optional[List[str]] = None) -> None:
     elif plugin.lower() == "languagetoolmodifier":
         rule_file = modifier_kwargs["rule_file"]
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
+
+    elif plugin.lower() == "languagedetectionmodifier":
+        layer = modifier_kwargs.get("layer")
+        modifier = language_detection_modifier.LanguageDetectionModifier(layer)
 
     # (4) Iterate over files lists, modify, save
     for files in files_list:
