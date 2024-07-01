@@ -69,3 +69,17 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         }
         actual_mapping = self.modifier._find_ngram_indices(ngrams, sent_tok)
         assert actual_mapping == target_mapping
+
+    def test_get_target_ngrams_and_indices(self) -> None:
+        ngrams2indices_src = {
+            ("mußt", "’"): [(0, 1), (3, 4)],
+            ("a") : [(2,)]
+        }
+        replacement_lex = {("mußt", "’") : ("musste")}
+        alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3]]
+        actual_target_ngrams2indices = self.modifier._get_target_ngrams_and_indices(ngrams2indices_src, alignment, replacement_lex)
+
+        correct_target_ngrams2indices = {
+            ("musste") : [(0, 1), (3, )]
+        }
+        assert actual_target_ngrams2indices == correct_target_ngrams2indices
