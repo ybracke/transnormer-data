@@ -128,3 +128,53 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
                 if idx_trg is not None and ngram_trg is not None:
                     idx2ngram_trg[idx_trg] = ngram_trg
         return idx2ngram_trg
+
+    def _get_start2ngram_and_end(
+        self,
+        idx2ngram: Dict[Tuple[int, ...], Tuple[str, ...]],
+        remove_overlap: bool = True,
+    ) -> Dict[int, Tuple[Tuple[str, ...], int]]:
+        """
+        Converts the output of _get_idx2ngram_trg to the form: {start : (ngram, end)}
+
+        Optional: If spans of indices overlap only keep the first one
+        """
+        start2ngram_and_end = {}
+        prev_end = -1
+        for idxs, ngram in idx2ngram.items():
+            start = idxs[0]
+            end = idxs[-1]
+            if remove_overlap and (start <= prev_end):
+                # TODO: log; return identifiers (basename, sent_id)
+                print(
+                    f"Dropped ngram at position [{start} : {end}] because of overlap with previous ngram."
+                )
+                continue
+            else:
+                start2ngram_and_end[start] = (ngram, end)
+                prev_end = end
+        return start2ngram_and_end
+
+    def _update_target_tok(
+        self,
+        target_tok_in: List[str],
+        idx2ngram: Dict[Tuple[int, ...], Tuple[str, ...]],
+        remove_overlap: bool = True,
+    ):
+        """ 
+        Updates a token sequence according to the positions and changes 
+        specified in idx2ngram
+        """
+        target_tok_out = []
+        i = 0
+        start2ngram_and_end = self._get_start2ngram_and_end(idx2ngram, remove_overlap)
+        while i < len(target_tok_in):
+            if i in start2ngram_and_end:
+                ngram, end = start2ngram_and_end[i]
+                target_tok_out += list(ngram)
+                # jump forward
+                i = end + 1
+            else:
+                target_tok_out.append(target_tok_in[i])
+                i += 1
+        return target_tok_out
