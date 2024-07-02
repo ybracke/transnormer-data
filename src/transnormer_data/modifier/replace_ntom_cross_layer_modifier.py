@@ -100,12 +100,13 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         return ngram2indices
 
+    # TODO: remove
     def _src_mapping_to_trg_mapping(
         self,
         index_mapping: Dict[Tuple[int, ...], Tuple[int, ...]],
         ngrams2indices_src: Dict[Tuple[str, ...], List[Tuple[int, ...]]],
         repl_lex: Dict[Tuple[str, ...], Tuple[str, ...]],
-    ) -> Dict[Tuple[str, ...], List[Tuple[int, ... ]]]:
+    ) -> Dict[Tuple[str, ...], List[Tuple[int, ...]]]:
         """ """
         target_ngrams2indices = {}
         for ngram_src, indices_src in ngrams2indices_src.items():
@@ -117,6 +118,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         return target_ngrams2indices
 
+    # TODO: remove
     def _get_target_ngrams_and_indices(
         self,
         ngrams2indices_src: Dict[Tuple[str, ...], List[Tuple[int, ...]]],
@@ -127,5 +129,34 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         src_indices, trg_indices = zip(*alignment)
         # flatten
         search_src_indices = [val for l in ngrams2indices_src.values() for val in l]
-        index_map = get_index_map(search_src_indices, src_indices, trg_indices) # type: ignore
-        return self._src_mapping_to_trg_mapping(index_map, ngrams2indices_src, replacement_lex)
+        # map source to target indices
+        index_map = get_index_map(search_src_indices, src_indices, trg_indices)  # type: ignore
+        return self._src_mapping_to_trg_mapping(
+            index_map, ngrams2indices_src, replacement_lex
+        )
+
+    def _get_idx2ngram_trg(
+        self,
+        ngrams2indices_src: Dict[Tuple[str, ...], List[Tuple[int, ...]]],
+        alignment: List[List[int]],
+        repl_lex: Dict[Tuple[str, ...], Tuple[str, ...]],
+    ) -> Dict[Tuple[int, ...], Tuple[str, ...]]:
+        """ """
+        if not(len(alignment)):
+            return {}
+        src_indices, trg_indices = zip(*alignment)
+        # flatten
+        search_src_indices = [val for l in ngrams2indices_src.values() for val in l]
+        # map source to target indices
+        index_mapping = get_index_map(search_src_indices, src_indices, trg_indices)  # type: ignore
+        # create a mapping of an index tuple to an ngram 
+        # {(int, ...) : (str, ...)}
+        idx2ngram_trg = {}
+        for ngram_src, indices_src in ngrams2indices_src.items():
+            # src_ngram in replacement lex?
+            ngram_trg = repl_lex.get(ngram_src)
+            indices_trg = [index_mapping.get(i) for i in indices_src]
+            for idx_trg in indices_trg:
+                if idx_trg is not None and ngram_trg is not None:
+                    idx2ngram_trg[idx_trg] = ngram_trg
+        return idx2ngram_trg
