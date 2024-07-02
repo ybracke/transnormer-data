@@ -11,39 +11,6 @@ from transnormer_data.detokenizer import DtaEvalDetokenizer
 from transnormer_data import utils
 
 
-def find_sublist_indexes(main_list, sublist):
-    """
-    Helper function for get_index_map
-    """
-    sublist_length = len(sublist)
-    main_length = len(main_list)
-
-    for i in range(main_length - sublist_length + 1):
-        if main_list[i : i + sublist_length] == sublist:
-            return list(range(i, i + sublist_length))
-    return None
-
-
-def get_index_map(
-    search_tuples: List[Tuple[int, ...]],
-    src_indices: Iterable[int],
-    trg_indices: List[int],
-) -> Dict[Tuple[int, ...], Tuple[int, ...]]:
-    """ """
-    index_map = {}
-    for search_tuple in search_tuples:
-        sublist_indices = find_sublist_indexes(src_indices, search_tuple)
-        if sublist_indices is None:
-            continue
-        # assert are_consecutive(positions_trg_indices)
-        l = sublist_indices[0]
-        u = sublist_indices[-1] + 1
-        # convert list to a tuple without duplicates
-        tuple_trg_indices = tuple(sorted(set(trg_indices[l:u])))
-        index_map[search_tuple] = tuple_trg_indices
-    return index_map
-
-
 class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
     def __init__(
         self,
@@ -100,40 +67,38 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         return ngram2indices
 
-    # TODO: remove
-    def _src_mapping_to_trg_mapping(
+    def _get_index_map(
         self,
-        index_mapping: Dict[Tuple[int, ...], Tuple[int, ...]],
-        ngrams2indices_src: Dict[Tuple[str, ...], List[Tuple[int, ...]]],
-        repl_lex: Dict[Tuple[str, ...], Tuple[str, ...]],
-    ) -> Dict[Tuple[str, ...], List[Tuple[int, ...]]]:
-        """ """
-        target_ngrams2indices = {}
-        for ngram_src, indices_src in ngrams2indices_src.items():
-            ngram_trg = repl_lex.get(ngram_src)
-            indices_trg = [index_mapping.get(i) for i in indices_src]
-            if ngram_trg is None or None in indices_trg:
-                continue
-            target_ngrams2indices[ngram_trg] = indices_trg
-
-        return target_ngrams2indices
-
-    # TODO: remove
-    def _get_target_ngrams_and_indices(
-        self,
-        ngrams2indices_src: Dict[Tuple[str, ...], List[Tuple[int, ...]]],
+        search_seqs: List[Iterable[int]],
         alignment: List[List[int]],
-        replacement_lex: Dict[Tuple[str, ...], Tuple[str, ...]],
-    ) -> Dict[Tuple[str, ...], List[Tuple[int, ...]]]:
-        """ """
-        src_indices, trg_indices = zip(*alignment)
-        # flatten
-        search_src_indices = [val for l in ngrams2indices_src.values() for val in l]
-        # map source to target indices
-        index_map = get_index_map(search_src_indices, src_indices, trg_indices)  # type: ignore
-        return self._src_mapping_to_trg_mapping(
-            index_map, ngrams2indices_src, replacement_lex
-        )
+    ) -> Dict[Tuple[int, ...], Tuple[int, ...]]:
+        """
+        Creates a mapping of indexes: src -> trg
+
+        Given a list of sub-sequences from source (search_seqs) and an alignment,
+        returns the mapping of of source sequences to the corresponding target sequences.
+
+        Helper function for _get_idx2ngram_trg
+        """
+
+        idx_src2idxs_trg = self.get_idx2idxs(alignment)
+        index_map = {}
+        # Iterate over index sequences from source
+        for search_seq in search_seqs:
+            # Collect target indices
+            indices_all_trg = []
+            # Look at every element of src index sequence
+            for idx_src in search_seq:
+                # get all matching trg indices and add to collection
+                idxs_trg = idx_src2idxs_trg.get(idx_src, [])
+                indices_all_trg.extend(idxs_trg)
+            # put into mapping
+            indices_src = tuple(search_seq)
+            # sort and remove dublicates from indices_all_trg
+            indices_all_trg = sorted(set(indices_all_trg))
+            index_map[indices_src] = tuple(indices_all_trg)
+
+        return index_map
 
     def _get_idx2ngram_trg(
         self,
@@ -141,15 +106,18 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         alignment: List[List[int]],
         repl_lex: Dict[Tuple[str, ...], Tuple[str, ...]],
     ) -> Dict[Tuple[int, ...], Tuple[str, ...]]:
-        """ """
-        if not(len(alignment)):
+        """
+        Create a mapping of a source index tuple to a desired source ngram according to
+        replacement lexicon
+
+        """
+        if not (len(alignment)):
             return {}
-        src_indices, trg_indices = zip(*alignment)
         # flatten
         search_src_indices = [val for l in ngrams2indices_src.values() for val in l]
         # map source to target indices
-        index_mapping = get_index_map(search_src_indices, src_indices, trg_indices)  # type: ignore
-        # create a mapping of an index tuple to an ngram 
+        index_mapping = self._get_index_map(search_src_indices, alignment)  # type: ignore
+        # create a mapping of a source index tuple to a source ngram
         # {(int, ...) : (str, ...)}
         idx2ngram_trg = {}
         for ngram_src, indices_src in ngrams2indices_src.items():
