@@ -150,6 +150,22 @@ class BaseDatasetModifier:
             )
         return dataset
 
+    def get_idx2idxs(self, alignment: List[List[int]]) -> Dict[int, List[int]]:
+        """
+        Create a mapping from every single src element in `alignment`
+        to all trg elements in that src is associated to.
+
+        Example output: {0 : [0,1], 1 : [2,]}
+        """
+
+        idx2idxs = {}
+        for idx_src, idx_trg in alignment:
+            if idx_src not in idx2idxs:
+                idx2idxs[idx_src] = [idx_trg]
+            else:
+                idx2idxs[idx_src].append(idx_trg)
+        return idx2idxs
+
     @abstractmethod
     def modify_sample(self, sample: Dict):
         pass
