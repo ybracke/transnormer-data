@@ -239,3 +239,14 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         correct_res = ["musst", "n", "Eis", "einkaufen", "mal", "wieder"]
         actual_res = self.modifier._update_target_tok(target_tok_in, idx2ngram)
         assert correct_res == actual_res
+
+    def test_load_n2m_replacement_mapping(self) -> None:
+        files = ["tests/testdata/type-replacements/2-to-n.tsv"]
+        correct_res = {
+            ("All", "'"): ("Alle",),
+            ("Allein", "'"): ("Alleine",),
+            ("Ameiſ", "’"): ("Ameise",),
+            ("Andres", "'"): ("Andres", "'"),
+        }
+        actual_res = self.modifier._load_n2m_replacement_mapping(files, delimiters="\t")
+        assert correct_res == actual_res

@@ -161,8 +161,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         idx2ngram: Dict[Tuple[int, ...], Tuple[str, ...]],
         remove_overlap: bool = True,
     ):
-        """ 
-        Updates a token sequence according to the positions and changes 
+        """
+        Updates a token sequence according to the positions and changes
         specified in idx2ngram
         """
         target_tok_out = []
@@ -178,3 +178,22 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
                 target_tok_out.append(target_tok_in[i])
                 i += 1
         return target_tok_out
+
+    def _load_n2m_replacement_mapping(
+        self, files: List[str], delimiters: Optional[str] = None
+    ) -> Dict[Tuple[str], Tuple[str]]:
+        all_pairs = []
+        for file in files:
+            with open(file, newline="") as csvfile:
+                dialect = csv.Sniffer().sniff(csvfile.read(1024), delimiters=delimiters)
+                dialect.quotechar = "`"
+                csvfile.seek(0)
+                reader = csv.reader(csvfile, dialect)
+                for row in reader:
+                    pair = tuple(row)
+                    assert len(pair) == 2, print(pair)
+                    src = tuple(pair[0].split(" "))
+                    trg = tuple(pair[1].split(" "))
+                    all_pairs.append((src, trg))
+        replacement_mapping: Dict[Tuple[str], Tuple[str]] = dict(all_pairs)
+        return replacement_mapping
