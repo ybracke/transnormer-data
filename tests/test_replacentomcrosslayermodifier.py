@@ -102,26 +102,26 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         ngrams2indices_src = {("mußt", "’"): [(0, 1), (3, 4)], ("a",): [(2,)]}
         replacement_lex = {("mußt", "’"): ("musste",)}
         alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3]]
-        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
             ngrams2indices_src, alignment, replacement_lex
         )
 
-        correct_target_ngrams2indices = {
+        correct_target_idxs2ngram = {
             (0, 1): ("musste",),
             (3,): ("musste",),
         }
-        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
 
     def test_get_idx2ngram_trg_empty_sent(self) -> None:
         ngrams2indices_src = {("mußt", "’"): [(0, 1), (3, 4)], ("a",): [(2,)]}
         replacement_lex = {("mußt", "’"): ("musste",)}
         alignment = []  # type: ignore
-        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
             ngrams2indices_src, alignment, replacement_lex
         )
 
-        correct_target_ngrams2indices = {}  # type: ignore
-        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+        correct_target_idxs2ngram = {}  # type: ignore
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
 
     def test_get_idx2ngram_trg_overlap(self) -> None:
         ngrams2indices_src = {
@@ -134,16 +134,16 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             ("wieviel",): ("wie", "viel"),
         }
         alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3], [5, 4], [5, 5]]
-        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
             ngrams2indices_src, alignment, replacement_lex
         )
 
-        correct_target_ngrams2indices = {
+        correct_target_idxs2ngram = {
             (0, 1): ("musste",),
             (1, 2): ("ein",),
             (3,): ("musste",),
         }
-        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
 
     def test_get_idx2ngram_trg_1ton(self) -> None:
         ngrams2indices_src = {
@@ -154,14 +154,14 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             ("wieviel",): ("wie", "viel"),
         }
         alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3], [5, 4], [5, 5], [6, 6]]
-        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
             ngrams2indices_src, alignment, replacement_lex
         )
 
-        correct_target_ngrams2indices = {
+        correct_target_idxs2ngram = {
             (4, 5): ("wie", "viel"),
         }
-        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
 
     def test_get_idx2ngram_trg_1ton_start_end(self) -> None:
         ngrams2indices_src = {
@@ -172,15 +172,15 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             ("wieviel",): ("wie", "viel"),
         }
         alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3], [5, 4], [5, 5]]
-        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
             ngrams2indices_src, alignment, replacement_lex
         )
 
-        correct_target_ngrams2indices = {
+        correct_target_idxs2ngram = {
             (0,): ("wie", "viel"),
             (4, 5): ("wie", "viel"),
         }
-        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
 
     def test_get_idx2ngram_trg_nto1_start_end(self) -> None:
         ngrams2indices_src = {
@@ -188,15 +188,54 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         }
 
         replacement_lex = {
-            ("unter", "halb"): ("unterhalb"),
+            ("unter", "halb"): ("unterhalb",),
         }
         alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3], [5, 4], [5, 5]]
-        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
             ngrams2indices_src, alignment, replacement_lex
         )
 
-        correct_target_ngrams2indices = {
-            (0, 1): ("unterhalb"),
-            (3, 4, 5): ("unterhalb"),
+        correct_target_idxs2ngram = {
+            (0, 1): ("unterhalb",),
+            (3, 4, 5): ("unterhalb",),
         }
-        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
+
+    def test_get_start2ngram_and_end(self) -> None:
+        idx2ngram = {
+            (0, 1): ("unterhalb",),
+            (1, 2): ("musst",),
+            (3, 4, 5): ("unterhalb",),
+        }
+        correct_start2ngram_and_end = {
+            0: (("unterhalb",), 1),
+            1: (("musst",), 2),
+            3: (("unterhalb",), 5),
+        }
+
+        actual_start2ngram_and_end = self.modifier._get_start2ngram_and_end(
+            idx2ngram, remove_overlap=False
+        )
+        assert actual_start2ngram_and_end == correct_start2ngram_and_end
+
+        correct_start2ngram_and_end = {
+            0: (("unterhalb",), 1),
+            3: (("unterhalb",), 5),
+        }
+
+        actual_start2ngram_and_end = self.modifier._get_start2ngram_and_end(
+            idx2ngram, remove_overlap=True
+        )
+        assert actual_start2ngram_and_end == correct_start2ngram_and_end
+
+    def test_update_target_tok(self) -> None:
+        idx2ngram = {
+            (0, 1): ("musst",),
+            (1, 2): ("ein",),
+            (4, 5): ("einkaufen",),
+            (6,): ("mal", "wieder"),
+        }
+        target_tok_in = ["musst", "’", "n", "Eis", "ein", "kaufen", "malwieder"]
+        correct_res = ["musst", "n", "Eis", "einkaufen", "mal", "wieder"]
+        actual_res = self.modifier._update_target_tok(target_tok_in, idx2ngram)
+        assert correct_res == actual_res
