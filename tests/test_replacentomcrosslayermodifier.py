@@ -162,3 +162,41 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             (4, 5): ("wie", "viel"),
         }
         assert actual_target_ngrams2indices == correct_target_ngrams2indices
+
+    def test_get_idx2ngram_trg_1ton_start_end(self) -> None:
+        ngrams2indices_src = {
+            ("wieviel",): [(0,), (5,)],
+        }
+
+        replacement_lex = {
+            ("wieviel",): ("wie", "viel"),
+        }
+        alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3], [5, 4], [5, 5]]
+        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+            ngrams2indices_src, alignment, replacement_lex
+        )
+
+        correct_target_ngrams2indices = {
+            (0,): ("wie", "viel"),
+            (4, 5): ("wie", "viel"),
+        }
+        assert actual_target_ngrams2indices == correct_target_ngrams2indices
+
+    def test_get_idx2ngram_trg_nto1_start_end(self) -> None:
+        ngrams2indices_src = {
+            ("unter", "halb"): [(0, 1), (4, 5)],
+        }
+
+        replacement_lex = {
+            ("unter", "halb"): ("unterhalb"),
+        }
+        alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 3], [5, 4], [5, 5]]
+        actual_target_ngrams2indices = self.modifier._get_idx2ngram_trg(
+            ngrams2indices_src, alignment, replacement_lex
+        )
+
+        correct_target_ngrams2indices = {
+            (0, 1): ("unterhalb"),
+            (3, 4, 5): ("unterhalb"),
+        }
+        assert actual_target_ngrams2indices == correct_target_ngrams2indices
