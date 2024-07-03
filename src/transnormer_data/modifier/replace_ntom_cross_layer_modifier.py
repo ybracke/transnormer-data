@@ -29,6 +29,17 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         that corresponds to (X,Y) with (X', Y')
         """
 
+        # Keys in the sample dictionary
+        self.raw_trg = f"{target_layer}"
+        self.tok_trg = f"{target_layer}_tok"
+        self.ws_trg = f"{target_layer}_ws"
+        self.spans = f"{target_layer}_spans"
+        self.tok_src = f"{source_layer}_tok"
+        self.alignment = "alignment"
+
+        # Detokenizer
+        self.detokenizer = DtaEvalDetokenizer()
+
         # Replacement dictionary
         self.type_mapping: Dict[
             Tuple[str, ...], Tuple[str, ...]
