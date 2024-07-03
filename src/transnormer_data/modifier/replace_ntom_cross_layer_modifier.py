@@ -17,6 +17,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         source_layer: str = "orig",
         target_layer: str = "norm",
         mapping_files: List[str] = [],
+        mapping_files_delimiters: Optional[str] = None,
     ) -> None:
         """
         n-gram to m-gram cross layer replacement modifier.
@@ -31,7 +32,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         # Replacement dictionary
         self.type_mapping: Dict[
             Tuple[str, ...], Tuple[str, ...]
-        ] = self._load_n2m_replacement_mapping(mapping_files)
+        ] = self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
 
     def _find_ngram_indices(
         self,
@@ -185,6 +186,31 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
                 target_tok_out.append(target_tok_in[i])
                 i += 1
         return target_tok_out
+
+    def map_tokens_cross_layer(
+        self, tokens_src: List[str], tokens_trg: List[str], alignment: List[List[int]]
+    ) -> Tuple[List[str], bool]:
+        """
+        Returns a modified version of `tokens_trg` in which the cross layer
+        type mapping is applied. Returns a tuple `(tokens_new, any_changes)`,
+        where `any_changes` is False iff `tokens_new==tokens_old`.
+        """
+        tokens_trg_new = []
+        search_ngrams_src = set(self.type_mapping.keys())
+        # Find source ngrams in source tokens
+        ngram2idxs_src = self._find_ngram_indices(search_ngrams_src, tokens_src)
+        # Nothing to change: exit
+        if not ngram2idxs_src:
+            return tokens_trg, False
+        # Find positions in target ngrams where new target ngrams will go
+        idx2ngram_trg = self._get_idx2ngram_trg(
+            ngram2idxs_src, alignment, self.type_mapping
+        )
+        # Apply changes to target tokens
+        tokens_trg_new = self._update_target_tok(
+            tokens_trg, idx2ngram_trg, remove_overlap=True
+        )
+        return tokens_trg_new, True
 
     def _load_n2m_replacement_mapping(
         self, files: List[str], delimiters: Optional[str] = None

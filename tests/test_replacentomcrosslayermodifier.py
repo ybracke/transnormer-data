@@ -13,7 +13,7 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
     def setUp(self) -> None:
         self.dataset = None
         self.modifier = ReplaceNtoMCrossLayerModifier()
-        # self.mapping_files = []  # TODO
+        self.mapping_files = ["tests/testdata/type-replacements/2-to-n.tsv"]
 
     def tearDown(self) -> None:
         pass
@@ -249,4 +249,17 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             ("Andres", "'"): ("Andres", "'"),
         }
         actual_res = self.modifier._load_n2m_replacement_mapping(files, delimiters="\t")
+        assert correct_res == actual_res
+
+    def test_map_tokens_cross_layer(self) -> None:
+        self.modifier.type_mapping = self.modifier._load_n2m_replacement_mapping(
+            self.mapping_files, delimiters="\t"
+        )
+        tokens_src = ["All", "'", "Andres", "'", "Allein", "'"]
+        tokens_trg = ["Alle", "'", "Andres", "'", "Allein", "'"]
+        alignment = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]]
+        actual_res = self.modifier.map_tokens_cross_layer(
+            tokens_src, tokens_trg, alignment
+        )
+        correct_res = (["Alle", "Andres", "'", "Alleine"], True)
         assert correct_res == actual_res
