@@ -28,9 +28,14 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         that corresponds to (X,Y) with (X', Y')
         """
 
+        # Replacement dictionary
+        self.type_mapping: Dict[
+            Tuple[str, ...], Tuple[str, ...]
+        ] = self._load_n2m_replacement_mapping(mapping_files)
+
     def _find_ngram_indices(
         self,
-        ngrams_to_search: Set[Tuple[str]],
+        ngrams_to_search: Set[Tuple[str, ...]],
         sent_tok: List[str],
         ngram_lengths: Optional[Iterable[int]] = None,
     ) -> Dict[Tuple[str, ...], List[Tuple[int, ...]]]:
@@ -138,6 +143,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         Converts the output of _get_idx2ngram_trg to the form: {start : (ngram, end)}
 
         Optional: If spans of indices overlap only keep the first one
+
+        Helper function for: _update_target_tok
         """
         start2ngram_and_end = {}
         prev_end = -1
@@ -160,7 +167,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         target_tok_in: List[str],
         idx2ngram: Dict[Tuple[int, ...], Tuple[str, ...]],
         remove_overlap: bool = True,
-    ):
+    ) -> List[str]:
         """
         Updates a token sequence according to the positions and changes
         specified in idx2ngram
@@ -181,7 +188,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
     def _load_n2m_replacement_mapping(
         self, files: List[str], delimiters: Optional[str] = None
-    ) -> Dict[Tuple[str], Tuple[str]]:
+    ) -> Dict[Tuple[str, ...], Tuple[str, ...]]:
         all_pairs = []
         for file in files:
             with open(file, newline="") as csvfile:
@@ -195,5 +202,5 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
                     src = tuple(pair[0].split(" "))
                     trg = tuple(pair[1].split(" "))
                     all_pairs.append((src, trg))
-        replacement_mapping: Dict[Tuple[str], Tuple[str]] = dict(all_pairs)
+        replacement_mapping = dict(all_pairs)
         return replacement_mapping
