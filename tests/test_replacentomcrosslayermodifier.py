@@ -19,9 +19,16 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         pass
 
     def test_get_index_map(self) -> None:
-        search_tuples = [(0,)]
+        search_tuples = [(0,), (0, 1)]
         alignment = list(zip([0, 0, 1, 2], [0, 1, 2, 3]))
-        correct_mapping = {(0,): (0, 1)}
+        correct_mapping = {(0,): (0, 1), (0, 1): (0, 1, 2)}
+        actual_mapping = self.modifier._get_index_map(search_tuples, alignment)
+        assert actual_mapping == correct_mapping
+
+    def test_get_index_map_with_None(self) -> None:
+        search_tuples = [(0,), (0, 1)]
+        alignment = list(zip([0, 0, 1, 2], [0, None, 1, 2]))
+        correct_mapping = {(0,): (0,), (0, 1): (0, 1)}
         actual_mapping = self.modifier._get_index_map(search_tuples, alignment)
         assert actual_mapping == correct_mapping
 
@@ -121,6 +128,20 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         )
 
         correct_target_idxs2ngram = {}  # type: ignore
+        assert actual_target_idxs2ngram == correct_target_idxs2ngram
+
+    def test_get_idx2ngram_trg_with_None(self) -> None:
+        ngrams2indices_src = {("mußt", "’"): [(0, 1), (3, 4)], ("a",): [(2,)]}
+        replacement_lex = {("mußt", "’"): ("musste",)}
+        alignment = [[0, 0], [1, None], [2, 1], [None, 2], [3, 3], [3, 4]]
+        actual_target_idxs2ngram = self.modifier._get_idx2ngram_trg(
+            ngrams2indices_src, alignment, replacement_lex
+        )
+
+        correct_target_idxs2ngram = {
+            (0,): ("musste",),
+            (3, 4): ("musste",),
+        }
         assert actual_target_idxs2ngram == correct_target_idxs2ngram
 
     def test_get_idx2ngram_trg_overlap(self) -> None:
@@ -237,6 +258,31 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         }
         target_tok_in = ["musst", "’", "n", "Eis", "ein", "kaufen", "malwieder"]
         correct_res = ["musst", "n", "Eis", "einkaufen", "mal", "wieder"]
+        actual_res = self.modifier._update_target_tok(target_tok_in, idx2ngram)
+        assert correct_res == actual_res
+
+    #  test is disabled because idx2ngram cannot contain None currently
+    @pytest.mark.skip
+    def test_update_target_tok_with_None(self) -> None:
+        idx2ngram = {
+            (0, None): ("musst",),
+            (1, 2): ("ein",),
+            (4, 5): ("einkaufen",),
+            (6,): ("mal", "wieder"),
+        }
+        target_tok_in = ["musst", "’", "n", "Eis", "ein", "kaufen", "malwieder"]
+        correct_res = ["musst", "ein", "Eis", "einkaufen", "mal", "wieder"]
+        actual_res = self.modifier._update_target_tok(target_tok_in, idx2ngram)
+        assert correct_res == actual_res
+
+        idx2ngram = {
+            (None, 1): ("FOO",),
+            (1, 2): ("ein",),
+            (4, 5): ("einkaufen",),
+            (6,): ("mal", "wieder"),
+        }
+        target_tok_in = ["musst", "’", "n", "Eis", "ein", "kaufen", "malwieder"]
+        correct_res = ["musst", "FOO", "n", "Eis", "einkaufen", "mal", "wieder"]
         actual_res = self.modifier._update_target_tok(target_tok_in, idx2ngram)
         assert correct_res == actual_res
 

@@ -87,13 +87,13 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
     def _get_index_map(
         self,
         search_seqs: List[Iterable[int]],
-        alignment: List[List[int]],
+        alignment: List[List[int | None]],
     ) -> Dict[Tuple[int, ...], Tuple[int, ...]]:
         """
         Creates a mapping of indexes: src -> trg
 
         Given a list of sub-sequences from source (search_seqs) and an alignment,
-        returns the mapping of of source sequences to the corresponding target sequences.
+        returns the mapping of of source sequences to the corresponding target sequences. 'None' elements are removed from trg.
 
         Helper function for _get_idx2ngram_trg
         """
@@ -112,19 +112,22 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
             # put into mapping
             indices_src = tuple(search_seq)
             # sort and remove dublicates from indices_all_trg
-            indices_all_trg = sorted(set(indices_all_trg))
-            index_map[indices_src] = tuple(indices_all_trg)
+            # Important: remove None elements from trg indices
+            indices_all_trg_cleaned = sorted(
+                set([i for i in indices_all_trg if i is not None])
+            )
+            index_map[indices_src] = tuple(indices_all_trg_cleaned)
 
         return index_map
 
     def _get_idx2ngram_trg(
         self,
         ngrams2indices_src: Dict[Tuple[str, ...], List[Tuple[int, ...]]],
-        alignment: List[List[int]],
+        alignment: List[List[int | None]],
         repl_lex: Dict[Tuple[str, ...], Tuple[str, ...]],
     ) -> Dict[Tuple[int, ...], Tuple[str, ...]]:
         """
-        Create a mapping of a source index tuple to a desired source ngram according to
+        Creates a mapping of a source index tuple to a desired source ngram according to
         replacement lexicon
 
         """
@@ -161,6 +164,11 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         start2ngram_and_end = {}
         prev_end = -1
         for idxs, ngram in idx2ngram.items():
+            # Not needed for now: remove all None values from idxs
+            # idxs = tuple([i for i in idxs if i is not None])
+            # if idxs:
+            #     continue
+
             start = idxs[0]
             end = idxs[-1]
             if remove_overlap and (start <= prev_end):
@@ -199,7 +207,10 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         return target_tok_out
 
     def map_tokens_cross_layer(
-        self, tokens_src: List[str], tokens_trg: List[str], alignment: List[List[int]]
+        self,
+        tokens_src: List[str],
+        tokens_trg: List[str],
+        alignment: List[List[int | None]],
     ) -> Tuple[List[str], bool]:
         """
         Returns a modified version of `tokens_trg` in which the cross layer
