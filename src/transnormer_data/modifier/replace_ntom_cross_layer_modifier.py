@@ -223,6 +223,43 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         )
         return tokens_trg_new, True
 
+    def modify_sample(self, sample: Dict) -> Dict:
+        """
+        Apply a modification function to a property of the sample
+        and propagate the modifications to other properties of the sample.
+
+        Here the modification is applied to {layer}_tok, and the changes are
+        propagated to {layer}_raw, etc.
+        """
+        tokens_trg_old = sample[self.tok_trg]
+        tokens_src = sample[self.tok_src]
+        alignment = sample[self.alignment]
+        tokens_trg_new, any_changes = self.map_tokens_cross_layer(
+            tokens_src, tokens_trg_old, alignment
+        )
+        if any_changes:
+            sample[self.tok_trg] = tokens_trg_new
+            self.update_raw_from_tok(
+                sample,
+                key_raw=self.raw_trg,
+                key_tok=self.tok_trg,
+            )
+            self.update_spans_and_ws_from_tok_and_raw(
+                sample,
+                key_tokens=self.tok_trg,
+                key_raw=self.raw_trg,
+                key_ws=self.ws_trg,
+                key_spans=self.spans_trg,
+            )
+            self.update_alignment(
+                sample,
+                key_tokens_src=self.tok_src,
+                key_tokens_trg=self.tok_trg,
+                key_alignment=self.alignment,
+            )
+
+        return sample
+
     def _load_n2m_replacement_mapping(
         self, files: List[str], delimiters: Optional[str] = None
     ) -> Dict[Tuple[str, ...], Tuple[str, ...]]:

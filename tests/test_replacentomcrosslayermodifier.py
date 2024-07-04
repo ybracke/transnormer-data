@@ -263,3 +263,38 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         )
         correct_res = (["Alle", "Andres", "'", "Alleine"], True)
         assert correct_res == actual_res
+
+    def test_modify_sample(self) -> None:
+        self.modifier.type_mapping = self.modifier._load_n2m_replacement_mapping(
+            self.mapping_files, delimiters="\t"
+        )
+        input_sample = {
+            "norm": "Alle' Andres' Allein'",
+            "norm_tok": ["Alle", "'", "Andres", "'", "Allein", "'"],
+            "norm_ws": [False, False, True, False, True, False],
+            "norm_spans": [
+                [0, 4],
+                [4, 5],
+                [6, 12],
+                [12, 13],
+                [14, 20],
+                [20, 21],
+            ],
+            "orig_tok": ["All", "'", "Andres", "'", "Allein", "'"],
+            "alignment": [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5]],
+        }
+        correct_res = {
+            "norm": "Alle Andres' Alleine",
+            "norm_tok": ["Alle", "Andres", "'", "Alleine"],
+            "norm_ws": [False, True, False, True],
+            "norm_spans": [
+                [0, 4],
+                [5, 11],
+                [11, 12],
+                [13, 20],
+            ],
+            "orig_tok": ["All", "'", "Andres", "'", "Allein", "'"],
+            "alignment": [[0, 0], [1, None], [2, 1], [3, 2], [4, 3], [5, None]],
+        }
+        actual_res = self.modifier.modify_sample(input_sample)
+        assert actual_res == correct_res
