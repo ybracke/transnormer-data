@@ -150,7 +150,9 @@ class BaseDatasetModifier:
             )
         return dataset
 
-    def get_idx2idxs(self, alignment: List[List[int]]) -> Dict[int, List[int]]:
+    def get_idx2idxs(
+        self, alignment: List[List[int | None]]
+    ) -> Dict[int | None, List[int | None]]:
         """
         Create a mapping from every single src element in `alignment`
         to all trg elements in that src is associated to.
