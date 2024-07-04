@@ -65,18 +65,17 @@ def main(arguments: Optional[List[str]] = None) -> None:
         modifier_kwargs = dict(item.split("=") for item in args.modifier_kwargs.split())
 
     # (2) Get data files
-    # TODO: Perhaps exchange the part in DtakMaker.make with this code
-    # len(files_list) == number_of_files
-    # Below, this will overwrite `dataset` with every iteration
+    # Default: Put every file into its own bin -> modifier will look at and store
+    # each file individually
+    # Set args.merge_into_single_dataset to True, if you want all files to be processed # as a single dataset
     files_list: List[List[str]] = sorted(
         [
             [fname]
             for fname in glob.iglob(os.path.join(input_dir_data, "*"), recursive=True)
         ]
-    )
-    # Prevent this, if desired --> len(files_list) == 1
+    )  # len(files_list) == number_of_files
     if args.merge_into_single_dataset:
-        files_list = [[fname for fname in files_list[0]]]
+        files_list = [[fname for fname in files_list[0]]]  # len(files_list) == 1
 
     # (3) Create modifier
     if plugin.lower() == "replacetoken1to1modifier":
@@ -102,9 +101,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (4) Iterate over files lists, modify, save
     for files in files_list:
         # (4.1) Load dataset
-        dataset: datasets.Dataset = utils.load_dataset_via_pandas(
-            data_files=files
-        )  # type:ignore
+        dataset: datasets.Dataset = utils.load_dataset_via_pandas(data_files=files)
         dataset.data.validate()
 
         # (4.2) Modify dataset
