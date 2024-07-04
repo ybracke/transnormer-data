@@ -44,7 +44,7 @@ class BaseDatasetModifier:
         return tokens, whitespaces[:-1]
 
     def update_raw_from_tok(
-        self, sample: Dict, key_raw: str, key_tok: str, key_ws: Optional[str]
+        self, sample: Dict, key_raw: str, key_tok: str, key_ws: Optional[str] = None
     ) -> Dict:
         """Update a sample's raw string entry based on its tokenized (+ optionally whitespace) entry"""
         sample[key_raw] = self._tok2raw(sample[key_tok], sample.get(key_ws))
