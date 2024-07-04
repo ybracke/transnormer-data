@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Tuple, Union, Sequence
 
 import datasets
 import pandas as pd
@@ -54,7 +54,7 @@ def save_dataset_to_json(
 
 
 def load_dataset_via_pandas(
-    data_files: List[Union[str, os.PathLike]]
+    data_files: Sequence[Union[str, os.PathLike]]
 ) -> datasets.Dataset:
     """Load a datasets.Dataset from a list of JSONL files
 
