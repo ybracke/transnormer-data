@@ -62,6 +62,21 @@ class LanguageDetectionModifierTester(unittest.TestCase):
         result = self.modifier.modify_sample(input_sample)
         assert result == target
 
+        input_sample = {
+            "orig": "Donde Lebensmann.",
+            "norm": "Donde Lebensmann.",
+        }
+        target = {
+            "orig": "Donde Lebensmann.",
+            "norm": "Donde Lebensmann.",
+            "lang_fastText": "en",
+            "lang_py3langid": "de",
+            "lang_cld3": "hu",
+            "lang_de": 0.333,
+        }
+        result = self.modifier.modify_sample(input_sample)
+        assert result == target
+
     def test_modify_dataset(self) -> None:
         data_files = ["tests/testdata/jsonl/dtak/varnhagen_rahel01_1834.jsonl"]
         dataset = datasets.load_dataset("json", data_files=data_files, split="train")

@@ -50,7 +50,7 @@ class LanguageIdentificationEnsemble(object):
 
 
 class LanguageDetectionModifier(BaseDatasetModifier):
-    def __init__(self, layer: Optional[str]=None) -> None:
+    def __init__(self, layer: Optional[str] = None) -> None:
         """
         This modifier runs language detection algorithms over the raw version of the source or target layer of the corpus and adds the language labels as additional properties to the dataset.
 
@@ -63,10 +63,10 @@ class LanguageDetectionModifier(BaseDatasetModifier):
         accepted_layers = {"orig", "norm"}
         if layer is None:
             layer = "orig"
-        if layer not in accepted_layers: 
+        if layer not in accepted_layers:
             raise NotImplementedError(
-            f"""num_tokens_from_messages() is not implemented for layer '{layer}'. Choose one of {accepted_layers}"""
-        )
+                f"""num_tokens_from_messages() is not implemented for layer '{layer}'. Choose one of {accepted_layers}"""
+            )
         self.raw = layer
 
     def modify_sample(self, sample: Dict) -> Dict:
@@ -77,8 +77,8 @@ class LanguageDetectionModifier(BaseDatasetModifier):
 
         guesses = self.languagedetector(sample[self.raw])
         sample.update(guesses)
-        sample["lang_de"] = sum(lang == "de" for lang in guesses.values()) / len(
-            guesses
+        sample["lang_de"] = round(
+            sum(lang == "de" for lang in guesses.values()) / len(guesses), 3
         )
 
         return sample
