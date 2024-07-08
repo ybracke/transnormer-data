@@ -40,10 +40,18 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         # Detokenizer
         self.detokenizer = DtaEvalDetokenizer()
 
+        # Lengths of the source ngrams in the mapping
+        self.src_ngram_lengths: List[int] | None = None
+
         # Replacement dictionary
-        self.type_mapping: Dict[
+        self.replacement_mapping: Dict[
             Tuple[str, ...], Tuple[str, ...]
         ] = self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+
+    def get_ngram_lengths(
+        self, ngram_mapping: Dict[Tuple[str, ...], Tuple[str, ...]]
+    ) -> List[int]:
+        return sorted({len(ngram) for ngram in ngram_mapping.keys()})
 
     def _find_ngram_indices(
         self,
@@ -218,15 +226,19 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         where `any_changes` is False iff `tokens_new==tokens_old`.
         """
         tokens_trg_new = []
-        search_ngrams_src = set(self.type_mapping.keys())
+        search_ngrams_src = set(self.replacement_mapping.keys())
         # Find source ngrams in source tokens
-        ngram2idxs_src = self._find_ngram_indices(search_ngrams_src, tokens_src)
+        ngram2idxs_src = self._find_ngram_indices(
+            search_ngrams_src,
+            tokens_src,
+            self.src_ngram_lengths,
+        )
         # Nothing to change: exit
         if not ngram2idxs_src:
             return tokens_trg, False
         # Find positions in target ngrams where new target ngrams will go
         idx2ngram_trg = self._get_idx2ngram_trg(
-            ngram2idxs_src, alignment, self.type_mapping
+            ngram2idxs_src, alignment, self.replacement_mapping
         )
         # Apply changes to target tokens
         tokens_trg_new = self._update_target_tok(
@@ -288,4 +300,6 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
                     trg = tuple(pair[1].split(" "))
                     all_pairs.append((src, trg))
         replacement_mapping = dict(all_pairs)
+        # Set src_ngram_lengths
+        self.src_ngram_lengths = self.get_ngram_lengths(replacement_mapping)
         return replacement_mapping

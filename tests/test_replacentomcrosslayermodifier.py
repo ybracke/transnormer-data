@@ -298,7 +298,7 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         assert correct_res == actual_res
 
     def test_map_tokens_cross_layer(self) -> None:
-        self.modifier.type_mapping = self.modifier._load_n2m_replacement_mapping(
+        self.modifier.replacement_mapping = self.modifier._load_n2m_replacement_mapping(
             self.mapping_files, delimiters="\t"
         )
         tokens_src = ["All", "'", "Andres", "'", "Allein", "'"]
@@ -311,7 +311,7 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         assert correct_res == actual_res
 
     def test_modify_sample(self) -> None:
-        self.modifier.type_mapping = self.modifier._load_n2m_replacement_mapping(
+        self.modifier.replacement_mapping = self.modifier._load_n2m_replacement_mapping(
             self.mapping_files, delimiters="\t"
         )
         input_sample = {
