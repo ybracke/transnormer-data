@@ -128,6 +128,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
         layer = modifier_kwargs.get("layer")
         modifier = language_detection_modifier.LanguageDetectionModifier(layer)
 
+    else: 
+        raise ValueError(f"Unknown modifier name '{plugin}'. Please select a valid modifier name.")
+
     # (4) Iterate over files lists, modify, save
     for files in files_lists:
         # (4.1) Load dataset
