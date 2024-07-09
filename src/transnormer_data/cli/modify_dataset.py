@@ -15,6 +15,7 @@ from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
     language_tool_modifier,
+    language_detection_modifier
 )
 
 # Reset existing logging configuration
@@ -78,6 +79,8 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # Parse --modifier-kwargs into a dictionary
     if args.modifier_kwargs:
         modifier_kwargs = dict(item.split("=") for item in args.modifier_kwargs.split())
+    else:
+        modifier_kwargs = {}
 
     # (2) Get data files
     # Default: Put every file into its own bin -> modifier will look at and store
@@ -120,6 +123,10 @@ def main(arguments: Optional[List[str]] = None) -> None:
     elif plugin.lower() == "languagetoolmodifier":
         rule_file = modifier_kwargs["rule_file"]
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
+
+    elif plugin.lower() == "languagedetectionmodifier":
+        layer = modifier_kwargs.get("layer")
+        modifier = language_detection_modifier.LanguageDetectionModifier(layer)
 
     else: 
         raise ValueError(f"Unknown modifier name '{plugin}'. Please select a valid modifier name.")
