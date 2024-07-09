@@ -1,5 +1,6 @@
 import argparse
 import glob
+import logging
 import os
 import time
 
@@ -15,7 +16,21 @@ from transnormer_data.modifier import (
     replace_token_1ton_modifier,
     replace_ntom_cross_layer_modifier,
     language_tool_modifier,
+    language_detection_modifier
 )
+
+# Reset existing logging configuration
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    filename="modify-dataset.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(name)s: %(message)s",
+)
+
+logger.setLevel(logging.INFO)
 
 
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
@@ -37,13 +52,14 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
 
     parser.add_argument(
         "--data",
-        help="Path to the input data directory",
+        type=str,
+        help="Path to the input data file or directory.",
     )
 
     parser.add_argument(
         "-o",
         "--output-dir",
-        help="Path to the output directory",
+        help="Path to the output directory. Directory will be created, if it does not exist.",
     )
 
     parser.add_argument(
@@ -58,25 +74,35 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
 def main(arguments: Optional[List[str]] = None) -> None:
     # (1) Read and check arguments
     args = parse_arguments(arguments)
-    input_dir_data = args.data
+    input_path = args.data
     output_dir = args.output_dir
     plugin = args.modifier
     # Parse --modifier-kwargs into a dictionary
     if args.modifier_kwargs:
         modifier_kwargs = dict(item.split("=") for item in args.modifier_kwargs.split())
+    else:
+        modifier_kwargs = {}
 
     # (2) Get data files
     # Default: Put every file into its own bin -> modifier will look at and store
     # each file individually
     # Set args.merge_into_single_dataset to True, if you want all files to be processed # as a single dataset
-    files_list: List[List[str]] = sorted(
-        [
-            [fname]
-            for fname in glob.iglob(os.path.join(input_dir_data, "*"), recursive=True)
-        ]
-    )  # len(files_list) == number_of_files
+    # Accepts directory (where it looks for all *.jsonl files) or file path
+    if os.path.isdir(input_path):
+        files_lists: List[List[str]] = sorted(
+            [
+                [fname]
+                for fname in glob.iglob(os.path.join(input_path, "**"), recursive=True) 
+                if fname.endswith(".jsonl")
+            ]
+        )
+    elif os.path.isfile(input_path):
+        files_lists = [[input_path]]
+    else:
+        raise ValueError(f"Unknown path: '{input_path}'") 
+
     if args.merge_into_single_dataset:
-        files_list = [[fname for fname in files_list[0]]]  # len(files_list) == 1
+        files_lists = [[fname for fname in files_lists[0]]]
 
     # (3) Create modifier
     if plugin.lower() == "replacetoken1to1modifier":
@@ -115,8 +141,15 @@ def main(arguments: Optional[List[str]] = None) -> None:
         rule_file = modifier_kwargs["rule_file"]
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
 
+    elif plugin.lower() == "languagedetectionmodifier":
+        layer = modifier_kwargs.get("layer")
+        modifier = language_detection_modifier.LanguageDetectionModifier(layer)
+
+    else: 
+        raise ValueError(f"Unknown modifier name '{plugin}'. Please select a valid modifier name.")
+
     # (4) Iterate over files lists, modify, save
-    for files in files_list:
+    for files in files_lists:
         # (4.1) Load dataset
         dataset: datasets.Dataset = utils.load_dataset_via_pandas(data_files=files)
         dataset.data.validate()
@@ -135,9 +168,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
 
 
 if __name__ == "__main__":
-    print(f"Current time: {datetime.now().time()}")
+    logger.info(f"Start time: {datetime.now().strftime('%H:%M:%S')}")
     t = time.process_time()
     main()
     elapsed_time = time.process_time() - t
-    print(f"Process took: {elapsed_time}")
-    print(f"Current time: {datetime.now().time()}")
+    logger.info(f"Process took: {elapsed_time:.2f} seconds.")
+    logger.info(f"End time: {datetime.now().strftime('%H:%M:%S')}")
