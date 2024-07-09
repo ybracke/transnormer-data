@@ -50,13 +50,14 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
 
     parser.add_argument(
         "--data",
-        help="Path to the input data directory",
+        type=str,
+        help="Path to the input data file or directory.",
     )
 
     parser.add_argument(
         "-o",
         "--output-dir",
-        help="Path to the output directory",
+        help="Path to the output directory. Directory will be created, if it does not exist.",
     )
 
     parser.add_argument(
@@ -71,7 +72,7 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
 def main(arguments: Optional[List[str]] = None) -> None:
     # (1) Read and check arguments
     args = parse_arguments(arguments)
-    input_dir_data = args.data
+    input_path = args.data
     output_dir = args.output_dir
     plugin = args.modifier
     # Parse --modifier-kwargs into a dictionary
@@ -79,18 +80,25 @@ def main(arguments: Optional[List[str]] = None) -> None:
         modifier_kwargs = dict(item.split("=") for item in args.modifier_kwargs.split())
 
     # (2) Get data files
-    # TODO: Perhaps exchange the part in DtakMaker.make with this code
-    # len(files_list) == number_of_files
-    # Below, this will overwrite `dataset` with every iteration
-    files_list: List[List[str]] = sorted(
-        [
-            [fname]
-            for fname in glob.iglob(os.path.join(input_dir_data, "*"), recursive=True)
-        ]
-    )
-    # Prevent this, if desired --> len(files_list) == 1
+    # Default: Put every file into its own bin -> modifier will look at and store
+    # each file individually
+    # Set args.merge_into_single_dataset to True, if you want all files to be processed # as a single dataset
+    # Accepts directory (where it looks for all *.jsonl files) or file path
+    if os.path.isdir(input_path):
+        files_lists: List[List[str]] = sorted(
+            [
+                [fname]
+                for fname in glob.iglob(os.path.join(input_path, "**"), recursive=True) 
+                if fname.endswith(".jsonl")
+            ]
+        )
+    elif os.path.isfile(input_path):
+        files_lists = [[input_path]]
+    else:
+        raise ValueError(f"Unknown path: '{input_path}'") 
+
     if args.merge_into_single_dataset:
-        files_list = [[fname for fname in files_list[0]]]
+        files_lists = [[fname for fname in files_lists[0]]]
 
     # (3) Create modifier
     if plugin.lower() == "replacetoken1to1modifier":
@@ -114,7 +122,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
 
     # (4) Iterate over files lists, modify, save
-    for files in files_list:
+    for files in files_lists:
         # (4.1) Load dataset
         dataset: datasets.Dataset = utils.load_dataset_via_pandas(
             data_files=files
