@@ -121,6 +121,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
         rule_file = modifier_kwargs["rule_file"]
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
 
+    else: 
+        raise ValueError(f"Unknown modifier name '{plugin}'. Please select a valid modifier name.")
+
     # (4) Iterate over files lists, modify, save
     for files in files_lists:
         # (4.1) Load dataset
