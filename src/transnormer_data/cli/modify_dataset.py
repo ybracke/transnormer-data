@@ -1,5 +1,6 @@
 import argparse
 import glob
+import logging
 import os
 import time
 
@@ -15,6 +16,19 @@ from transnormer_data.modifier import (
     replace_token_1ton_modifier,
     language_tool_modifier,
 )
+
+# Reset existing logging configuration
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    filename=".log/modify-dataset.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(name)s: %(message)s",
+)
+
+logger.setLevel(logging.INFO)
 
 
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
@@ -121,9 +135,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
 
 
 if __name__ == "__main__":
-    print(f"Current time: {datetime.now().time()}")
+    logger.info(f"Start time: {datetime.now().strftime('%H:%M:%S')}")
     t = time.process_time()
     main()
     elapsed_time = time.process_time() - t
-    print(f"Process took: {elapsed_time}")
-    print(f"Current time: {datetime.now().time()}")
+    logger.info(f"Process took: {elapsed_time:.2f} seconds.")
+    logger.info(f"End time: {datetime.now().strftime('%H:%M:%S')}")
