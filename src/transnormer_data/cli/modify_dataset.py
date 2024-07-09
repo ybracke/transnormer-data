@@ -91,7 +91,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
         files_lists: List[List[str]] = sorted(
             [
                 [fname]
-                for fname in glob.iglob(os.path.join(input_path, "**"), recursive=True) 
+                for fname in sorted(glob.iglob(os.path.join(input_path, "**"), recursive=True)) 
                 if fname.endswith(".jsonl")
             ]
         )
@@ -134,6 +134,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (4) Iterate over files lists, modify, save
     for files in files_lists:
         # (4.1) Load dataset
+        logger.info("Handling: " + " ".join(files))
         dataset: datasets.Dataset = utils.load_dataset_via_pandas(
             data_files=files
         )  # type:ignore
