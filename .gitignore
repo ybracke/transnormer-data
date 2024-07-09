@@ -6,6 +6,6 @@
 __pycache__
 .coverage
 .env
-.log
+*.log
 TODO
 resources
