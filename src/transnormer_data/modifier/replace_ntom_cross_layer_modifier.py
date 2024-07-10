@@ -16,7 +16,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         self,
         source_layer: str = "orig",
         target_layer: str = "norm",
-        mapping_files: List[str] = [],
+        mapping_files: Optional[List[str]] = None,
         mapping_files_delimiters: Optional[str] = None,
     ) -> None:
         """
@@ -47,6 +47,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         self.src_ngram_lengths: List[int] | None = None
 
         # Replacement dictionary
+        mapping_files = [] if mapping_files is None else mapping_files
         self.replacement_mapping: Dict[Tuple[str, ...], Tuple[str, ...]] = (
             self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
         )
