@@ -14,6 +14,7 @@ from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
+    replace_raw_modifier,
     language_tool_modifier,
     language_detection_modifier,
 )
@@ -120,6 +121,18 @@ def main(arguments: Optional[List[str]] = None) -> None:
         layer = modifier_kwargs["layer"]
         modifier = replace_token_1ton_modifier.ReplaceToken1toNModifier(
             layer=layer, mapping_files=mapping_files
+        )
+
+    elif plugin.lower() == "replacerawmodifier":
+        mapping_files = modifier_kwargs["mapping_files"].split(",")
+        layer = modifier_kwargs["layer"]
+        # uid_labels = modifier_kwargs["uid_labels"]
+        raw_label = modifier_kwargs["raw_label"]
+        modifier = replace_raw_modifier.ReplaceRawModifier(
+            layer=layer,
+            mapping_files=mapping_files,
+            # uid_labels=uid_labels,
+            raw_label=raw_label,
         )
 
     elif plugin.lower() == "languagetoolmodifier":
