@@ -53,9 +53,7 @@ def save_dataset_to_json(
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def load_dataset_via_pandas(
-    data_files: List[Union[str, os.PathLike]]
-) -> datasets.Dataset:
+def load_dataset_via_pandas(data_files: List[str]) -> datasets.Dataset:
     """Load a datasets.Dataset from a list of JSONL files
 
     Same behavior as calling `datasets.load_dataset_("json", data_files=files, split="train")`, but without causing unexpected and hard to explain `datasets.builder.DatasetGenerationError`s while processing some files.
