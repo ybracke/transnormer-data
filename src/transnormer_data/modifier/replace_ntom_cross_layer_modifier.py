@@ -51,9 +51,9 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         # Replacement dictionary
         mapping_files = [] if mapping_files is None else mapping_files
-        self.replacement_mapping: Dict[
-            Tuple[str, ...], Tuple[str, ...]
-        ] = self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+        self.replacement_mapping: Dict[Tuple[str, ...], Tuple[str, ...]] = (
+            self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+        )
 
         self._current_sample: Dict = {}
 
@@ -114,7 +114,6 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         Helper function for _get_idx2ngram_trg
         """
-
         idx_src2idxs_trg = self.get_idx2idxs(alignment)
         index_map = {}
         # Iterate over index sequences from source
@@ -133,7 +132,9 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
             indices_all_trg_cleaned = sorted(
                 set([i for i in indices_all_trg if i is not None])
             )
-            index_map[indices_src] = tuple(indices_all_trg_cleaned)
+            # Make sure tuple is not empty
+            if indices_all_trg_cleaned:
+                index_map[indices_src] = tuple(indices_all_trg_cleaned)
 
         return index_map
 
@@ -186,6 +187,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
             # if idxs:
             #     continue
 
+            assert len(idxs) > 0
             start = idxs[0]
             end = idxs[-1]
             if remove_overlap and (start <= prev_end):
