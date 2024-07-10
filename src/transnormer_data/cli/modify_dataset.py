@@ -15,7 +15,7 @@ from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
     language_tool_modifier,
-    language_detection_modifier
+    language_detection_modifier,
 )
 
 # Reset existing logging configuration
@@ -91,14 +91,16 @@ def main(arguments: Optional[List[str]] = None) -> None:
         files_lists: List[List[str]] = sorted(
             [
                 [fname]
-                for fname in sorted(glob.iglob(os.path.join(input_path, "**"), recursive=True)) 
+                for fname in sorted(
+                    glob.iglob(os.path.join(input_path, "**"), recursive=True)
+                )
                 if fname.endswith(".jsonl")
             ]
         )
     elif os.path.isfile(input_path):
         files_lists = [[input_path]]
     else:
-        raise ValueError(f"Unknown path: '{input_path}'") 
+        raise ValueError(f"Unknown path: '{input_path}'")
 
     if args.merge_into_single_dataset:
         files_lists = [[fname for fname in files_lists[0]]]
@@ -128,8 +130,10 @@ def main(arguments: Optional[List[str]] = None) -> None:
         layer = modifier_kwargs.get("layer")
         modifier = language_detection_modifier.LanguageDetectionModifier(layer)
 
-    else: 
-        raise ValueError(f"Unknown modifier name '{plugin}'. Please select a valid modifier name.")
+    else:
+        raise ValueError(
+            f"Unknown modifier name '{plugin}'. Please select a valid modifier name."
+        )
 
     # (4) Iterate over files lists, modify, save
     for files in files_lists:
