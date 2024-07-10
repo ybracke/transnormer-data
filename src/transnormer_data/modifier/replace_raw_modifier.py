@@ -24,7 +24,7 @@ class ReplaceRawModifier(BaseDatasetModifier):
     def __init__(
         self,
         layer: str = "norm",
-        mapping_files: List[str] = [],
+        mapping_files: Optional[List[str]] = None,
         uid_labels: List[str] = ["basename", "par_idx"],
         raw_label: str = "norm",
     ) -> None:
@@ -57,6 +57,7 @@ class ReplaceRawModifier(BaseDatasetModifier):
         self.uid_labels: List[str] = uid_labels
 
         # Corrected raw samples
+        mapping_files = [] if mapping_files is None else mapping_files
         self.corrected_raw_samples: Dict[Tuple[str | int, ...], str] = (
             self._load_corrected_samples(mapping_files, self.uid_labels, raw_label)
         )
