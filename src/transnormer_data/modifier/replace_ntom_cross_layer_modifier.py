@@ -1,4 +1,5 @@
 import csv
+import logging
 import os
 
 from typing import Dict, List, Iterable, Optional, Set, Tuple, Union
@@ -9,6 +10,8 @@ import spacy
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.detokenizer import DtaEvalDetokenizer
 from transnormer_data import utils
+
+logger = logging.getLogger(__name__)
 
 
 class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
@@ -48,9 +51,11 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         # Replacement dictionary
         mapping_files = [] if mapping_files is None else mapping_files
-        self.replacement_mapping: Dict[Tuple[str, ...], Tuple[str, ...]] = (
-            self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
-        )
+        self.replacement_mapping: Dict[
+            Tuple[str, ...], Tuple[str, ...]
+        ] = self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+
+        self._current_sample: Dict = {}
 
     def get_ngram_lengths(
         self, ngram_mapping: Dict[Tuple[str, ...], Tuple[str, ...]]
@@ -185,8 +190,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
             end = idxs[-1]
             if remove_overlap and (start <= prev_end):
                 # TODO: log; return identifiers (basename, sent_id)
-                print(
-                    f"Dropped ngram at position [{start} : {end}] because of overlap with previous ngram."
+                logger.info(
+                    f"Dropped ngram at position [{start} : {end}] because of overlap with previous ngram. Sentence: '{self._current_sample.get(self.raw_trg)}'"
                 )
                 continue
             else:
@@ -258,6 +263,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         Here the modification is applied to {layer}_tok, and the changes are
         propagated to {layer}_raw, etc.
         """
+        self._current_sample = sample
+
         # Skip samples that have been classified as non-German
         # Possible TODO: allow more and flexible conditions
         # instead of hard-coded
