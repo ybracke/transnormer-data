@@ -36,6 +36,9 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         self.spans_trg = f"{target_layer}_spans"
         self.tok_src = f"{source_layer}_tok"
         self.alignment = "alignment"
+        # Score in range {0, 1} that tells us the proportion of language
+        # detection models that guessed that the sample is in German
+        self.lang_de_score = "lang_de"
 
         # Detokenizer
         self.detokenizer = DtaEvalDetokenizer()
@@ -44,9 +47,9 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         self.src_ngram_lengths: List[int] | None = None
 
         # Replacement dictionary
-        self.replacement_mapping: Dict[
-            Tuple[str, ...], Tuple[str, ...]
-        ] = self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+        self.replacement_mapping: Dict[Tuple[str, ...], Tuple[str, ...]] = (
+            self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+        )
 
     def get_ngram_lengths(
         self, ngram_mapping: Dict[Tuple[str, ...], Tuple[str, ...]]
@@ -254,6 +257,13 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         Here the modification is applied to {layer}_tok, and the changes are
         propagated to {layer}_raw, etc.
         """
+        # Skip samples that have been classified as non-German
+        # Possible TODO: allow more and flexible conditions
+        # instead of hard-coded
+        if self.lang_de_score in sample:
+            if sample[self.lang_de_score] == 0:
+                return sample
+
         tokens_trg_old = sample[self.tok_trg]
         tokens_src = sample[self.tok_src]
         alignment = sample[self.alignment]
