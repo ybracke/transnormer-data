@@ -15,8 +15,9 @@ from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
     replace_ntom_cross_layer_modifier,
+    replace_raw_modifier,
     language_tool_modifier,
-    language_detection_modifier
+    language_detection_modifier,
 )
 
 # Reset existing logging configuration
@@ -92,14 +93,16 @@ def main(arguments: Optional[List[str]] = None) -> None:
         files_lists: List[List[str]] = sorted(
             [
                 [fname]
-                for fname in glob.iglob(os.path.join(input_path, "**"), recursive=True) 
+                for fname in sorted(
+                    glob.iglob(os.path.join(input_path, "**"), recursive=True)
+                )
                 if fname.endswith(".jsonl")
             ]
         )
     elif os.path.isfile(input_path):
         files_lists = [[input_path]]
     else:
-        raise ValueError(f"Unknown path: '{input_path}'") 
+        raise ValueError(f"Unknown path: '{input_path}'")
 
     if args.merge_into_single_dataset:
         files_lists = [[fname for fname in files_lists[0]]]
@@ -137,6 +140,18 @@ def main(arguments: Optional[List[str]] = None) -> None:
             mapping_files_delimiters=delim,
         )
 
+    elif plugin.lower() == "replacerawmodifier":
+        mapping_files = modifier_kwargs["mapping_files"].split(",")
+        layer = modifier_kwargs["layer"]
+        # uid_labels = modifier_kwargs["uid_labels"]
+        raw_label = modifier_kwargs["raw_label"]
+        modifier = replace_raw_modifier.ReplaceRawModifier(
+            layer=layer,
+            mapping_files=mapping_files,
+            # uid_labels=uid_labels,
+            raw_label=raw_label,
+        )
+
     elif plugin.lower() == "languagetoolmodifier":
         rule_file = modifier_kwargs["rule_file"]
         modifier = language_tool_modifier.LanguageToolModifier(rule_file=rule_file)
@@ -145,13 +160,18 @@ def main(arguments: Optional[List[str]] = None) -> None:
         layer = modifier_kwargs.get("layer")
         modifier = language_detection_modifier.LanguageDetectionModifier(layer)
 
-    else: 
-        raise ValueError(f"Unknown modifier name '{plugin}'. Please select a valid modifier name.")
+    else:
+        raise ValueError(
+            f"Unknown modifier name '{plugin}'. Please select a valid modifier name."
+        )
 
     # (4) Iterate over files lists, modify, save
     for files in files_lists:
         # (4.1) Load dataset
-        dataset: datasets.Dataset = utils.load_dataset_via_pandas(data_files=files)
+        logger.info("Handling: " + " ".join(files))
+        dataset: datasets.Dataset = utils.load_dataset_via_pandas(
+            data_files=files
+        )  # type:ignore
         dataset.data.validate()
 
         # (4.2) Modify dataset

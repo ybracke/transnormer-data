@@ -12,7 +12,9 @@ from transnormer_data import utils
 
 
 class ReplaceToken1to1Modifier(BaseDatasetModifier):
-    def __init__(self, layer: str = "norm", mapping_files: List[str] = []) -> None:
+    def __init__(
+        self, layer: str = "norm", mapping_files: Optional[List[str]] = None
+    ) -> None:
         """
         Example implementation of a type replacement modifier
 
@@ -39,6 +41,7 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         self.nlp = spacy.blank("de")
 
         # Replacement dictionary
+        mapping_files = [] if mapping_files is None else mapping_files
         self.type_mapping: Dict[str, str] = self._load_replacement_mapping(
             mapping_files
         )
