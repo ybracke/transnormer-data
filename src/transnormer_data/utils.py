@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Tuple, Union, Sequence
 
 import datasets
 import pandas as pd

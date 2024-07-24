@@ -14,6 +14,7 @@ from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.modifier import (
     replace_token_1to1_modifier,
     replace_token_1ton_modifier,
+    replace_ntom_cross_layer_modifier,
     replace_raw_modifier,
     language_tool_modifier,
     language_detection_modifier,
@@ -121,6 +122,22 @@ def main(arguments: Optional[List[str]] = None) -> None:
         layer = modifier_kwargs["layer"]
         modifier = replace_token_1ton_modifier.ReplaceToken1toNModifier(
             layer=layer, mapping_files=mapping_files
+        )
+
+    elif plugin.lower() == "replacentomcrosslayermodifier":
+        mapping_files = modifier_kwargs["mapping_files"].split(",")
+        delim = modifier_kwargs["delimiter"]
+        source_layer = modifier_kwargs["source_layer"]
+        target_layer = modifier_kwargs["target_layer"]
+        # If the delimiter is the tab character we need a little hack
+        # We have to pass the string "{TAB}" on the command line
+        if delim == "{TAB}":
+            delim = "\t"
+        modifier = replace_ntom_cross_layer_modifier.ReplaceNtoMCrossLayerModifier(
+            source_layer=source_layer,
+            target_layer=target_layer,
+            mapping_files=mapping_files,
+            mapping_files_delimiters=delim,
         )
 
     elif plugin.lower() == "replacerawmodifier":
