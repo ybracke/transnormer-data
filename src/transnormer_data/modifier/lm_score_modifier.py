@@ -33,20 +33,20 @@ class LMScorer(object):
 
     def __call__(self, text: str) -> Dict[str, float]:
         """
-        Returns a dictionary of the language model score
+        Returns a dictionary of the language model score (negative log likelihood)
 
         Possible output:
         {
-        "dbmdz/german-gpt2" : -5.6789
+        "dbmdz/german-gpt2" : 5.6789
         }
         """
         scores = dict()
         scores[self.model_name] = self.predict_logprobs(text)
         return scores
 
-    def predict_logprobs(self, input_sample: str) -> float:
+    def predict_logprobs(self, input_str: str) -> float:
         # Tokenize the input sentence
-        inputs = self.tokenizer(input_sample, return_tensors="pt").to(self.model.device)
+        inputs = self.tokenizer(input_str, return_tensors="pt").to(self.model.device)
         input_ids = inputs["input_ids"].to(self.model.device)
 
         # Get the output logits from the model
@@ -64,10 +64,10 @@ class LMScorer(object):
         loss = loss_fct(
             shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1)
         )
-        log_probs = -loss.view(shift_labels.size())
+        neg_log_probs = loss.view(shift_labels.size())
 
         # Aggregate sentence score
-        score = log_probs.mean(-1)
+        score = neg_log_probs.mean(-1)
 
         return score.cpu().detach().numpy()[0]
 
@@ -98,14 +98,12 @@ class LMScoreModifier(BaseDatasetModifier):
     def modify_sample(self, sample: Dict) -> Dict:
         """
         Add language model score as a property to the sample.
-        Score is the log probability times -1 (i.e. a positive float).
+        Score is the negative log likelihood
         """
 
         scores = self.lm_scorer(sample[self.raw])
-        # Rounding only works with positive values
-        # Thus, lower value means more probable sentence
         scores_pos_rnd = {
-            model: np.round(score * -1, 4) for (model, score) in scores.items()
+            model: np.round(score, 4) for (model, score) in scores.items()
         }
         sample.update(scores_pos_rnd)
         return sample
