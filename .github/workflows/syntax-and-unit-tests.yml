@@ -28,7 +28,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements-dev.txt
         pip install pytest
-        apt install -y protobuf-compiler
+        sudo apt install -y protobuf-compiler
         pip install .
         mkdir resources
         wget -nc -q "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz" -O "resources/lid.176.ftz"
