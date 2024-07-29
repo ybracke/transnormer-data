@@ -1,4 +1,3 @@
-import csv
 import pytest
 import unittest
 
@@ -100,7 +99,6 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             "es",
         ]
         ngrams = {("wieviel",)}
-        alignment = [[0, 0], [0, 1], [1, 2], [2, 3]]
         correct_mapping = {("wieviel",): [(0,)]}
         actual_mapping = self.modifier._find_ngram_indices(ngrams, sent_tok)
         assert actual_mapping == correct_mapping

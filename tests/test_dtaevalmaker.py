@@ -98,16 +98,12 @@ class DtaEvalMakerTester(unittest.TestCase):
             [[0, 0], [1, 1], [2, 2], [3, 2], [4, 2]]
             + [[i, i - 2] for i in range(5, 20)],
         ]
-        brentano = self.dataset.filter(
-            lambda example: example["basename"] == "brentano_kasperl_1838"
-        )
         for example, target_alignment in zip(
             self.dataset.filter(
                 lambda example: example["basename"].startswith("brentano_kasperl_1838")
             ),
             target_alignments,
         ):
-            # print(example)
             assert example["alignment"] == target_alignment
 
     def test_create_example_from_s_with_join(self) -> None:

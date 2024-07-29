@@ -10,7 +10,6 @@ from transnormer_data.cli.split_dataset import (
     group_documents_by_decade_genre,
     split_authors,
     create_splits,
-    main,
 )
 
 
@@ -42,7 +41,7 @@ class SplitDatasetTester(unittest.TestCase):
         return filepaths
 
     def test_load_document_metadata(self):
-        filepaths = self.create_test_files()
+        _ = self.create_test_files()
         documents_meta = load_document_metadata(self.temp_dir, lambda x: True)
         self.assertEqual(len(documents_meta), 10)
 
@@ -52,7 +51,7 @@ class SplitDatasetTester(unittest.TestCase):
         self.assertEqual(get_decade(1799), 1790)
 
     def test_group_documents_by_decade_genre(self):
-        filepaths = self.create_test_files()
+        _ = self.create_test_files()
         documents_meta = load_document_metadata(self.temp_dir, lambda x: True)
         groups = group_documents_by_decade_genre(documents_meta)
         self.assertEqual(len(groups), 1)
@@ -80,7 +79,7 @@ class SplitDatasetTester(unittest.TestCase):
         self.assertEqual(len(test_authors), 1)
 
     def test_create_splits(self):
-        filepaths = self.create_test_files()
+        _ = self.create_test_files()
         documents_meta = load_document_metadata(self.temp_dir, lambda x: True)
         groups = group_documents_by_decade_genre(documents_meta)
         train_docs, val_docs, test_docs = create_splits(groups, 0.1)
