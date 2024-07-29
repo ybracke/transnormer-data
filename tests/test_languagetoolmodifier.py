@@ -1,5 +1,3 @@
-import csv
-import pytest
 import unittest
 
 import datasets

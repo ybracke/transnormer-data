@@ -79,7 +79,7 @@ class ReplaceToken1toNModifierTester(unittest.TestCase):
         result_tok, result_ws, any_changes = self.modifier.map_tokens(
             input_tok, input_ws
         )
-        assert any_changes == True
+        assert any_changes is True
         assert result_tok == target_tok
 
         input_tok = ["hier", "passiert", "nichts"]
@@ -89,7 +89,7 @@ class ReplaceToken1toNModifierTester(unittest.TestCase):
         result_tok, result_ws, any_changes = self.modifier.map_tokens(
             input_tok, input_ws
         )
-        assert any_changes == False
+        assert any_changes is False
         assert result_tok == target_tok
         assert result_ws == target_ws
 
