@@ -1,15 +1,13 @@
 import os
+from typing import Dict, Optional, Union
 
-from typing import Dict, Optional, Set, Union
-
-import datasets
-import spacy
 import cld3
-from py3langid.langid import LanguageIdentifier, MODEL_FILE
+import datasets
 import fasttext
+from py3langid.langid import MODEL_FILE, LanguageIdentifier
 
-from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data import utils
+from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../..")

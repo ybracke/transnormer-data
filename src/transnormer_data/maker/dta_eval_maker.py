@@ -1,8 +1,7 @@
-import json
-import os
 import glob
+import os
 import re
-from typing import Dict, List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Union
 
 import datasets
 from lxml import etree

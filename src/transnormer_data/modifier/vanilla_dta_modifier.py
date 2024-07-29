@@ -1,9 +1,9 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Dict
 
 import datasets
 import spacy
 
-from transnormer_data.base_dataset_modifier import BaseDatasetModifier, MODEL
+from transnormer_data.base_dataset_modifier import MODEL, BaseDatasetModifier
 from transnormer_data.detokenizer import DtaEvalDetokenizer
 
 
