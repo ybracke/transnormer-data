@@ -1,13 +1,9 @@
-import os
+from typing import Dict, Set
 
-from typing import Dict, Optional, Set, Union
-
-import datasets
 import spacy
 from language_tool_python import LanguageTool
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
-from transnormer_data import utils
 
 
 class LanguageToolModifier(BaseDatasetModifier):
@@ -35,20 +31,6 @@ class LanguageToolModifier(BaseDatasetModifier):
             language="de-DE", language_tool_download_version="6.3"
         )
         self.set_langtool_rules(self._load_rules(rule_file))
-
-    def modify_dataset(
-        self,
-        dataset: datasets.Dataset,
-        save_to: Optional[Union[str, os.PathLike]] = None,
-    ) -> Union[datasets.Dataset, None]:
-        dataset = dataset.map(self.modify_sample)
-        if save_to:
-            if not os.path.isdir(save_to):
-                os.makedirs(save_to)
-            utils.save_dataset_to_json_grouped_by_property(
-                dataset, property="basename", path_outdir=save_to
-            )
-        return dataset
 
     def modify_sample(self, sample: Dict) -> Dict:
         """
