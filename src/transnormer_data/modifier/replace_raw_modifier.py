@@ -54,9 +54,9 @@ class ReplaceRawModifier(BaseDatasetModifier):
 
         # Corrected raw samples
         mapping_files = [] if mapping_files is None else mapping_files
-        self.corrected_raw_samples: Dict[
-            Tuple[str | int, ...], str
-        ] = self._load_corrected_samples(mapping_files, self.uid_labels, raw_label)
+        self.corrected_raw_samples: Dict[Tuple[str | int, ...], str] = (
+            self._load_corrected_samples(mapping_files, self.uid_labels, raw_label)
+        )
 
     def modify_sample(self, sample: Dict) -> Dict:
         """
