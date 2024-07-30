@@ -139,9 +139,15 @@ class BaseDatasetModifier:
     def modify_dataset(
         self,
         dataset: datasets.Dataset,
+        batch_size: int = 1,
         save_to: Optional[Union[str, os.PathLike]] = None,
     ) -> Union[datasets.Dataset, None]:
-        dataset = dataset.map(self.modify_sample)
+        if batch_size <= 1:
+            dataset = dataset.map(self.modify_sample)
+        else:
+            dataset = dataset.map(
+                self.modify_sample, batched=True, batch_size=batch_size
+            )
         if save_to:
             if not os.path.isdir(save_to):
                 os.makedirs(save_to)
