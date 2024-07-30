@@ -1,22 +1,17 @@
 import logging
-import os
-
 from typing import Dict, Optional
 
-import datasets
+import numpy as np
 import torch
 import transformers
-import numpy as np
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
-from transnormer_data import utils
 
 logger = logging.getLogger(__name__)
 
 
 class LMScorer(object):
     def __init__(self, model_name: str):
-
         logger.info(f'Loading huggingface language model "{model_name}"')
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
@@ -98,7 +93,7 @@ class LMScoreModifier(BaseDatasetModifier):
     def modify_sample(self, sample: Dict) -> Dict:
         """
         Add language model score as a property to the sample.
-        
+
         Score is the negative log likelihood
         """
 
