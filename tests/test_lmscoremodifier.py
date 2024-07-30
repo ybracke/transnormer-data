@@ -20,8 +20,8 @@ class LMScoreModifierTester(unittest.TestCase):
     def test_scorer(self) -> None:
         scores_01 = self.lm_scorer("Das ist ein normaler deutscher Satz.")
         scores_02 = self.lm_scorer("normaler Satz deutscher Das ist nicht ein.")
-        # higher is better
-        assert scores_01["dbmdz/german-gpt2"] > scores_02["dbmdz/german-gpt2"]
+        # lower is better
+        assert scores_01["dbmdz/german-gpt2"] < scores_02["dbmdz/german-gpt2"]
 
     def test_modifier(self) -> None:
         sample_01 = {"norm": "Das ist ein normaler deutscher Satz."}
