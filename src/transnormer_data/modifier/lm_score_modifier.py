@@ -1,8 +1,8 @@
+import logging
 import os
 
-from typing import Dict, Optional, Set, Union
+from typing import Dict, Optional
 
-import logging
 import datasets
 import torch
 import transformers
@@ -18,7 +18,6 @@ class LMScorer(object):
     def __init__(self, model_name: str):
 
         logger.info(f'Loading huggingface language model "{model_name}"')
-        # TODO: catch if model does not exist
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
         self.model = transformers.AutoModelForCausalLM.from_pretrained(model_name).to(
@@ -77,8 +76,9 @@ class LMScoreModifier(BaseDatasetModifier):
         self, layer: Optional[str] = None, language_model: Optional[str] = None
     ) -> None:
         """
-        This modifier runs language tool over the raw version of the source or target layer of the corpus and adds language models probibility score as an additional property to the dataset.
+        Modifier that adds a language model probability score for each record.
 
+        A new property is created for the score. It is named after the model name.
         The default layer that language detection is applied to is "norm".
         """
 
@@ -98,6 +98,7 @@ class LMScoreModifier(BaseDatasetModifier):
     def modify_sample(self, sample: Dict) -> Dict:
         """
         Add language model score as a property to the sample.
+        
         Score is the negative log likelihood
         """
 
