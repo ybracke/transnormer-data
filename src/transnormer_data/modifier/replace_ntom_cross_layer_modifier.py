@@ -45,9 +45,9 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         # Replacement dictionary
         mapping_files = [] if mapping_files is None else mapping_files
-        self.replacement_mapping: Dict[
-            Tuple[str, ...], Tuple[str, ...]
-        ] = self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+        self.replacement_mapping: Dict[Tuple[str, ...], Tuple[str, ...]] = (
+            self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
+        )
 
         self._current_sample: Dict = {}
 
