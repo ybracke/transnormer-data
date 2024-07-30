@@ -1,12 +1,13 @@
-import csv
+import os
 import pytest
 import unittest
-
-import datasets
 
 from transnormer_data.modifier.lm_score_modifier import LMScoreModifier, LMScorer
 
 
+@pytest.mark.skipif(
+    os.getenv("GITHUB_ACTIONS") == "true", reason="Skipped in GitHub Actions"
+)
 class LMScoreModifierTester(unittest.TestCase):
     def setUp(self) -> None:
         self.dataset = None
