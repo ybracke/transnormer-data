@@ -1,15 +1,11 @@
 import os
+from typing import Dict, Optional
 
-from typing import Dict, Optional, Set, Union
-
-import datasets
-import spacy
 import cld3
-from py3langid.langid import LanguageIdentifier, MODEL_FILE
 import fasttext
+from py3langid.langid import MODEL_FILE, LanguageIdentifier
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
-from transnormer_data import utils
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(os.path.realpath(__file__)), "../../..")
@@ -82,17 +78,3 @@ class LanguageDetectionModifier(BaseDatasetModifier):
         )
 
         return sample
-
-    def modify_dataset(
-        self,
-        dataset: datasets.Dataset,
-        save_to: Optional[Union[str, os.PathLike]] = None,
-    ) -> Union[datasets.Dataset, None]:
-        dataset = dataset.map(self.modify_sample)
-        if save_to:
-            if not os.path.isdir(save_to):
-                os.makedirs(save_to)
-            utils.save_dataset_to_json_grouped_by_property(
-                dataset, property="basename", path_outdir=save_to
-            )
-        return dataset

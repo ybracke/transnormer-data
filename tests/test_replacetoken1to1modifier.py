@@ -94,13 +94,13 @@ class ReplaceToken1to1ModifierTester(unittest.TestCase):
             "sehen",
         ]
         result, any_changes = self.modifier.map_tokens(input)
-        assert any_changes == True
+        assert any_changes is True
         assert result == target
 
         input = ["hier", "passiert", "nichts"]
         target = ["hier", "passiert", "nichts"]
         result, any_changes = self.modifier.map_tokens(input)
-        assert any_changes == False
+        assert any_changes is False
         assert result == target
 
     def test_modify_sample(self) -> None:

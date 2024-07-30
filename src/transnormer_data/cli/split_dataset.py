@@ -195,7 +195,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     """
     args = parse_arguments(arguments)
 
-    condition = lambda x: args.year_start <= x["date"] <= args.year_end
+    condition = lambda x: args.year_start <= x["date"] <= args.year_end  # noqa: E731
     documents_meta = load_document_metadata(args.input_dir, condition)
     groups = group_documents_by_decade_genre(documents_meta)
     train_docs, val_docs, test_docs = create_splits(groups, args.size_test)

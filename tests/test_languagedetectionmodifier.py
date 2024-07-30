@@ -1,14 +1,17 @@
-import csv
-import pytest
+import os
 import unittest
 
 import datasets
+import pytest
 
 from transnormer_data.modifier.language_detection_modifier import (
     LanguageDetectionModifier,
 )
 
 
+@pytest.mark.skipif(
+    os.getenv("GITHUB_ACTIONS") == "true", reason="Skipped in GitHub Actions"
+)
 class LanguageDetectionModifierTester(unittest.TestCase):
     def setUp(self) -> None:
         self.dataset = None

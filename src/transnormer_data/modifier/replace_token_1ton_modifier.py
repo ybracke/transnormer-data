@@ -1,14 +1,10 @@
 import csv
-import os
+from typing import Dict, List, Optional, Tuple
 
-from typing import Dict, List, Optional, Tuple, Union
-
-import datasets
 import spacy
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.detokenizer import DtaEvalDetokenizer
-from transnormer_data import utils
 
 
 class ReplaceToken1toNModifier(BaseDatasetModifier):

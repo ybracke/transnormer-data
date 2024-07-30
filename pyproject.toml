@@ -13,13 +13,13 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "datasets>=2.15.0", 
+    "datasets>=2.15.0",
     "nltk>=3.8.1",
     "torch==1.12.1",
     "lxml>=4.9.3",
     "spacy>=3.7.2,<4.0.0",
     "de_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.7.0/de_core_news_sm-3.7.0-py3-none-any.whl",
-    "textalign@git+ssh://git@github.com/ybracke/textalign",
+    "textalign @ git+https://github.com/ybracke/textalign@58d1acc",
     "language-tool-python>=2.8",
     "scikit-learn==1.2.1",
     "py3langid==0.2.2",

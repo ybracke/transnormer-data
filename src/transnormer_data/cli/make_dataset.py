@@ -61,7 +61,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
         from transnormer_data.maker.dtak_maker import DtakMaker
 
         maker = DtakMaker(input_dir_data, input_dir_metadata, output_dir)
-    dataset = maker.make(save=True)
+    _ = maker.make(save=True)
 
 
 if __name__ == "__main__":

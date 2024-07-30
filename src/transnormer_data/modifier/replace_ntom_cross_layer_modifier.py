@@ -1,15 +1,9 @@
 import csv
 import logging
-import os
-
-from typing import Dict, List, Iterable, Optional, Set, Tuple, Union
-
-import datasets
-import spacy
+from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.detokenizer import DtaEvalDetokenizer
-from transnormer_data import utils
 
 logger = logging.getLogger(__name__)
 
@@ -152,7 +146,9 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         if not (len(alignment)):
             return {}
         # flatten
-        search_src_indices = [val for l in ngrams2indices_src.values() for val in l]
+        search_src_indices = [
+            val for list in ngrams2indices_src.values() for val in list
+        ]
         # map source to target indices
         index_mapping = self._get_index_map(search_src_indices, alignment)  # type: ignore
         # create a mapping of a source index tuple to a source ngram

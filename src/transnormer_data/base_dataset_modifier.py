@@ -1,7 +1,7 @@
 import os
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
-
 from abc import abstractmethod
+from typing import Dict, List, Optional, Tuple, Union
+
 import datasets
 import spacy
 from nltk.tokenize.treebank import TreebankWordDetokenizer
