@@ -209,6 +209,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         """
         target_tok_out = []
         i = 0
+        # Sort idx2ngram by first index in tuple
+        idx2ngram = dict(sorted(idx2ngram.items()))
         start2ngram_and_end = self._get_start2ngram_and_end(idx2ngram, remove_overlap)
         while i < len(target_tok_in):
             if i in start2ngram_and_end:
