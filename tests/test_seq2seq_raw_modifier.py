@@ -2,6 +2,8 @@ import os
 import pytest
 import unittest
 
+import datasets
+
 from transnormer_data.modifier.seq2seq_raw_modifier import (
     Seq2SeqRawModifier,
 )
@@ -20,5 +22,41 @@ class Seq2SeqRawModifierTester(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_nothing(self) -> None:
-        print(type(self.modifier.model))
+    @pytest.mark.skip()
+    def test_modify_batch(self) -> None:
+        data_files = ["tests/testdata/seq2seq/testfile_001.jsonl"]
+        self.dataset = datasets.load_dataset(
+            "json", data_files=data_files, split="train"
+        )
+        assert self.dataset is not None
+        batch = self.dataset[:2]
+        batch_mod = self.modifier.modify_batch(batch)
+        print(batch_mod)
+
+    def test_modify_dataset_batchsize_1(self) -> None:
+        data_files = ["tests/testdata/seq2seq/testfile_001.jsonl"]
+        self.dataset = datasets.load_dataset(
+            "json", data_files=data_files, split="train"
+        )
+        dataset_mod = self.modifier.modify_dataset(self.dataset, save_to=False)
+        print(dataset_mod[:2])
+
+    def test_modify_dataset_batchsize_2(self) -> None:
+        data_files = ["tests/testdata/seq2seq/testfile_001.jsonl"]
+        self.dataset = datasets.load_dataset(
+            "json", data_files=data_files, split="train"
+        )
+        dataset_mod = self.modifier.modify_dataset(
+            self.dataset, batch_size=2, save_to=False
+        )
+        print(dataset_mod[:2])
+
+    def test_modify_dataset_batchsize_too_large(self) -> None:
+        data_files = ["tests/testdata/seq2seq/testfile_001.jsonl"]
+        self.dataset = datasets.load_dataset(
+            "json", data_files=data_files, split="train"
+        )
+        dataset_mod = self.modifier.modify_dataset(
+            self.dataset, batch_size=4, save_to=False
+        )
+        print(dataset_mod[:2])
