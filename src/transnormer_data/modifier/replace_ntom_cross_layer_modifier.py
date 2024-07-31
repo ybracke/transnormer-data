@@ -27,6 +27,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         """
 
         # Keys in the sample dictionary
+        self.par_idx = "par_idx"
+        self.docname = "basename"
         self.raw_trg = f"{target_layer}"
         self.tok_trg = f"{target_layer}_tok"
         self.ws_trg = f"{target_layer}_ws"
@@ -187,9 +189,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
             start = idxs[0]
             end = idxs[-1]
             if remove_overlap and (start <= prev_end):
-                # TODO: log; return identifiers (basename, sent_id)
                 logger.info(
-                    f"Dropped ngram at position [{start} : {end}] because of overlap with previous ngram. Sentence: '{self._current_sample.get(self.raw_trg)}'"
+                    f"({self._current_sample.get(self.docname)}, {self._current_sample.get(self.par_idx)}): Dropped ngram at position [{start} : {end}] because of overlap with previous ngram. Area: '{self._current_sample.get(self.tok_trg,[])[max(0,start-3):end+3]}'"
                 )
                 continue
             else:
