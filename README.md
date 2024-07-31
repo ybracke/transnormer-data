@@ -94,3 +94,32 @@ Required:
 mkdir resources
 wget -nc -q "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz" -O "resources/lid.176.ftz"
 ```
+
+
+### LMScoreModifier
+
+Required:
+
+```
+conda install -y pip
+conda create -y --name <environment-name> python=3.10 pip
+conda activate <environment-name>
+
+conda install -y cudatoolkit=11.3.1 cudnn=8.3.2 -c conda-forge
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
+pip install torch==1.12.1+cu113 torchvision torchaudio -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+
+Example call:
+
+```
+conda activate <environment-name>
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
+export CUDA_VISIBLE_DEVICES=1
+python3 src/transnormer_data/cli/modify_dataset.py \
+    -m lmscoremodifier \
+    --modifier-kwargs "model=dbmdz/german-gpt2 layer=norm" \
+    --data /home/bracke/data/dta/jsonl/v07/arends_exter_1708.jsonl \
+    -o /home/bracke/data/dta/jsonl/v08/ &
+```
