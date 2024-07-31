@@ -139,10 +139,10 @@ class BaseDatasetModifier:
     def modify_dataset(
         self,
         dataset: datasets.Dataset,
-        batch_size: int = 1,
+        batch_size: Optional[int] = None,
         save_to: Optional[Union[str, os.PathLike]] = None,
     ) -> Union[datasets.Dataset, None]:
-        if batch_size <= 1:
+        if batch_size is None or batch_size <= 1:
             dataset = dataset.map(self.modify_sample)
         else:
             dataset = dataset.map(
