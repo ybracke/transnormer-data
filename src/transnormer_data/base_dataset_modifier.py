@@ -1,5 +1,4 @@
 import os
-from abc import abstractmethod
 from typing import Dict, List, Optional, Tuple, Union
 
 import datasets
@@ -142,11 +141,11 @@ class BaseDatasetModifier:
         batch_size: Optional[int] = None,
         save_to: Optional[Union[str, os.PathLike]] = None,
     ) -> Union[datasets.Dataset, None]:
-        if batch_size is None or batch_size <= 1:
+        if batch_size is None:
             dataset = dataset.map(self.modify_sample)
         else:
             dataset = dataset.map(
-                self.modify_sample, batched=True, batch_size=batch_size
+                self.modify_batch, batched=True, batch_size=batch_size
             )
         if save_to:
             if not os.path.isdir(save_to):
@@ -174,6 +173,8 @@ class BaseDatasetModifier:
                 idx2idxs[idx_src].append(idx_trg)
         return idx2idxs
 
-    @abstractmethod
     def modify_sample(self, sample: Dict):
-        pass
+        raise NotImplementedError
+
+    def modify_batch(self, batch: Dict[str, List]):
+        raise NotImplementedError
