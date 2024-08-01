@@ -63,7 +63,8 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
 
         inputs = self.tokenizer(
             # TODO lowercase is only for caser
-            [string.lower() for string in batch[self.raw_trg]],
+            # [string.lower() for string in batch[self.raw_trg]],
+            batch[self.raw_trg],
             return_tensors="pt",
             padding=True,
         ).to(self._device)
