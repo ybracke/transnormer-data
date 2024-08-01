@@ -69,7 +69,7 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
         ).to(self._device)
 
         with torch.no_grad():
-            outputs = self.model.generate(**inputs)
+            outputs = self.model.generate(**inputs, max_new_tokens=999_999)
 
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
         batch[self.raw_trg] = output_str
@@ -116,7 +116,3 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
             )
 
         return sample
-
-    # dummy
-    def modify_sample(self, sample):
-        pass
