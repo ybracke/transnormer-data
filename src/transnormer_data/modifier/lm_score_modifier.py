@@ -44,6 +44,7 @@ class LMScorer(object):
             input_str,
             return_tensors="pt",
             truncation=True,
+            max_length=1024,
         ).to(self.model.device)
         input_ids = inputs["input_ids"].to(self.model.device)
 
