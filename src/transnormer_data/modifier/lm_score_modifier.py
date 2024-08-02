@@ -40,7 +40,11 @@ class LMScorer(object):
 
     def predict_logprobs(self, input_str: str) -> float:
         # Tokenize the input sentence
-        inputs = self.tokenizer(input_str, return_tensors="pt").to(self.model.device)
+        inputs = self.tokenizer(
+            input_str,
+            return_tensors="pt",
+            truncation=True,
+        ).to(self.model.device)
         input_ids = inputs["input_ids"].to(self.model.device)
 
         # Get the output logits from the model
