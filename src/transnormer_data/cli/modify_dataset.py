@@ -19,6 +19,7 @@ from transnormer_data.modifier import (
     language_tool_modifier,
     language_detection_modifier,
     lm_score_modifier,
+    case_modifier,
 )
 
 # Reset existing logging configuration
@@ -165,6 +166,11 @@ def main(arguments: Optional[List[str]] = None) -> None:
         layer = modifier_kwargs.get("layer")
         model = modifier_kwargs.get("model")
         modifier = lm_score_modifier.LMScoreModifier(layer, model)
+
+    elif plugin.lower() == "casemodifier":
+        layer = modifier_kwargs.get("layer")
+        model = modifier_kwargs.get("model")
+        modifier = case_modifier.CaseModifier(layer, model)
 
     else:
         raise ValueError(
