@@ -18,6 +18,7 @@ from transnormer_data.modifier import (
     replace_raw_modifier,
     language_tool_modifier,
     language_detection_modifier,
+    lm_score_modifier,
 )
 
 # Reset existing logging configuration
@@ -159,6 +160,11 @@ def main(arguments: Optional[List[str]] = None) -> None:
     elif plugin.lower() == "languagedetectionmodifier":
         layer = modifier_kwargs.get("layer")
         modifier = language_detection_modifier.LanguageDetectionModifier(layer)
+
+    elif plugin.lower() == "lmscoremodifier":
+        layer = modifier_kwargs.get("layer")
+        model = modifier_kwargs.get("model")
+        modifier = lm_score_modifier.LMScoreModifier(layer, model)
 
     else:
         raise ValueError(
