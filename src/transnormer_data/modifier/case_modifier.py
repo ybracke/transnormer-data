@@ -9,8 +9,8 @@ logger = logging.getLogger(__name__)
 class CaseModifier(Seq2SeqRawModifier):
     def __init__(
         self,
+        layer: Optional[str] = None,
         model_name: Optional[str] = None,
-        layer: str = "norm",
     ) -> None:
         """
         Modifier for applying sequence-to-sequence casing models to raw text

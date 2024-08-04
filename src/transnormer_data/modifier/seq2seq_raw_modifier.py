@@ -12,9 +12,8 @@ logger = logging.getLogger(__name__)
 class Seq2SeqRawModifier(BaseDatasetModifier):
     def __init__(
         self,
+        layer: Optional[str] = None,
         model_name: Optional[str] = None,
-        tokenizer: Optional[str] = None,
-        layer: str = "norm",
         recompute_alignments: bool = True,
     ) -> None:
         """
@@ -30,7 +29,7 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
         layer = "norm" if layer is None else layer
         if layer not in accepted_layers:
             raise NotImplementedError(
-                f"""LMScoreModifier is not implemented for layer '{layer}'. Choose one of {accepted_layers}"""
+                f"""Seq2SeqRawModifier is not implemented for layer '{layer}'. Choose one of {accepted_layers}"""
             )
         self.raw_trg = layer
         self.tok_trg = f"{layer}_tok"
