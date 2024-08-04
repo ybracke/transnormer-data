@@ -87,14 +87,14 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
             if self.lang_de_score in sample:
                 if sample[self.lang_de_score] == 0:
                     sample[self.raw_trg] = original_raw[i]
-            sample = self.update_rest_of_sample(sample)
+            sample = self.update_rest_of_sample(sample, self.recompute_alignments)
             # Convert sample back to batch
             for key in keys:
                 batch_updated[key].append(sample[key])
 
         return batch
 
-    def update_rest_of_sample(self, sample: Dict):
+    def update_rest_of_sample(self, sample: Dict, recompute_alignment: bool):
 
         self.update_raw_from_tok(
             sample,
@@ -108,7 +108,7 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
             key_ws=self.ws_trg,
             key_spans=self.spans_trg,
         )
-        if self.recompute_alignments:
+        if recompute_alignment:
             self.update_alignment(
                 sample,
                 key_tokens_src=self.tok_src,
