@@ -1,10 +1,12 @@
 import logging
 from typing import Dict, List, Optional
 
+import spacy
 import torch
 import transformers
 
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
+from transnormer_data.detokenizer import DtaEvalDetokenizer
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +43,12 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
         # Score in range {0, 1} that tells us the proportion of language
         # detection models that guessed that the sample is in German
         self.lang_de_score = "lang_de"
+
+        # Detokenizer
+        self.detokenizer = DtaEvalDetokenizer()
+
+        # NLP
+        self.nlp = spacy.blank("de")
 
         # Seq2seq model
         logger.info(f'Loading model "{model_name}"')
@@ -91,14 +99,12 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
             for key in keys:
                 batch_updated[key].append(sample[key])
 
-        return batch
+        return batch_updated
 
     def update_rest_of_sample(self, sample: Dict, recompute_alignment: bool):
 
-        self.update_raw_from_tok(
-            sample,
-            key_raw=self.raw_trg,
-            key_tok=self.tok_trg,
+        self.update_tok_from_raw(
+            sample, key_raw=self.raw_trg, key_tok=self.tok_trg, key_ws=self.ws_trg
         )
         self.update_spans_and_ws_from_tok_and_raw(
             sample,

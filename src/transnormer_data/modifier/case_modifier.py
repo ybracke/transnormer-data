@@ -23,7 +23,7 @@ class CaseModifier(Seq2SeqRawModifier):
         source and target layer do not have to be recomputed.
         """
 
-        return super().__init__(model_name, layer, recompute_alignments=False)
+        return super().__init__(layer, model_name, recompute_alignments=False)
 
     def modify_batch(self, batch: Dict[str, List]):
         """ """
@@ -46,7 +46,6 @@ class CaseModifier(Seq2SeqRawModifier):
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
         batch[self.raw_trg] = output_str
 
-        # TODO: untested
         # Propagate changes
         # Convert batch (dict of lists) to samples (dict) and back to batch
         keys = batch.keys()
@@ -62,7 +61,7 @@ class CaseModifier(Seq2SeqRawModifier):
             # TODO: IDs should not be hard-coded
             elif raw_before_lc[i] != batch[self.raw_trg][i].lower():
                 logger.warning(
-                    f"Warning: Caser changed text other than case. Will ignore caser output and keep sample in previous state. ID: ({batch['basename'][i]}, {batch['par_idx'][i]})."
+                    f"Warning: Caser changed more than case. Will ignore caser output and keep sample in previous state. ID: ({batch['basename'][i]}, {batch['par_idx'][i]})."
                 )
                 sample[self.raw_trg] = raw_before[i]
             # If everything is okay
@@ -72,4 +71,4 @@ class CaseModifier(Seq2SeqRawModifier):
             for key in keys:
                 batch_updated[key].append(sample[key])
 
-        return batch
+        return batch_updated
