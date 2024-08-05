@@ -170,6 +170,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     elif plugin.lower() == "casemodifier":
         layer = modifier_kwargs.get("layer")
         model = modifier_kwargs.get("model")
+        batch_size = 8  # TODO: replace hard-coded batch size
         modifier = case_modifier.CaseModifier(layer, model)
 
     else:
@@ -187,7 +188,10 @@ def main(arguments: Optional[List[str]] = None) -> None:
         dataset.data.validate()
 
         # (4.2) Modify dataset
-        dataset = modifier.modify_dataset(dataset)
+        if "batch_size" in locals():
+            dataset = modifier.modify_dataset(dataset, batch_size=batch_size)
+        else:
+            dataset = modifier.modify_dataset(dataset)
 
         # (4.3) Save dataset
         if not os.path.isdir(output_dir):
