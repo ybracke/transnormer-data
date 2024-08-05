@@ -22,11 +22,9 @@ class CaseModifier(Seq2SeqRawModifier):
         a caser should not change the tokenization, the alignments between
         source and target layer do not have to be recomputed.
         """
-
         return super().__init__(layer, model_name, recompute_alignments=False)
 
     def modify_batch(self, batch: Dict[str, List]):
-        """ """
 
         # Keep previous raw text as backup
         raw_before: List[str] = batch[self.raw_trg]
@@ -41,7 +39,7 @@ class CaseModifier(Seq2SeqRawModifier):
         ).to(self._device)
 
         with torch.no_grad():
-            outputs = self.model.generate(**inputs, max_new_tokens=999_999)
+            outputs = self.model.generate(**inputs, generation_config=self.gen_cfg)
 
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
         batch[self.raw_trg] = output_str
@@ -52,17 +50,19 @@ class CaseModifier(Seq2SeqRawModifier):
         list_length = len(next(iter(batch.values())))
         batch_updated: Dict[str, List] = {key: [] for key in keys}
         for i in range(list_length):
+
             sample = {key: batch[key][i] for key in keys}
             # Ignore non-German samples
             if self.lang_de_score in sample:
                 if sample[self.lang_de_score] == 0:
                     sample[self.raw_trg] = raw_before[i]
-            # Catch cases where caser did more than it is supposed to do
-            # TODO: IDs should not be hard-coded
+            # Check whether caser changed more than it is supposed to
             elif raw_before_lc[i] != batch[self.raw_trg][i].lower():
+                # TODO: IDs should not be hard-coded
                 logger.warning(
                     f"Warning: Caser changed more than case. Will ignore caser output and keep sample in previous state. ID: ({batch['basename'][i]}, {batch['par_idx'][i]})."
                 )
+                logger.warning(f"Generated: '{batch[self.raw_trg][i]}'")
                 sample[self.raw_trg] = raw_before[i]
             # If everything is okay
             else:
