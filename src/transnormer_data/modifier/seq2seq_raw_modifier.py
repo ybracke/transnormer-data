@@ -58,6 +58,20 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
             self._device
         )
 
+        # Generation configuration
+        self.gen_cfg = transformers.GenerationConfig(
+            max_new_tokens=9999,
+            max_time=10.0,
+            # length_penalty = -10.0,
+            # num_beams = 2,
+            # early_stopping = True,
+            # repetition_penalty = 10.0,
+            # no_repeat_ngram_size = 100,
+            decoder_start_token_id=0,
+            eos_token_id=1,
+            pad_token_id=0,
+        )
+
         # Setting
         self.recompute_alignments = recompute_alignments
 
@@ -69,20 +83,17 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
         original_raw = batch[self.raw_trg]
 
         inputs = self.tokenizer(
-            # TODO lowercase is only for caser
-            # [string.lower() for string in batch[self.raw_trg]],
             batch[self.raw_trg],
             return_tensors="pt",
             padding=True,
         ).to(self._device)
 
         with torch.no_grad():
-            outputs = self.model.generate(**inputs, max_new_tokens=999_999)
+            outputs = self.model.generate(**inputs, generation_config=self.gen_cfg)
 
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
         batch[self.raw_trg] = output_str
 
-        # TODO: untested
         # Propagate changes
         # Convert batch (dict of lists) to samples (dict) and back to batch
         keys = batch.keys()
@@ -90,7 +101,7 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
         batch_updated: Dict[str, List] = {key: [] for key in keys}
         for i in range(list_length):
             sample = {key: batch[key][i] for key in keys}
-            # ignore non-German
+            # Ignore non-German samples
             if self.lang_de_score in sample:
                 if sample[self.lang_de_score] == 0:
                     sample[self.raw_trg] = original_raw[i]
