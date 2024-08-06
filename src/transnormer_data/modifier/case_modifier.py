@@ -25,11 +25,12 @@ class CaseModifier(Seq2SeqRawModifier):
         return super().__init__(layer, model_name, recompute_alignments=False)
 
     def modify_batch(self, batch: Dict[str, List]):
-
         # Keep previous raw text as backup
         raw_before: List[str] = batch[self.raw_trg]
-        # Lowercased version of original
-        raw_before_lc = [string.lower() for string in batch[self.raw_trg]]
+        # Lowercased version of original + HOTFIX newline char for this caser
+        raw_before_lc = [
+            string.strip().lower() + "\n" for string in batch[self.raw_trg]
+        ]
 
         inputs = self.tokenizer(
             raw_before_lc,
@@ -42,7 +43,7 @@ class CaseModifier(Seq2SeqRawModifier):
             outputs = self.model.generate(**inputs, generation_config=self.gen_cfg)
 
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
-        batch[self.raw_trg] = output_str
+        batch[self.raw_trg] = [s.rstrip("\n") for s in output_str]
 
         # Propagate changes
         # Convert batch (dict of lists) to samples (dict) and back to batch
@@ -57,10 +58,10 @@ class CaseModifier(Seq2SeqRawModifier):
                 if sample[self.lang_de_score] == 0:
                     sample[self.raw_trg] = raw_before[i]
             # Check whether caser changed more than it is supposed to
-            elif raw_before_lc[i] != batch[self.raw_trg][i].lower():
+            elif raw_before_lc[i].rstrip("\n") != batch[self.raw_trg][i].lower():
                 # TODO: IDs should not be hard-coded
                 logger.warning(
-                    f"Warning: Caser changed more than case. Will ignore caser output and keep sample in previous state. ID: ({batch['basename'][i]}, {batch['par_idx'][i]})."
+                    f"Caser changed more than case. Will ignore caser output and keep sample in previous state. ID: ({batch['basename'][i]}, {batch['par_idx'][i]})."
                 )
                 logger.warning(f"Generated: '{batch[self.raw_trg][i]}'")
                 sample[self.raw_trg] = raw_before[i]
