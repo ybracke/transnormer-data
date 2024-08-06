@@ -7,6 +7,7 @@ import datasets
 from transnormer_data.modifier.case_modifier import (
     CaseModifier,
 )
+from transnormer_data import utils
 
 
 @pytest.mark.skipif(
@@ -33,9 +34,7 @@ class CaseModifierTester(unittest.TestCase):
     def test_modify_dataset_batchsize_8(self) -> None:
         data_files = ["tests/testdata/jsonl/dtak/varnhagen_rahel01_1834.jsonl"]
         # data_files = ["tests/testdata/jsonl/dtak/weigel_moralweissheit_1674.jsonl"]
-        self.dataset = datasets.load_dataset(
-            "json", data_files=data_files, split="train"
-        )
+        self.dataset = utils.load_dataset_via_pandas(data_files=data_files)
         self.dataset = self.dataset.select(range(20))
         dataset_mod = self.modifier.modify_dataset(self.dataset, batch_size=8)
         assert dataset_mod is not None
