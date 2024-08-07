@@ -102,6 +102,7 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
         help="Path to the input data file or directory. If path is a directory, script will handle all *.jsonl files below that path.",
     )
     parser.add_argument(
+        "-o",
         "--output-dir",
         required=True,
         help="Path to the output directory for subsampled files.",
