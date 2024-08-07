@@ -47,7 +47,7 @@ class VanillaDtaModifier(BaseDatasetModifier):
         )
 
     def modify_dataset(
-        self, dataset: datasets.Dataset, save_to=None
+        self, dataset: datasets.Dataset, batch_size=None, save_to=None
     ) -> datasets.Dataset:
         dataset = dataset.map(self.modify_sample)
         return dataset
