@@ -61,13 +61,13 @@ class Seq2SeqRawModifier(BaseDatasetModifier):
         # Generation configuration
         self.gen_cfg = transformers.GenerationConfig.from_pretrained(
             model_name,
-            max_new_tokens=9999,
+            max_new_tokens=2024,
             # max_time=10.0,
             # length_penalty=2.0,
             # num_beams=4,
             # early_stopping=True,
             # repetition_penalty=10.0,
-            # no_repeat_ngram_size=100,
+            no_repeat_ngram_size=20,
             decoder_start_token_id=0,
             eos_token_id=1,
             pad_token_id=0,
