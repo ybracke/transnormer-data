@@ -54,11 +54,13 @@ class CaseModifier(Seq2SeqRawModifier):
 
             sample = {key: batch[key][i] for key in keys}
             # Ignore non-German samples
-            if self.lang_de_score in sample:
-                if sample[self.lang_de_score] == 0:
-                    sample[self.raw_trg] = raw_before[i]
+            if self.lang_de_score in sample and sample[self.lang_de_score] == 0:
+                sample[self.raw_trg] = raw_before[i]
             # Check whether caser changed more than it is supposed to
-            elif raw_before_lc[i].rstrip("\n") != batch[self.raw_trg][i].lower():
+            # HOTFIX: allow spacing differences
+            elif raw_before_lc[i].strip().replace(" ", "") != batch[self.raw_trg][
+                i
+            ].lower().replace(" ", ""):
                 # TODO: IDs should not be hard-coded
                 logger.warning(
                     f"Caser changed more than case. Will ignore caser output and keep sample in previous state. ID: ({batch['basename'][i]}, {batch['par_idx'][i]})."
