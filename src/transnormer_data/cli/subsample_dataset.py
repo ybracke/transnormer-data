@@ -1,6 +1,7 @@
 import argparse
 import glob
 import logging
+import math
 import os
 
 from typing import List, Optional
@@ -9,6 +10,8 @@ import numpy as np
 import datasets
 
 from transnormer_data import utils
+
+SEED = 42
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -20,8 +23,25 @@ logging.basicConfig(
 logger.setLevel(logging.INFO)
 
 
+def filter_for_charlength(
+    ds: datasets.Dataset,
+    length_lower_bound: int = 0,
+    length_upper_bound: Optional[int] = None,
+) -> datasets.Dataset:
+    """
+    Keep only the lines which lengths lie between upper and lower bound.
+    """
+    if length_upper_bound is None:
+        length_upper_bound = 100_000_000
+    ds = ds.filter(
+        lambda example: len(example["orig"]) > length_lower_bound
+        and len(example["orig"]) <= length_upper_bound
+    )
+    return ds
+
+
 def subsample(
-    dataset: datasets.Dataset, p_samples: float, p_short: float
+    ds: datasets.Dataset, p_samples: float, p_short: float
 ) -> datasets.Dataset:
     """
     Create a subsample of `dataset` where only `p_samples` of all samples in the dataset are retained.
@@ -34,20 +54,35 @@ def subsample(
     # Process dataset, compute length statistics and do sampling
 
     # Extract data
-    lm_scores = dataset["dbmdz/german-gpt2"]
+    n_sents = len(ds["orig"])
+    orig_lengths = [len(s) for s in ds["orig"]]
+    # lm_scores = ds["dbmdz/german-gpt2"]
     # lm_scores = [score for score in lm_scores if score is not None]
-    n_sents = len(dataset["orig"])
-    orig_lengths = [len(s) for s in dataset["orig"]]
-    year = dataset["date"][0]
-    basename = dataset["basename"][0]
+    # year = ds["date"][0]
+    # basename = ds["basename"][0]
+
+    # Compute number of output sentences
+    n_sents_subsample = math.floor(n_sents * p_samples)
+    n_short = math.floor(n_sents_subsample * p_short)
+    n_iqr = n_sents_subsample - n_short
 
     # Compute statistics
-    Q1_sent_length = np.percentile(orig_lengths, 25)
-    median_sent_length = np.percentile(orig_lengths, 50)
-    Q3_sent_length = np.percentile(orig_lengths, 75)
+    Q1_sent_length = math.floor(np.percentile(orig_lengths, 25))
+    Q3_sent_length = math.floor(np.percentile(orig_lengths, 75))
 
-    # TODO
-    pass
+    # Create two filtered version of ds
+    ds_filtered_short = filter_for_charlength(ds, 0, Q1_sent_length)
+    ds_filtered_iqr = filter_for_charlength(ds, Q1_sent_length, Q3_sent_length)
+
+    # From the filtered versions sample the final version
+    ds_sampled_short = ds_filtered_short.shuffle(seed=SEED).select(range(n_short))
+    ds_sampled_iqr = ds_filtered_iqr.shuffle(seed=SEED).select(range(n_iqr))
+    ds_final = datasets.concatenate_datasets([ds_sampled_short, ds_sampled_iqr])
+
+    # Sort
+    ds_final = ds_final.sort("par_idx")
+
+    return ds_final
 
 
 def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace:
@@ -120,17 +155,17 @@ def main(arguments: Optional[List[str]] = None) -> None:
     else:
         raise ValueError(f"Unknown path: '{input_path}'")
 
-    # (4) Iterate over files lists, modify, save
+    # (3) Iterate over files lists, modify, save
     for files in files_lists:
-        # (4.1) Load dataset
+        # (3.1) Load dataset
         logger.info("Handling: " + " ".join(files))
         dataset: datasets.Dataset = utils.load_dataset_via_pandas(data_files=files)
         dataset.data.validate()
 
-        # (4.2) Get subsampled dataset
+        # (3.2) Get subsampled dataset
         dataset_subsample = subsample(dataset, p_sents, p_short)
 
-        # (4.3) Save dataset
+        # (3.3) Save dataset
         if not os.path.isdir(output_dir):
             os.makedirs(output_dir)
         utils.save_dataset_to_json_grouped_by_property(
