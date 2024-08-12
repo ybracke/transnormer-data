@@ -27,10 +27,8 @@ class CaseModifier(Seq2SeqRawModifier):
     def modify_batch(self, batch: Dict[str, List]):
         # Keep previous raw text as backup
         raw_before: List[str] = batch[self.raw_trg]
-        # Lowercased version of original + HOTFIX newline char for this caser
-        raw_before_lc = [
-            string.strip().lower() + "\n" for string in batch[self.raw_trg]
-        ]
+        # Lowercased version of original
+        raw_before_lc = [string.lower() for string in batch[self.raw_trg]]
 
         inputs = self.tokenizer(
             raw_before_lc,
@@ -43,7 +41,7 @@ class CaseModifier(Seq2SeqRawModifier):
             outputs = self.model.generate(**inputs, generation_config=self.gen_cfg)
 
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
-        batch[self.raw_trg] = [s.rstrip("\n") for s in output_str]
+        batch[self.raw_trg] = output_str
 
         # Propagate changes
         # Convert batch (dict of lists) to samples (dict) and back to batch
@@ -58,7 +56,7 @@ class CaseModifier(Seq2SeqRawModifier):
                 sample[self.raw_trg] = raw_before[i]
             # Check whether caser changed more than it is supposed to
             # HOTFIX: allow spacing differences
-            elif raw_before_lc[i].strip().replace(" ", "") != batch[self.raw_trg][
+            elif raw_before_lc[i].replace(" ", "") != batch[self.raw_trg][
                 i
             ].lower().replace(" ", ""):
                 # TODO: IDs should not be hard-coded
