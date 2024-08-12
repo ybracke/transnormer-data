@@ -32,7 +32,6 @@ class CaseModifier(Seq2SeqRawModifier):
 
         inputs = self.tokenizer(
             raw_before_lc,
-            batch[self.raw_trg],
             return_tensors="pt",
             padding=True,
         ).to(self._device)
