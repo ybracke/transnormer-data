@@ -189,7 +189,19 @@ def main(arguments: Optional[List[str]] = None) -> None:
 
         # (4.2) Modify dataset
         if "batch_size" in locals():
+            # Sort by length for faster generation
+            index_column = "#"
+            dataset = utils.sort_dataset_by_length(
+                dataset,
+                column="orig",  # TODO
+                descending=False,
+                name_index_column=index_column,
+                keep_length_column=False,
+            )
             dataset = modifier.modify_dataset(dataset, batch_size=batch_size)
+            # Restore original order
+            dataset = dataset.sort(index_column)
+            dataset = dataset.remove_columns(index_column)
         else:
             dataset = modifier.modify_dataset(dataset)
 
