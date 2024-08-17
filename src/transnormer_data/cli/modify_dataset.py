@@ -19,6 +19,7 @@ from transnormer_data.modifier import (
     language_tool_modifier,
     language_detection_modifier,
     lm_score_modifier,
+    case_modifier,
 )
 
 # Reset existing logging configuration
@@ -79,6 +80,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     input_path = args.data
     output_dir = args.output_dir
     plugin = args.modifier
+    layer = None
     # Parse --modifier-kwargs into a dictionary
     if args.modifier_kwargs:
         modifier_kwargs = dict(item.split("=") for item in args.modifier_kwargs.split())
@@ -166,6 +168,12 @@ def main(arguments: Optional[List[str]] = None) -> None:
         model = modifier_kwargs.get("model")
         modifier = lm_score_modifier.LMScoreModifier(layer, model)
 
+    elif plugin.lower() == "casemodifier":
+        layer = modifier_kwargs.get("layer")
+        model = modifier_kwargs.get("model")
+        batch_size = 8  # TODO: replace hard-coded batch size
+        modifier = case_modifier.CaseModifier(layer, model)
+
     else:
         raise ValueError(
             f"Unknown modifier name '{plugin}'. Please select a valid modifier name."
@@ -181,7 +189,23 @@ def main(arguments: Optional[List[str]] = None) -> None:
         dataset.data.validate()
 
         # (4.2) Modify dataset
-        dataset = modifier.modify_dataset(dataset)
+        if "batch_size" in locals():
+            # Sort by length for faster generation
+            index_column = "#"
+            column = "norm" if layer is None else layer
+            dataset = utils.sort_dataset_by_length(
+                dataset,
+                column=column,
+                descending=True,
+                name_index_column=index_column,
+                keep_length_column=False,
+            )
+            dataset = modifier.modify_dataset(dataset, batch_size=batch_size)
+            # Restore original order
+            dataset = dataset.sort(index_column)
+            dataset = dataset.remove_columns(index_column)
+        else:
+            dataset = modifier.modify_dataset(dataset)
 
         # (4.3) Save dataset
         if not os.path.isdir(output_dir):

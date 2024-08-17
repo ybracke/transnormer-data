@@ -1,5 +1,4 @@
 import os
-from abc import abstractmethod
 from typing import Dict, List, Optional, Tuple, Union
 
 import datasets
@@ -133,15 +132,23 @@ class BaseDatasetModifier:
             end_idx = start_idx + len(tok)
             whitespaces.append(has_preceding_ws)
             spans.append([start_idx, end_idx])
-        assert self._tok2raw(tokens, whitespaces) == raw
+        assert (
+            self._tok2raw(tokens, whitespaces) == raw
+        ), f"'{self._tok2raw(tokens, whitespaces)}'\nis not\n'{raw}'"
         return spans, whitespaces
 
     def modify_dataset(
         self,
         dataset: datasets.Dataset,
+        batch_size: Optional[int] = None,
         save_to: Optional[Union[str, os.PathLike]] = None,
     ) -> Union[datasets.Dataset, None]:
-        dataset = dataset.map(self.modify_sample)
+        if batch_size is None:
+            dataset = dataset.map(self.modify_sample)
+        else:
+            dataset = dataset.map(
+                self.modify_batch, batched=True, batch_size=batch_size
+            )
         if save_to:
             if not os.path.isdir(save_to):
                 os.makedirs(save_to)
@@ -168,6 +175,8 @@ class BaseDatasetModifier:
                 idx2idxs[idx_src].append(idx_trg)
         return idx2idxs
 
-    @abstractmethod
     def modify_sample(self, sample: Dict):
-        pass
+        raise NotImplementedError
+
+    def modify_batch(self, batch: Dict[str, List]):
+        raise NotImplementedError
