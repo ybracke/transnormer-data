@@ -132,7 +132,9 @@ class BaseDatasetModifier:
             end_idx = start_idx + len(tok)
             whitespaces.append(has_preceding_ws)
             spans.append([start_idx, end_idx])
-        assert self._tok2raw(tokens, whitespaces) == raw
+        assert (
+            self._tok2raw(tokens, whitespaces) == raw
+        ), f"'{self._tok2raw(tokens, whitespaces)}'\nis not\n'{raw}'"
         return spans, whitespaces
 
     def modify_dataset(

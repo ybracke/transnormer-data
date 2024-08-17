@@ -40,7 +40,7 @@ class CaseModifier(Seq2SeqRawModifier):
             outputs = self.model.generate(**inputs, generation_config=self.gen_cfg)
 
         output_str = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
-        batch[self.raw_trg] = output_str
+        batch[self.raw_trg] = [s.strip() for s in output_str]
 
         # Propagate changes
         # Convert batch (dict of lists) to samples (dict) and back to batch
