@@ -71,10 +71,18 @@ class LMScoreModifier(BaseDatasetModifier):
         self, layer: Optional[str] = None, language_model: Optional[str] = None
     ) -> None:
         """
-        Modifier that adds a language model probability score for each record.
+        Modifier that adds a language model (LM) probability score to each record.
 
-        A new property is created for the score. It is named after the model name.
-        The default layer that language detection is applied to is "norm".
+        LM must be a huggingface model, default is "dbmdz/german-gpt2".
+        By default, LM scores are computed for the layer "norm".
+
+        A new property is created for the score with the language model's name, e.g.
+
+        ```json
+        {
+            "dbmdz/german-gpt2" : 5.6789
+        }
+        ```
         """
 
         # Set layer
