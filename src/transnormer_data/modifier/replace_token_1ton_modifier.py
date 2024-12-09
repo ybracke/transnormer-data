@@ -12,10 +12,11 @@ class ReplaceToken1toNModifier(BaseDatasetModifier):
         self, layer: str = "norm", mapping_files: Optional[List[str]] = None
     ) -> None:
         """
-        1:n type replacement modifier.
+        Modifier that replaces unigrams with ngrams.
 
-        This modifier replaces unigrams on the tokenized version of the target layer
-        (here "norm_tok" or "orig_tok") by ngrams, propagates the changes to the raw version ("norm" or "orig") and computes a new alignment with the source layer ("orig_tok" or "norm_tok", respectively).
+        This modifier replaces the occurrences of a unigram type on the tokenized version of the target layer (here "norm_tok" or "orig_tok") with an ngram, propagates the changes to the raw version ("norm" or "orig") and computes a new alignment with the source layer ("orig_tok" or "norm_tok", respectively).
+
+        Default target layer is `norm`.
 
         """
 

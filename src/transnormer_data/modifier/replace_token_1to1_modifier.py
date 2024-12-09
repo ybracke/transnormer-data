@@ -12,10 +12,11 @@ class ReplaceToken1to1Modifier(BaseDatasetModifier):
         self, layer: str = "norm", mapping_files: Optional[List[str]] = None
     ) -> None:
         """
-        Example implementation of a type replacement modifier
+        Modifier that replaces unigrams with unigrams.
 
-        This modifier replaces types on the tokenized version of the target layer
-        (here "norm_tok") and propagates the changes to the raw version ("norm")
+        This modifier replaces the occurrences of a unigram type with another unigram on the tokenized version of the target layer and propagates the changes to the raw version of the target layer.
+
+        Default target layer is `norm`.
 
         """
 
