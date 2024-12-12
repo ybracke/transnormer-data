@@ -308,7 +308,7 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
         correct_res = (["Alle", "Andres", "'", "Alleine"], True)
         assert correct_res == actual_res
 
-    def test_modify_sample(self) -> None:
+    def test_modify_sample_basic(self) -> None:
         self.modifier.replacement_mapping = self.modifier._load_n2m_replacement_mapping(
             self.mapping_files, delimiters="\t"
         )
@@ -339,6 +339,69 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             ],
             "orig_tok": ["All", "'", "Andres", "'", "Allein", "'"],
             "alignment": [[0, 0], [1, None], [2, 1], [3, 2], [4, 3], [5, None]],
+        }
+        actual_res = self.modifier.modify_sample(input_sample)
+        assert actual_res == correct_res
+
+    def test_modify_sample_with_xlit_src_true(self) -> None:
+        self.modifier.replacement_mapping = self.modifier._load_n2m_replacement_mapping(
+            self.mapping_files, delimiters="\t"
+        )
+        self.modifier.xlit_src = True
+        input_sample = {
+            "norm": "mässig",
+            "norm_tok": ["mässig"],
+            "norm_ws": [False],
+            "norm_spans": [
+                [0, 6],
+            ],
+            "orig_tok": ["mäſſig"],
+            "alignment": [
+                [0, 0],
+            ],
+        }
+        correct_res = {
+            "norm": "mäßig",
+            "norm_tok": ["mäßig"],
+            "norm_ws": [False],
+            "norm_spans": [
+                [0, 5],
+            ],
+            "orig_tok": ["mäſſig"],
+            "alignment": [
+                [0, 0],
+            ],
+        }
+        actual_res = self.modifier.modify_sample(input_sample)
+        assert actual_res == correct_res
+
+    def test_modify_sample_with_xlit_src_false(self) -> None:
+        self.modifier.replacement_mapping = self.modifier._load_n2m_replacement_mapping(
+            self.mapping_files, delimiters="\t"
+        )
+        input_sample = {
+            "norm": "mässig",
+            "norm_tok": ["mässig"],
+            "norm_ws": [False],
+            "norm_spans": [
+                [0, 6],
+            ],
+            "orig_tok": ["mäſſig"],
+            "alignment": [
+                [0, 0],
+            ],
+        }
+        correct_res = {
+            "norm": "mässig",
+            "norm_tok": ["mässig"],
+            "norm_ws": [False],
+            "norm_spans": [
+                [0, 6],
+            ],
+            "orig_tok": ["mäſſig"],
+            "alignment": [
+                [0, 0],
+            ],
         }
         actual_res = self.modifier.modify_sample(input_sample)
         assert actual_res == correct_res
