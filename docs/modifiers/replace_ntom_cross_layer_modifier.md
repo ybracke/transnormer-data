@@ -26,9 +26,11 @@ Nieder-Jagd	Niederjagd
 ```bash
 nohup nice python3 src/transnormer_data/cli/modify_dataset.py \
     -m replacentomcrosslayermodifier \
-    --modifier-kwargs "mapping_files=<file-path>+ delimiter=<delimiter> source_layer={orig,norm} target_layer={norm,orig}" \
+    --modifier-kwargs "mapping_files=<file-path>+ delimiter=<delimiter> source_layer={orig,norm} target_layer={norm,orig} [transliterate_source={true,t,yes,1}]" \
     --data <dir-path-in> \
     -o <dir-path-out> &
 ```
 
-Note: If the delimiter is the TAB character, `delimiter={TAB}` must be passed.
+Note:
+* If the delimiter is the TAB character, `delimiter={TAB}` must be passed.
+* To transliterate the source tokens before dictionary lookup, transliterate_source must be passed with any of `{true,t,yes,1}`

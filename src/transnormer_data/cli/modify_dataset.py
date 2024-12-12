@@ -130,6 +130,8 @@ def main(arguments: Optional[List[str]] = None) -> None:
         delim = modifier_kwargs["delimiter"]
         source_layer = modifier_kwargs["source_layer"]
         target_layer = modifier_kwargs["target_layer"]
+        xlit_src = modifier_kwargs.get("transliterate_source", "")
+        xlit_src_bool = True if xlit_src.lower() in {"true", "yes", "t", "1"} else False
         # If the delimiter is the tab character we need a little hack
         # We have to pass the string "{TAB}" on the command line
         if delim == "{TAB}":
@@ -139,6 +141,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
             target_layer=target_layer,
             mapping_files=mapping_files,
             mapping_files_delimiters=delim,
+            transliterate_source=xlit_src_bool,
         )
 
     elif plugin.lower() == "replacerawmodifier":
