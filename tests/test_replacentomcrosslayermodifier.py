@@ -291,6 +291,7 @@ class ReplaceNtoMCrossLayerModifierTester(unittest.TestCase):
             ("Allein", "'"): ("Alleine",),
             ("Ameiſ", "’"): ("Ameise",),
             ("Andres", "'"): ("Andres", "'"),
+            ("mässig",): ("mäßig",),
         }
         actual_res = self.modifier._load_n2m_replacement_mapping(files, delimiters="\t")
         assert correct_res == actual_res
