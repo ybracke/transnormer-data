@@ -1,5 +1,7 @@
 import json
 import os
+import unicodedata
+
 from typing import List, Union
 
 import datasets
@@ -66,3 +68,14 @@ def load_dataset_via_pandas(data_files: List[str]) -> datasets.Dataset:
     # concatenate all the data frames in the list
     df_concatenated = pd.concat(dfs, ignore_index=True)
     return datasets.Dataset.from_pandas(df_concatenated)
+
+
+def german_transliterate(s):
+    s = unicodedata.normalize("NFKC", s)
+    return (
+        s.replace("ſ", "s")
+        .replace("a\u0364", "ä")
+        .replace("o\u0364", "ö")
+        .replace("u\u0364", "ü")
+        .replace("ꝛ", "r")
+    )

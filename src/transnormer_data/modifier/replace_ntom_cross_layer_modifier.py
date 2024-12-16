@@ -2,6 +2,7 @@ import csv
 import logging
 from typing import Dict, Iterable, List, Optional, Set, Tuple
 
+from transnormer_data import utils
 from transnormer_data.base_dataset_modifier import BaseDatasetModifier
 from transnormer_data.detokenizer import DtaEvalDetokenizer
 
@@ -15,6 +16,7 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         target_layer: str = "norm",
         mapping_files: Optional[List[str]] = None,
         mapping_files_delimiters: Optional[str] = None,
+        transliterate_source: Optional[bool] = None,
     ) -> None:
         """
         n-gram to m-gram cross layer replacement modifier.
@@ -50,6 +52,11 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
         self.replacement_mapping: Dict[Tuple[str, ...], Tuple[str, ...]] = (
             self._load_n2m_replacement_mapping(mapping_files, mapping_files_delimiters)
         )
+
+        # Whether to transliterate (e.g. "ſ" -> "s") the source tokens,
+        # before looking them up in the replacement_mapping. This should be true
+        # iff the keys in the replacement_mapping are also transliterated types
+        self.xlit_src = False if transliterate_source is None else transliterate_source
 
         self._current_sample: Dict = {}
 
@@ -275,6 +282,8 @@ class ReplaceNtoMCrossLayerModifier(BaseDatasetModifier):
 
         tokens_trg_old = sample[self.tok_trg]
         tokens_src = sample[self.tok_src]
+        if self.xlit_src:
+            tokens_src = [utils.german_transliterate(t) for t in tokens_src]
         alignment = sample[self.alignment]
         tokens_trg_new, any_changes = self.map_tokens_cross_layer(
             tokens_src, tokens_trg_old, alignment
