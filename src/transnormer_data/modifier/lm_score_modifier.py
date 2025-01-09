@@ -26,7 +26,7 @@ class LMScorer(object):
 
         return
 
-    def __call__(self, text: str) -> Dict[str, float]:
+    def __call__(self, text: str) -> Dict[str, np.float32]:
         """
         Returns a dictionary of the language model score (negative log likelihood)
 
@@ -107,8 +107,12 @@ class LMScoreModifier(BaseDatasetModifier):
         """
 
         scores = self.lm_scorer(sample[self.raw])
-        scores_pos_rnd = {
-            model: np.round(score, 4) for (model, score) in scores.items()
+        # convert np.float32 to float
+        scores_float = {
+            key: score.item()
+            for (key, score) in scores.items()
+            # round to 10 decimal points
+            # key: round(score.item(),4) for (key, score) in scores.items()
         }
-        sample.update(scores_pos_rnd)
+        sample.update(scores_float)
         return sample
