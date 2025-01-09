@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class LMScorer(object):
-    def __init__(self, model_name: str):
+    def __init__(self, model_name: str, prefix: Optional[str] = None):
         logger.info(f'Loading huggingface language model "{model_name}"')
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(model_name)
@@ -21,7 +21,8 @@ class LMScorer(object):
         self.model.eval()
         if "pad_token" not in self.tokenizer.special_tokens_map:
             self.tokenizer.add_special_tokens({"pad_token": "<pad>"})
-        self.model_name = model_name
+
+        self.key = f"{prefix}_{model_name}" if prefix else f"{model_name}"
 
         return
 
@@ -31,11 +32,11 @@ class LMScorer(object):
 
         Possible output:
         {
-        "dbmdz/german-gpt2" : 5.6789
+        "norm_dbmdz/german-gpt2" : 5.6789
         }
         """
         scores = dict()
-        scores[self.model_name] = self.predict_logprobs(text)
+        scores[f"{self.key}"] = self.predict_logprobs(text)
         return scores
 
     def predict_logprobs(self, input_str: str) -> float:
@@ -91,17 +92,12 @@ class LMScoreModifier(BaseDatasetModifier):
         """
 
         # Set layer
-        accepted_layers = {"orig", "norm"}
         layer = "norm" if layer is None else layer
-        if layer not in accepted_layers:
-            raise NotImplementedError(
-                f"""LMScoreModifier is not implemented for layer '{layer}'. Choose one of {accepted_layers}"""
-            )
         self.raw = layer
 
         # LM
         model_name = "dbmdz/german-gpt2" if language_model is None else language_model
-        self.lm_scorer = LMScorer(model_name)
+        self.lm_scorer = LMScorer(model_name, prefix=layer)
 
     def modify_sample(self, sample: Dict) -> Dict:
         """
