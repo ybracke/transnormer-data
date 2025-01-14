@@ -67,9 +67,21 @@ The target side's tokenization may change during modifications. At all times, we
 
 ### Makers
 
-[TODO]
+A `Maker` defines how to create a corpus in the [target format](#format) from the input data and metadata files. This involves tokenization or detokenization (depending on the input format), alignmend, span computation, etc.
+
+The metadata and data files input formats must be accounted for by the `Maker`.
+
+Currently, this project supports the following makers:
+
+* `DtaEvalMaker`: for the DTAEvalCorpus (data format: custom XML)
+* `DtakMaker`: for the DTAK and DTAE Corpus (data format: ddctabs)
 
 ### Modifiers
+
+A `Modifier` defines one or more modifications per record in the data.
+A modification can be the update of an existing property (e.g. replace a token in the tokens list with `ReplaceToken1to1Modifier`) and propagate the changes to other prorties (e.g. recompute the token alignment) or the addition of a new property (e.g. adding a language model score with `LMScoreModifier`).
+
+Currently, this project supports the following modifiers:
 
 * [`LanguageDetectionModifier`](docs/modifiers/language_detection_modifier.md)
 * [`LanguageToolModifier`](docs/modifiers/language_tool_modifier.md)
