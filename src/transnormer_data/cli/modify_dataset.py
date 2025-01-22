@@ -60,8 +60,14 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
 
     parser.add_argument(
         "-o",
-        "--output-dir",
-        help="Path to the output directory. Directory will be created, if it does not exist.",
+        "--output",
+        help="Path to the output directory or file. Directory will be created, if it does not exist. This can only be a filename if --single-file-output is passed as well.",
+    )
+
+    parser.add_argument(
+        "--output-single-file",
+        action="store_true",
+        help="Flag for saving the output to a single file. Overwrites the default behavior of storing one file per 'basename'. `--output` will be interpreted as a filename if this flag is passed.",
     )
 
     parser.add_argument(
@@ -77,7 +83,7 @@ def main(arguments: Optional[List[str]] = None) -> None:
     # (1) Read and check arguments
     args = parse_arguments(arguments)
     input_path = args.data
-    output_dir = args.output_dir
+    output_path = args.output
     plugin = args.modifier
     # Parse --modifier-kwargs into a dictionary
     if args.modifier_kwargs:
@@ -187,11 +193,18 @@ def main(arguments: Optional[List[str]] = None) -> None:
         dataset = modifier.modify_dataset(dataset)
 
         # (4.3) Save dataset
-        if not os.path.isdir(output_dir):
-            os.makedirs(output_dir)
-        utils.save_dataset_to_json_grouped_by_property(
-            dataset, property="basename", path_outdir=output_dir
-        )
+        # (a) To a single file
+        if args.output_single_file:
+            if not os.path.isdir(os.path.dirname(output_path)):
+                os.makedirs(os.path.dirname(output_path))
+            utils.save_dataset_to_json(dataset, path_outfile=output_path)
+        # (b) To multiple files
+        else:
+            if not os.path.isdir(output_path):
+                os.makedirs(output_path)
+            utils.save_dataset_to_json_grouped_by_property(
+                dataset, property="basename", path_outdir=output_path
+            )
 
     return None
 
