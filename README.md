@@ -122,3 +122,12 @@ python3 src/transnormer_data/cli/modify_dataset.py \
 --data dta/jsonl/v01 \
 -o dta/jsonl/v02
 ```
+
+```bash
+python3 src/transnormer_data/cli/modify_dataset.py \
+-m replacetoken1to1modifier \
+--modifier-kwargs "mapping_files=replacement-dict-1to1.csv layer=norm" \
+--data dta/jsonl/v01 \
+--o dta/jsonl/v01/dta_all-in-one.jsonl
+--output-single-file
+```
