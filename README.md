@@ -19,11 +19,11 @@ Training examples for Transnormer must conform to the following JSON template:
 
 This project facilitates the transformation of corpus data from a variety of input formats into a JSONL format that contains these two attributes and a few more. The full output format is described in the section [Format](#Format).
 
-Preparing the data for training and evaluation typically entails more than converting the format to JSONL. For example, the corpus may come in tokenized form and then must be converted to a raw string version (e.g. `["Eyn", "Theylstueck"] -> "Eyn Theylstueck"`).
+Preparing a corpus for training and evaluation can entail more than converting the format to JSONL. For example, if the initial corpus only comes in tokenized form, sentences must be converted to a raw string version (e.g. `["Eyn", "Theylstueck"] -> "Eyn Theylstueck"`).
 
-Moreover, this project allows to apply improvements to the data, particularly, to the normalization layer. For example, some normalizations in *Deutsches Textarchiv* (DTA, German Text Archive) contain underscores (e.g. `geht_es`), which should be removed. There may also be systematic errors in the normalizations that we want to correct (e.g. German spelling according to pre-1996 rules, e.g. `Kuß` instead of `Kuss`).
+Moreover, this project makes it possible to apply updates to the data, particularly, to the normalization layer. For example, some normalizations in *Deutsches Textarchiv* (DTA, German Text Archive) contain underscores (e.g. `geht_es`), which should be removed. Another case are systematic errors in the normalizations that we want to correct (e.g. German spelling according to pre-1996 rules, e.g. `Kuß` instead of `Kuss`).
 
-Transnormer takes raw strings as input, but often we want to apply automatic replacements on the token-level (e.g. replacing `Kuß` by `Kuss`). Thus both versions - a tokenized and a raw string (untokenized) version - of the examples should be kept. Any changes to either version (raw or tokenized) must be propagated to the other, so that they are always in sync. This functionality is provided by the code in this repo.
+*Transnormer* takes raw strings as input, but often we want to apply automatic replacements on the token-level (e.g. replacing `Kuß` by `Kuss`). Thus both versions - a tokenized and a raw string (untokenized) version - of the examples should be kept. Any changes to either version (raw or tokenized) must be propagated to the other, so that they are always in sync. This functionality is provided by the code in this repo.
 
 ## Format
 
