@@ -57,6 +57,8 @@ This is the format that each dataset is converted to. Attributes that are commen
 }
 ```
 
+**Example**: A published dataset in this format can be found on [Hugging Face](https://huggingface.co/datasets/ybracke/dtak-transnormer-full-v1).
+
 ## Docs
 
 Any modifications to the source side of the parallel corpus should be done by the `Maker`. After the dataset was made with the `Maker`, no more edits to source are expected. This way, any annotations that belong to the pre-tokenized inputs are preserved (or have to be handled specifically by the `Maker`).
