@@ -57,7 +57,15 @@ This is the format that each dataset is converted to. Attributes that are commen
 }
 ```
 
-**Example**: A published dataset in this format can be found on [Hugging Face](https://huggingface.co/datasets/ybracke/dtak-transnormer-full-v1).
+## Example dataset
+
+A published dataset in the specified format can be found on Hugging Face: [dtak-transnormer-full-v1](https://huggingface.co/datasets/ybracke/dtak-transnormer-full-v1).
+
+The full dataset (8.3 GB) can be downloaded with the Hugging Face [`CLI`](https://huggingface.co/docs/huggingface_hub/en/guides/cli):
+
+```sh
+huggingface-cli download ybracke/dtak-transnormer-full-v1 --repo-type dataset
+```
 
 ## Docs
 
