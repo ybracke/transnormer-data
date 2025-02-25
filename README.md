@@ -94,11 +94,27 @@ Currently, this project supports the following modifiers:
 * [`ReplaceToken1toNModifier`](docs/modifiers/replace_token_1ton_modifier.md)
 
 
+## Installation
+
+```sh
+# Download code
+git clone git@github.com:ybracke/transnormer-data.git
+cd ./transnormer-data
+
+# Create virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install
+pip install --upgrade pip
+pip install .
+```
+
 ## Usage
 
-Run the CLI scripts `make_dataset.py`, `split_dataset.py` `modify_dataset.py`.
+Start the virtual environment and run the CLI scripts `make_dataset.py`, `split_dataset.py` or `modify_dataset.py`.
 
-Examples:
+Here are some example calls:
 
 ```bash
 python3 src/transnormer_data/cli/make_dataset.py \
