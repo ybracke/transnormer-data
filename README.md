@@ -64,7 +64,7 @@ A published dataset in the specified format can be found on Hugging Face: [dtak-
 The full dataset (8.3 GB) can be downloaded with the Hugging Face [`CLI`](https://huggingface.co/docs/huggingface_hub/en/guides/cli):
 
 ```sh
-huggingface-cli download ybracke/dtak-transnormer-full-v1 --repo-type dataset
+huggingface-cli download ybracke/dtak-transnormer-full-v1 --repo-type dataset --local-dir .
 ```
 
 ## Docs
