@@ -215,8 +215,8 @@ def main(arguments: Optional[List[str]] = None) -> None:
 
 if __name__ == "__main__":
     """
-    Example call currently (output file missing):
+    Example call:
 
-    python3 src/transnormer_data/cli/dataset2lexicon.py --data ~/published_datasets/dtak-transnormer-full-v1/data/test/1600-1699/ -x > file.txt
+    python3 src/transnormer_data/cli/dataset2lexicon.py --data ~/published_datasets/dtak-transnormer-full-v1/data/test/1600-1699/ --out file.txt -x
     """
     main()
