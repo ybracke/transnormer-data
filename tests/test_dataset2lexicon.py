@@ -34,10 +34,10 @@ class FooTester(unittest.TestCase):
         norm_tok = self.data[0]["norm_tok"]
 
         target_ngram_alignment = [
-            ("Irgend eyn", "Irgendein"),
+            ("Irgend_eyn", "Irgendein"),
             ("ſchoenes", "schönes"),
             ("Haus", "Haus"),
-            ("zuviel", "zu viel"),
+            ("zuviel", "zu_viel"),
             (".", "."),
         ]
         ngram_alignment = dataset2lexicon.get_ngram_alignment(
@@ -45,3 +45,8 @@ class FooTester(unittest.TestCase):
         )
 
         assert ngram_alignment == target_ngram_alignment
+
+    def test_transnform_alignment_withNones(self):
+        alignment_in = self.data[0]["alignment"]
+        alignment_in.append([6, None])
+        print(dataset2lexicon.transform_alignment(alignment_in))
