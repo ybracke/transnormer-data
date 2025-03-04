@@ -164,7 +164,6 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
         "-s",
         "--ngram_separator",
         type=str,
-        required=True,
         default="▁",
         help="Separator symbol(s) for ngrams that consists of multiple tokens (default='▁'(U+2581)).",
     )
@@ -214,13 +213,16 @@ def main(arguments: Optional[List[str]] = None) -> None:
         with open(path, "r", encoding="utf-8") as f:
             for line in f:
                 record = json.loads(line.strip())
-                # assert structure
-                # TODO
-                alignment = transform_alignment(record["alignment"])
-                orig_tok = record["orig_tok"]
+                try:
+                    alignment = record["alignment"]
+                    orig_tok = record["orig_tok"]
+                    norm_tok = record["norm_tok"]
+                except KeyError as e:
+                    print(f"Record is missing necessary property: {e}")
+                    raise
+                alignment = transform_alignment(alignment)
                 if translit:
                     orig_tok = [german_transliterate(tok) for tok in orig_tok]
-                norm_tok = record["norm_tok"]
                 ngram_alignment = get_ngram_alignment(
                     alignment, orig_tok, norm_tok, keep_none, separator
                 )
