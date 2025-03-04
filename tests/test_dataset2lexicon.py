@@ -28,7 +28,6 @@ class FooTester(unittest.TestCase):
             ((5,), (5,)),
         ]
         assert alignment == target_index_alignment
-        print(alignment)
 
         orig_tok = self.data[0]["orig_tok"]
         norm_tok = self.data[0]["norm_tok"]
@@ -41,7 +40,7 @@ class FooTester(unittest.TestCase):
             (".", "."),
         ]
         ngram_alignment = dataset2lexicon.get_ngram_alignment(
-            alignment, orig_tok, norm_tok
+            alignment, orig_tok, norm_tok, keep_none_aligments=True, sep="_"
         )
 
         assert ngram_alignment == target_ngram_alignment
@@ -49,4 +48,15 @@ class FooTester(unittest.TestCase):
     def test_transnform_alignment_withNones(self):
         alignment_in = self.data[0]["alignment"]
         alignment_in.append([6, None])
-        print(dataset2lexicon.transform_alignment(alignment_in))
+
+        alignment_out = dataset2lexicon.transform_alignment(alignment_in)
+        target_alignment = [
+            ((0, 1), (0,)),
+            ((2,), (1,)),
+            ((3,), (2,)),
+            ((4,), (3, 4)),
+            ((5,), (5,)),
+            ((6,), (None,)),
+        ]
+
+        assert alignment_out == target_alignment

@@ -97,16 +97,17 @@ def get_ngram_alignment(
     alignment: List[Tuple[Tuple[int | None, ...], Tuple[int | None, ...]]],
     seq1: List[str],
     seq2: List[str],
+    keep_none_aligments: bool,
+    sep: str,
 ) -> List[Tuple[str, str]]:
     ngram_mappings = []
     for indexes_seq1, indexes_seq2 in alignment:
         # TODO: just skip None alignments?
-        # TODO: ### for None alignments?
         ngram_seq1 = [seq1[i] for i in indexes_seq1 if i is not None]
         ngram_seq2 = [seq2[i] for i in indexes_seq2 if i is not None]
-        ngram_mapping = ("_".join(ngram_seq1), "_".join(ngram_seq2))
+        ngram_mapping = (sep.join(ngram_seq1), sep.join(ngram_seq2))
         # Leave out None-alignments
-        if ngram_mapping[0] != "" and ngram_mapping[1] != "":
+        if keep_none_aligments or (ngram_mapping[0] != "" and ngram_mapping[1] != ""):
             ngram_mappings.append(ngram_mapping)
     return ngram_mappings
 
@@ -160,11 +161,27 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
     )
 
     parser.add_argument(
+        "-s",
+        "--ngram_separator",
+        type=str,
+        required=True,
+        default="▁",
+        help="Separator symbol(s) for ngrams that consists of multiple tokens (default='▁'(U+2581)).",
+    )
+
+    parser.add_argument(
         "-x",
         "--transliterate",
         action="store_true",
-        help="Whether the 'orig_tok' layer should be transliterated before counting (this would merge 'ſchoͤn' and 'schön'; default=%(default)s).",
+        help="Passing this flag will transliterate the 'orig_tok' layer before counting (e.g. this would merge the spellings 'ſchoͤn' and 'schön', since 'ſchoͤn' gets converted to 'schön').",
     )
+
+    parser.add_argument(
+        "--keep-none-alignments",
+        action="store_true",
+        help="Passing this flag to include None aligments in the lexicon, that is, tokens that have not been aligned with any token on the other layer. Note: The current version of this script groups all None alignments for a sentence together into a pseudo-ngram, even if they are do not all not occur in consecutive order.",
+    )
+
     return parser.parse_args(arguments)
 
 
@@ -173,6 +190,8 @@ def main(arguments: Optional[List[str]] = None) -> None:
     args = parse_arguments(arguments)
     translit = args.transliterate
     out_file = args.out
+    keep_none = args.keep_none_alignments
+    separator = args.ngram_separator
     if not os.path.isdir(os.path.dirname(os.path.abspath(out_file))):
         print(
             f"Directory with path '{os.path.dirname(os.path.abspath(out_file))}' does not exist. Exit now."
@@ -202,7 +221,9 @@ def main(arguments: Optional[List[str]] = None) -> None:
                 if translit:
                     orig_tok = [german_transliterate(tok) for tok in orig_tok]
                 norm_tok = record["norm_tok"]
-                ngram_alignment = get_ngram_alignment(alignment, orig_tok, norm_tok)
+                ngram_alignment = get_ngram_alignment(
+                    alignment, orig_tok, norm_tok, keep_none, separator
+                )
                 cnt_freqs_doc.update(ngram_alignment)
 
         cnt_occurs_in_docs.update(cnt_freqs_doc.keys())
