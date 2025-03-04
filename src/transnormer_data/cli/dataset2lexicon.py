@@ -149,7 +149,7 @@ def parse_arguments(arguments: Optional[List[str]] = None) -> argparse.Namespace
         "--data",
         type=str,
         required=True,
-        help="Path to the input data file or directory.",
+        help="Path to the input data file or directory, or a glob path.",
     )
 
     parser.add_argument(
