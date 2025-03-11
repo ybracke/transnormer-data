@@ -101,6 +101,41 @@ Currently, this project supports the following modifiers:
 * [`ReplaceToken1to1Modifier`](docs/modifiers/replace_token_1to1_modifier.md)
 * [`ReplaceToken1toNModifier`](docs/modifiers/replace_token_1ton_modifier.md)
 
+### Script `dataset2lexicon.py`
+
+This script creates a lexicon of ngram alignments between original and normalized ngrams from a dataset that has been processed with a Maker and/or a Modifier (see above). The ngram alignments in the output lexicon are drawn from sentence-level ngram alignments that have already been computed and are stored in the dataset.
+Therefore, datasets that are passed to this script must be one or more JSONL files that at least contain the properties `'orig_tok'`, `'norm_tok'` and `'alignment'`.
+The output is a lexicon JSONL file that has the following properties for each orig-norm pair:
+- `ngram_orig`: ngram in original spelling
+- `ngram_norm`: ngram in normalized spelling that is aligned to `ngram_orig`
+- `freq`: total frequency of the pair `(ngram_orig, ngram_norm)` in the dataset
+- `docs`: document frequency of the pair, i.e. in how many documents does it occur
+
+More on the ngram alignment: The token-level alignments produced with [textalign](https://github.com/ybracke/textalign) are n:m alignments, and aim to be the best alignment between the shortest possible sequence of tokens on the layer `orig_tok` with the shortest possible sequence of tokens on the layer `norm_tok`. Therefore, most of the mappings will be 1:1 alignments, followed by 1:n/n:1 alignments.
+
+```
+python3 src/transnormer_data/cli/dataset2lexicon.py --help
+
+usage: dataset2lexicon.py [-h] --data DATA -o OUT [-s NGRAM_SEPARATOR] [-x] [--keep-none-alignments]
+
+Creates a lexicon from a dataset with the following fields: `ngram_orig`, `ngram_norm`, `freq`, `docs`
+
+options:
+  -h, --help            show this help message and exit
+  --data DATA           Path to the input data file or directory, or a glob path.
+  -o OUT, --out OUT     Path to the output file (JSONL).
+  -s NGRAM_SEPARATOR, --ngram_separator NGRAM_SEPARATOR
+                        Separator symbol(s) for ngrams that consists of multiple tokens
+                        (default='▁'(U+2581)).
+  -x, --transliterate   Passing this flag will transliterate the 'orig_tok' layer before counting (e.g. this
+                        would merge the spellings 'ſchoͤn' and 'schön', since 'ſchoͤn' gets converted to
+                        'schön').
+  --keep-none-alignments
+                        Passing this flag to include None aligments in the lexicon, that is, tokens that
+                        have not been aligned with any token on the other layer. Note: The current version
+                        of this script groups all None alignments for a sentence together into a pseudo-
+                        ngram, even if they are do not all not occur in consecutive order.
+```
 
 ## Installation
 

@@ -1,8 +1,9 @@
+import glob
 import json
 import os
 import unicodedata
 
-from typing import List, Union
+from typing import Generator, List, Union
 
 import datasets
 import pandas as pd
@@ -79,3 +80,16 @@ def german_transliterate(s):
         .replace("u\u0364", "ü")
         .replace("ꝛ", "r")
     )
+
+
+def filename_gen(path: str) -> Generator[str, None, None]:
+    """Yields filename(s) from a path, where path can be file, dir or glob"""
+
+    if os.path.isfile(path):
+        yield path
+    elif os.path.isdir(path):
+        for filename in os.listdir(path):
+            yield os.path.join(path, filename)
+    else:
+        for filename in glob.glob(path):
+            yield filename
